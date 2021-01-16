@@ -1,6 +1,6 @@
 import os
+import shutil
 from distutils.dir_util import copy_tree
-import subprocess
 from subprocess import check_output
 from multiprocessing import Process
 
@@ -22,15 +22,6 @@ class RunYALES2:
 
         # create array for objectives
         self.obj = []
-
-        try:
-            os.mkdir(genDir)
-        except OSError:
-            print('Directory ' + genDir + ' already exists')
-
-        # choice: create directories and copy for each individual
-        for ind in range(len(self.x)):
-            shutil.copy(self.caseDir + '/base-case', self.genDir + '/ind%i' % ind)
 
         self.preProc()
         self.executeSims()
@@ -99,7 +90,6 @@ class RunYALES2:
                 count.append(int(out))
                 if int(count[bID_i]) == 0:
                     # Run post processing once simulation finishes
-                    #self.postProc(ind[bID_i])
                     proc = Process(target=self.postProc(bID_i))
                     proc.start()
                     processes.append(proc)
