@@ -3,9 +3,10 @@ from pymoo.model.problem import Problem
 from pymoo.util.misc import stack
 
 from Pymoo.callback import callback
-from RunOpenFOAMv4.RunOpenFOAMv4 import RunOFv4
+# from RunOpenFOAMv4.RunOpenFOAMv4 import RunOFv4
+# from GMSHapi import GMSHapi
 
-from GMSHapi import GMSHapi
+from YALES2.RunYALES2 import RunYALES2
 
 
 class MyProblem(Problem):
@@ -21,40 +22,23 @@ class MyProblem(Problem):
 
     def _evaluate(self, x, out, *args, **kwargs):
         ###### Initialize Generation ######
-        case = 'airfoil'
         gen = callback.gen
 
         # geometry variables index
         # geoVarsI = [0, 1]
         # GMSHapi(self.x, self.gen, geoVarsI)
 
-        solver = 'simpleFoam'
-        mesher = 'blockMesh'
-
         # Maximum processors to be used
-        procLim = 1
+        # procLim = 1
         # Number of processors for each individual (EQUAL or SMALLER than procLim)
-        nProc = 1
+        # nProc = 1
 
-        #         print('Gen: %i'%gen)
-        #         print('   mu_x       mu_y')
-        print(x)
+        # print(x)
 
         # create sim object for this generation and it's population
-        sim = RunOFv4(case, x, gen, solver, mesher, procLim, nProc)
+        sim = RunYALES2(x, gen)
 
-        obj = sim.runGen()
-
-        #         print('Objectives')
-        #         print('  Lift    Drag')
-        #         for i in range(len(obj[:][0])):
-        #             print('gen %i:'%i, end=' ')
-        #             for j in range(len(obj[0][:])):
-        #                 print('%.6f' %obj[i][j], end=' ')
-        #             print('\n')
-
-        # out["F"] = np.column_stack([sigmaX, sigmaY])
-        out['F'] = obj
+        out['F'] = sim.obj
 
         # objectives unconstrainted
         # g1 = 2*(x[:, 0]-0.1) * (x[:, 0]-0.9) / 0.18

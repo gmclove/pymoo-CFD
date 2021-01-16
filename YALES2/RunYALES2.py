@@ -1,5 +1,3 @@
-import os
-import shutil
 from distutils.dir_util import copy_tree
 from subprocess import check_output
 from multiprocessing import Process
@@ -8,7 +6,7 @@ import numpy as np
 
 
 class RunYALES2:
-    def __init__(self, x, gen, procLim, nProc):
+    def __init__(self, x, gen):  #, procLim, nProc):
         self.x = np.array([[0, 1]])  # x
         self.gen = gen
         self.procLim = procLim
@@ -25,7 +23,6 @@ class RunYALES2:
 
         self.preProc()
         self.executeSims()
-        self.postProc()
 
     ####################################################################################################################
     def preProc(self):

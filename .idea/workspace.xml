@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="71bb159b-ff6f-4d85-9339-ad7baa2cdba1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Pymoo/problem.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pymoo/problem.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YALES2/RunYALES2.py" beforeDir="false" afterPath="$PROJECT_DIR$/YALES2/RunYALES2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
