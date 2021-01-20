@@ -1,5 +1,3 @@
-print("pymoo.py")
-
 from pymoo.algorithms.nsga2 import NSGA2
 from pymoo.factory import get_sampling, get_crossover, get_mutation
 print('after import')
