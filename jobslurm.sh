@@ -10,7 +10,7 @@
 #SBATCH --mail-user=glove1@uvm.edu
 
 source ~/.bashrc
-source activate pymoo
+source activate pymoo-CFD
 module use $HOME/yales2/modules && module load $(cd $HOME/yales2/modules; ls)
 cd ~/Simulations/yales2/pymoo-CFD/
-python ~/Simulations/yales2/pymoo-CFD/pymoo.py
+python ~/Simulations/yales2/pymoo-CFD/pymoo-CFD.py
