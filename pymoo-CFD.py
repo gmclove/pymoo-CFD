@@ -68,10 +68,8 @@ import numpy as np
 from pymoo.model.problem import Problem
 from pymoo.util.misc import stack
 
-# from Pymoo.callback import callback
 # from RunOpenFOAMv4.RunOpenFOAMv4 import RunOFv4
 # from GMSHapi import GMSHapi
-
 from YALES2.RunYALES2 import RunYALES2
 
 
@@ -139,17 +137,8 @@ class MyProblem(Problem):
 problem = MyProblem()
 
 
-
-
 ########################################################################################################################
 from pymoo.optimize import minimize
-
-#from Pymoo import algorithm, callback, display
-
-from Pymoo.problem import problem
-from Pymoo.algorithm import algorithm
-from Pymoo.callback import callback
-from Pymoo.display import display
 
 res = minimize(problem,
                algorithm,
@@ -172,7 +161,6 @@ for i in range(len(callback.data['best_obj1'])):
 print('Best Objective 2:')
 for i in range(len(callback.data['best_obj2'])):
     print('%.6f' % callback.data['best_obj2'][i])
-
 
 # print("Time Elapsed:")
 # print(res.time)
