@@ -9,13 +9,13 @@ class RunYALES2:
     def __init__(self, x, gen):  #, procLim, nProc):
         self.x = np.array([[0, 1]])  # x
         self.gen = gen
-        self.procLim = procLim
-        self.nProc = nProc
+        # self.procLim = procLim
+        # self.nProc = nProc
 
         self.exFile = '2D_cylinder'
         self.dataFile = 'ics_temporals.txt'
 
-        self.caseDir = './cases/ics_2D_cylinder'
+        self.caseDir = './YALES2/cases/ics_2D_cylinder'
         self.genDir = self.caseDir + '/gen%i' % gen
 
         # create array for objectives
@@ -45,7 +45,6 @@ class RunYALES2:
 
         for ind in range(len(self.x)):
             # copy base case files to new directory for each individual
-            copy_tree('./cases/ics_2D_cylinder/base-case', './cases/ics_2D_cylinder/gen0/ind0')
             copy_tree(self.caseDir + '/base-case', self.genDir + '/ind%i' % ind)
 
             # Extract parameters for each individual
@@ -71,8 +70,8 @@ class RunYALES2:
         for ind in range(len(self.x)):
             # create string for directory of individuals job slurm shell file
             indDir = self.genDir + '/ind%i/jobslurm.sh' % ind
-            cmd = 'sbatch ' + indDir
-            out = check_output(cmd)
+            # cmd = 'sbatch ' + indDir
+            out = check_output(['sbatch', indDir])#cmd)
             # Extract number from following: 'Submitted batch job 1847433'
             print(int(out[20:]))
             batchID.append(int(out[20:]))
