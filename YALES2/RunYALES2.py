@@ -1,6 +1,7 @@
 from distutils.dir_util import copy_tree
 from subprocess import check_output
 from multiprocessing import Process
+from os import getcwd
 
 import numpy as np
 
@@ -39,26 +40,41 @@ class RunYALES2:
             return kw_line, kw_line_i
 
         # MAIN BODY
-        # open and read YALES2 input file to array of strings for each line
-        with open(self.caseDir + '/base-case/' + self.exFile + '.in', 'r') as f_orig:
-            f_lines = f_orig.readlines()
+
 
         for ind in range(len(self.x)):
-            # copy base case files to new directory for each individual
-            copy_tree(self.caseDir + '/base-case', self.genDir + '/ind%i' % ind)
-
             # Extract parameters for each individual
             para = self.x[ind, :]
             omega = para[0]
             freq = para[1]
+            # copy base case files to new directory for each individual
+            indDir = self.genDir + '/ind%i' % ind
+            copy_tree(self.caseDir + '/base-case', indDir)
+
+            # change jobslurm.sh to correct directory
+            with open(indDir + '/jobslurm.sh', 'r') as f_orig:
+                job_lines = f_orig.readlines()
+            # find cd line
+            keyword = 'cd'
+            keyword_line, keyword_line_i = findKeywordLine(keyword, job_lines)
+            # create new string to replace line
+            newLine = keyword_line[:keyword_line.find('base-case')] + 'gen%i/ind%i' % (gen, ind) + '\n'
+            job_lines[keyword_line_i] = newLine
+            with open(indDir + '/jobslurm.sh', 'w') as f_new:
+                f_new.writelines(job_lines)
 
             ####### Simulation Boundary Condition Parameters ###########
+            # open and read YALES2 input file to array of strings for each line
+            with open(indDir + self.exFile + '.in', 'r') as f_orig:
+                in_lines = f_orig.readlines()
             # find line that must change using a keyword
             keyword = 'CYL_ROTATION_PROP'
-            keyword_line, keyword_line_i = findKeywordLine(keyword, f_lines)
+            keyword_line, keyword_line_i = findKeywordLine(keyword, in_lines)
             # create new string to replace line
             newLine = keyword + ' = ' + str(omega) + ' ' + str(freq) + '\n'
-            f_lines[keyword_line_i] = newLine
+            in_lines[keyword_line_i] = newLine
+            with open(indDir + self.exFile + '.in', 'w') as f_new:
+                f_new.writelines(in_lines)
             # REPEAT FOR EACH LINE THAT MUST BE CHANGED
 
             ######### Simulation Geometric Parameters ############
