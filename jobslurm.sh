@@ -13,4 +13,4 @@ source ~/.bashrc
 source activate pymoo-CFD
 module use $HOME/yales2/modules && module load $(cd $HOME/yales2/modules; ls)
 cd ~/Simulations/yales2/pymoo-CFD/
-python ~/Simulations/yales2/pymoo-CFD/pymoo-CFD.py
+python ./pymoo-CFD.py

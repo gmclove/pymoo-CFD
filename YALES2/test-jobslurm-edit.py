@@ -13,19 +13,19 @@ def findKeywordLine(kw, file_lines):
     return kw_line, kw_line_i
 
 
-omega = 5
-freq = 100
-# open and read YALES2 input file to array of strings for each line
-with open('./cases/ics_2D_cylinder/base-case/2D_cylinder.in', 'r') as f:
-    in_lines = f.readlines()
-    # find line that must change using a keyword
-    keyword = 'CYL_ROTATION_PROP'
-    keyword_line, keyword_line_i = findKeywordLine(keyword, in_lines)
-    # create new string to replace line
-    newLine = keyword + ' = ' + str(omega) + ' ' + str(freq) + '\n'
-    in_lines[keyword_line_i] = newLine
-with open('./cases/ics_2D_cylinder/base-case/2D_cylinder.in', 'w') as f_new:
-    f_new.writelines(in_lines)
+# omega = 5
+# freq = 100
+# # open and read YALES2 input file to array of strings for each line
+# with open('./cases/ics_2D_cylinder/base-case/2D_cylinder.in', 'r') as f:
+#     in_lines = f.readlines()
+#     # find line that must change using a keyword
+#     keyword = 'CYL_ROTATION_PROP'
+#     keyword_line, keyword_line_i = findKeywordLine(keyword, in_lines)
+#     # create new string to replace line
+#     newLine = keyword + ' = ' + str(omega) + ' ' + str(freq) + '\n'
+#     in_lines[keyword_line_i] = newLine
+# with open('./cases/ics_2D_cylinder/base-case/2D_cylinder.in', 'w') as f_new:
+#     f_new.writelines(in_lines)
 
 ind = 0
 gen = 0
