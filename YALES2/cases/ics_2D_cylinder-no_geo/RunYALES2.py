@@ -8,7 +8,7 @@ import numpy as np
 
 class RunYALES2:
     def __init__(self, x, gen):  #, procLim, nProc):
-        self.x = np.array([[0, 1]])  # x
+        self.x = x #np.array([[0, 1]])
         self.gen = gen
         # self.procLim = procLim
         # self.nProc = nProc
