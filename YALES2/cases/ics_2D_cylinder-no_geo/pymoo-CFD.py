@@ -64,9 +64,9 @@ class MyProblem(Problem):
         super().__init__(n_var=2,
                          n_obj=1,
                          n_constr=0,
-                                    # mu_x  mu_y
+                                    # omega freq
                          xl=np.array([-0.3, 0]),
-                         xu=np.array([-0.1, 0.15])
+                         xu=np.array([-0.1, 1])
                          )
 
     def _evaluate(self, x, out, *args, **kwargs):

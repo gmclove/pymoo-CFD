@@ -73,13 +73,10 @@ gmsh.model.setPhysicalName(1, grpTag, 'cyl')
 # To identify points or other bounding entities you can take advantage of the
 # `getEntities()', `getBoundary()' and `getEntitiesInBoundingBox()' functions:
 
-
-
 # Assign number of nodes on each curve
 # NN = 40
 # for c in gmsh.model.getEntities(1):
 #     gmsh.model.mesh.setTransfiniteCurve(c[1], NN)
-
 
 #
 # # NN_domTBWalls = 150
@@ -139,6 +136,7 @@ gmsh.model.mesh.setTransfiniteCurve(domLWall, NN_domBounds)
 gmsh.model.mesh.setTransfiniteCurve(domTWall, NN_domBounds)
 gmsh.model.mesh.setTransfiniteCurve(domBWall, NN_domBounds)
 
+# gmsh.option.
 # We can then generate a 2D mesh...
 gmsh.model.mesh.generate(1)
 gmsh.model.mesh.generate(2)

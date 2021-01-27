@@ -16,8 +16,7 @@ class RunYALES2:
         self.exFile = '2D_cylinder'
         self.dataFile = 'ics_temporals.txt'
 
-        self.caseDir = './YALES2/cases/ics_2D_cylinder'
-        self.genDir = self.caseDir + '/gen%i' % gen
+        self.genDir = './gen%i' % gen
 
         # create array for objectives
         self.obj = []
@@ -40,6 +39,19 @@ class RunYALES2:
             return kw_line, kw_line_i
 
         # MAIN BODY
+        # test base case
+        out = check_output(['sbatch', './base_case/jobslurm.sh'])
+        batchID = int(out[20:])
+        # print(batchID)
+        waiting = True
+        while waiting:
+            out = check_output('squeue | grep --count %i || :' % batchID, shell=True)
+            # print(int(out))
+            if int(out) == 0:
+                waiting = False
+
+        # create folder for individuals from base case:
+        # change parameters and adjust path of jobslurm.sh file
         for ind in range(len(self.x)):
             # Extract parameters for each individual
             para = self.x[ind, :]
@@ -47,7 +59,7 @@ class RunYALES2:
             freq = para[1]
             # copy base case files to new directory for each individual
             indDir = self.genDir + '/ind%i' % ind
-            copy_tree(self.caseDir + '/base-case', indDir)
+            copy_tree('base_case', indDir)
 
             # change jobslurm.sh to correct directory
             with open(indDir + '/jobslurm.sh', 'r') as f_orig:
@@ -56,7 +68,7 @@ class RunYALES2:
             keyword = 'cd'
             keyword_line, keyword_line_i = findKeywordLine(keyword, job_lines)
             # create new string to replace line
-            newLine = keyword_line[:keyword_line.find('base-case')] + 'gen%i/ind%i' % (self.gen, ind) + '\n'
+            newLine = keyword_line[:keyword_line.find('base_case')] + 'gen%i/ind%i' % (self.gen, ind) + '\n'
             job_lines[keyword_line_i] = newLine
             with open(indDir + '/jobslurm.sh', 'w') as f_new:
                 f_new.writelines(job_lines)
@@ -81,23 +93,22 @@ class RunYALES2:
     ####################################################################################################################
     def executeSims(self):
         # Queue all the individuals in the generation using SLURM
-        batchID = []  # collect batch IDs
+        batchIDs = []  # collect batch IDs
         for ind in range(len(self.x)):
             # create string for directory of individuals job slurm shell file
             indDir = self.genDir + '/ind%i/jobslurm.sh' % ind
-            # cmd = 'sbatch ' + indDir
-            out = check_output(['sbatch', indDir])#cmd)
+            out = check_output(['sbatch', indDir])
             # Extract number from following: 'Submitted batch job 1847433'
-            print(int(out[20:]))
-            batchID.append(int(out[20:]))
+            # print(int(out[20:]))
+            batchIDs.append(int(out[20:]))
 
         waiting = True
         count = []
         processes = []
         while waiting:
-            for bID_i in range(len(batchID)):
+            for bID_i in range(len(batchIDs)):
                 # grep for batch ID of each individual
-                out = check_output('squeue | grep --count %i' % int(batchID[bID_i]))
+                out = check_output('squeue | grep --count %i || :' % batchIDs[bID_i], shell=True)
                 count.append(int(out))
                 if int(count[bID_i]) == 0:
                     # Run post processing once simulation finishes
@@ -117,7 +128,7 @@ class RunYALES2:
         # for ind in range(len(self.x)):
         ####### Extract data from case file ########
         # create string for directory of individual's data file
-        indDir = self.genDir + '/ind%i' + self.dataFile % ind
+        indDir = self.genDir + '/ind%i/' + self.dataFile % ind
         data = np.genfromtxt(indDir, skip_header=1)
         # collect data after 8 seconds
         noffset = 8 * data.shape[0] // 10
