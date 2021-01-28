@@ -65,8 +65,8 @@ class MyProblem(Problem):
                          n_obj=1,
                          n_constr=0,
                                     # omega freq
-                         xl=np.array([-0.3, 0]),
-                         xu=np.array([-0.1, 1])
+                         xl=np.array([0, 0]),
+                         xu=np.array([0.5, 1])
                          )
 
     def _evaluate(self, x, out, *args, **kwargs):

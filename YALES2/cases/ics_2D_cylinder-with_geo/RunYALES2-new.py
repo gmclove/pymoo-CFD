@@ -13,8 +13,9 @@ class RunYALES2:
         # self.procLim = procLim
         # self.nProc = nProc
 
-        self.exFile = '2D_cylinder'
-        self.dataFile = 'ics_temporals.txt'
+        self.exFile = '/2D_cylinder'
+        self.dataFile = '/ics_temporals.txt'
+        self.meshFile = '/meshes/2D_cylinder.msh22'
 
         self.genDir = './gen%i' % gen
 
@@ -26,6 +27,94 @@ class RunYALES2:
 
     ####################################################################################################################
     def preProc(self):
+        def gmshConstr(meshDir, cD):
+            import gmsh
+            projName = '2D_cylinder'
+            roomH = 2.5
+            roomL = 4
+            cylD = cD
+            cylX = 0.25
+            meshSize = 0.05
+            NN_domBounds = 50
+            NN_cylWall = 80
+            # Before using any functions in the Python API, Gmsh must be initialized:
+            gmsh.initialize()
+            # gmsh.clear()
+            # By default Gmsh will not print out any messages: in order to output messages
+            # on the terminal, just set the "General.Terminal" option to 1:
+            gmsh.option.setNumber("General.Terminal", 1)
+            # Next we add a new model (if gmsh.model.add() is not called a new
+            # unnamed model will be created on the fly, if necessary):
+            gmsh.model.add(projName)
+            # We can log all messages for further processing with:
+            gmsh.logger.start()
+            ########################################################################################################################
+            # create room rectangle
+            rectTag = gmsh.model.occ.addRectangle(0, 0, 0, roomL, roomH)
+            # print('room tag: %i' % roomTag)
+            # add circle to rectangular domain to represent cylinder
+            cirTag = gmsh.model.occ.addCircle(cylX, roomH / 2, 0, cylD / 2)  # 1-dim. entity
+            # use 1-D circle to create curve loop entity
+            cirLoopTag = gmsh.model.occ.addCurveLoop([cirTag])
+            # print('cyl. tag: %i' % cylTag)
+            # create plane surface between rectangle and circle
+            domainTag = gmsh.model.occ.addPlaneSurface([rectTag, cirLoopTag])
+            # remove original rectangular surface
+            gmsh.model.occ.remove([(2, rectTag)])
+            # We finish by synchronizing the data from OpenCASCADE CAD kernel with the Gmsh model:
+            gmsh.model.occ.synchronize()
+            #################################
+            #    Physical Group Naming      #
+            #################################
+            # print(gmsh.model.getBoundary([(2, domainTag)]))
+            domBWall = 1
+            domRWall = 2
+            domTWall = 3
+            domLWall = 4
+            cylWall = 5
+            grpTag = 1
+            gmsh.model.addPhysicalGroup(1, [domLWall])
+            gmsh.model.setPhysicalName(1, grpTag, 'x0')
+            grpTag += 1
+            gmsh.model.addPhysicalGroup(1, [domRWall])
+            gmsh.model.setPhysicalName(1, grpTag, 'x1')
+            grpTag += 1
+            gmsh.model.addPhysicalGroup(1, [domTWall])
+            gmsh.model.setPhysicalName(1, grpTag, 'y0')
+            grpTag += 1
+            gmsh.model.addPhysicalGroup(1, [domBWall])
+            gmsh.model.setPhysicalName(1, grpTag, 'y1')
+            grpTag += 1
+            gmsh.model.addPhysicalGroup(1, [cylWall])
+            gmsh.model.setPhysicalName(1, grpTag, 'cyl')
+            #################################
+            #           MESHING             #
+            #################################
+            # Assign a mesh size to all the points:
+            gmsh.model.mesh.setSize(gmsh.model.getEntities(0), meshSize)
+            # Set number of nodes along cylinder wall
+            gmsh.model.mesh.setTransfiniteCurve(cylWall, NN_cylWall)
+            # set number of nodes along domain boundaries
+            gmsh.model.mesh.setTransfiniteCurve(domRWall, NN_domBounds)
+            gmsh.model.mesh.setTransfiniteCurve(domLWall, NN_domBounds)
+            gmsh.model.mesh.setTransfiniteCurve(domTWall, NN_domBounds)
+            gmsh.model.mesh.setTransfiniteCurve(domBWall, NN_domBounds)
+            # We can then generate a 2D mesh...
+            gmsh.model.mesh.generate(1)
+            gmsh.model.mesh.generate(2)
+            ############################################################################################################
+            # ... and save it to disk
+            gmsh.write(meshDir)
+            # Inspect the log:
+            # log = gmsh.logger.get()
+            # print("Logger has recorded " + str(len(log)) + " lines")
+            # gmsh.logger.stop()
+            # To visualize the model we can run the graphical user interface with
+            # `gmsh.fltk.run()'.
+            gmsh.fltk.run()
+            # This should be called when you are done using the Gmsh Python API:
+            gmsh.finalize()
+
         def findKeywordLine(kw, file_lines):
             kw_line = -1
             kw_line_i = -1
@@ -53,13 +142,16 @@ class RunYALES2:
         # create folder for individuals from base case:
         # change parameters and adjust path of jobslurm.sh file
         for ind in range(len(self.x)):
+            # copy base case files to new directory for each individual
+            indDir = self.genDir + '/ind%i' % ind
+            copy_tree('base_case', indDir)
+
             # Extract parameters for each individual
             para = self.x[ind, :]
             omega = para[0]
             freq = para[1]
-            # copy base case files to new directory for each individual
-            indDir = self.genDir + '/ind%i' % ind
-            copy_tree('base_case', indDir)
+            # Simulation geometric variables
+            cD = para[2]
 
             # change jobslurm.sh to correct directory
             with open(indDir + '/jobslurm.sh', 'r') as f_orig:
@@ -74,7 +166,7 @@ class RunYALES2:
                 f_new.writelines(job_lines)
 
             ####### Simulation Boundary Condition Parameters ###########
-            exDir = indDir + '/' + self.exFile + '.in'
+            exDir = indDir + self.exFile + '.in'
             # open and read YALES2 input file to array of strings for each line
             with open(exDir, 'r') as f_orig:
                 in_lines = f_orig.readlines()
@@ -89,6 +181,7 @@ class RunYALES2:
             # REPEAT FOR EACH LINE THAT MUST BE CHANGED
 
             ######### Simulation Geometric Parameters ############
+            gmshConstr(indDir + self.meshFile, cD)
 
     ####################################################################################################################
     def executeSims(self):
@@ -128,8 +221,8 @@ class RunYALES2:
         # for ind in range(len(self.x)):
         ####### Extract data from case file ########
         # create string for directory of individual's data file
-        indDir = self.genDir + '/ind%i/' + self.dataFile % ind
-        data = np.genfromtxt(indDir, skip_header=1)
+        iDataDir = self.genDir + '/ind%i' + self.dataFile % ind
+        data = np.genfromtxt(iDataDir, skip_header=1)
         # collect data after 8 seconds
         noffset = 8 * data.shape[0] // 10
         # extract P_OVER_RHO_INTGRL_(1) and TAU_INTGRL_(1)

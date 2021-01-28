@@ -132,7 +132,7 @@ class RunYALES2:
         for ind in range(len(self.x)):
             # copy base case files to new directory for each individual
             indDir = self.genDir + '/ind%i' % ind
-            copy_tree('./base-case', indDir)
+            copy_tree('base_case', indDir)
 
             # Extract parameters for each individual
             para = self.x[ind, :]
