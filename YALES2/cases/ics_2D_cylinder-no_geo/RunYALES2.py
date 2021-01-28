@@ -61,7 +61,7 @@ class RunYALES2:
             indDir = self.genDir + '/ind%i' % ind
             copy_tree('base_case', indDir)
 
-            # change jobslurm.sh to correct directory
+            # change jobslurm.sh to correct directory and change job name
             with open(indDir + '/jobslurm.sh', 'r') as f_orig:
                 job_lines = f_orig.readlines()
             # find cd line
@@ -69,6 +69,12 @@ class RunYALES2:
             keyword_line, keyword_line_i = findKeywordLine(keyword, job_lines)
             # create new string to replace line
             newLine = keyword_line[:keyword_line.find('./base_case')] + 'gen%i/ind%i' % (self.gen, ind) + '\n'
+            job_lines[keyword_line_i] = newLine
+            # find job-name line
+            keyword = 'job-name='
+            keyword_line, keyword_line_i = findKeywordLine(keyword, job_lines)
+            # create new string to replace line
+            newLine = keyword_line[:keyword_line.find(keyword)] + keyword + 'gen%i.ind%i' % (self.gen, ind) + '\n'
             job_lines[keyword_line_i] = newLine
             with open(indDir + '/jobslurm.sh', 'w') as f_new:
                 f_new.writelines(job_lines)

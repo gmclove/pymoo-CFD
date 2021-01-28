@@ -4,7 +4,7 @@
 #SBATCH --ntasks-per-node=2
 #SBATCH --time=3:00:00
 #SBATCH --mem-per-cpu=2G
-#SBATCH --job-name=1j
+#SBATCH --job-name=base_case
 #SBATCH --output=output.dat
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=glove1@uvm.edu
