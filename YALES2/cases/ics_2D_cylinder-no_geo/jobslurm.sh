@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --time=3:00:00
+#SBATCH --time=12:00:00
 #SBATCH --mem-per-cpu=2G
 #SBATCH --output=output.dat
 #SBATCH --mail-type=ALL

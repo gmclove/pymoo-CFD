@@ -6,8 +6,6 @@
 #SBATCH --mem-per-cpu=2G
 #SBATCH --job-name=base_case
 #SBATCH --output=output.dat
-#SBATCH --mail-type=ALL
-#SBATCH --mail-user=glove1@uvm.edu
 
 source ~/.bashrc
 module use $HOME/yales2/modules && module load $(cd $HOME/yales2/modules; ls)

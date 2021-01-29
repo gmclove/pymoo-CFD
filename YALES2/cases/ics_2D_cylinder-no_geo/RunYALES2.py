@@ -40,15 +40,15 @@ class RunYALES2:
 
         # MAIN BODY
         # test base case
-        out = check_output(['sbatch', './base_case/jobslurm.sh'])
-        batchID = int(out[20:])
-        # print(batchID)
-        waiting = True
-        while waiting:
-            out = check_output('squeue | grep --count %i || :' % batchID, shell=True)
-            # print(int(out))
-            if int(out) == 0:
-                waiting = False
+        # out = check_output(['sbatch', './base_case/jobslurm.sh'])
+        # batchID = int(out[20:])
+        # # print(batchID)
+        # waiting = True
+        # while waiting:
+        #     out = check_output('squeue | grep --count %i || :' % batchID, shell=True)
+        #     # print(int(out))
+        #     if int(out) == 0:
+        #         waiting = False
 
         # create folder for individuals from base case:
         # change parameters and adjust path of jobslurm.sh file
@@ -64,17 +64,17 @@ class RunYALES2:
             # change jobslurm.sh to correct directory and change job name
             with open(indDir + '/jobslurm.sh', 'r') as f_orig:
                 job_lines = f_orig.readlines()
-            # find cd line
+            # use keyword 'cd' to find correct line
             keyword = 'cd'
             keyword_line, keyword_line_i = findKeywordLine(keyword, job_lines)
             # create new string to replace line
-            newLine = keyword_line[:keyword_line.find('./base_case')] + 'gen%i/ind%i' % (self.gen, ind) + '\n'
+            newLine = keyword_line[:keyword_line.find('base_case')] + 'gen%i/ind%i' % (self.gen, ind) + '\n'
             job_lines[keyword_line_i] = newLine
             # find job-name line
             keyword = 'job-name='
             keyword_line, keyword_line_i = findKeywordLine(keyword, job_lines)
             # create new string to replace line
-            newLine = keyword_line[:keyword_line.find(keyword)] + keyword + 'gen%i.ind%i' % (self.gen, ind) + '\n'
+            newLine = keyword_line[:keyword_line.find(keyword)] + keyword + 'g%i.i%i' % (self.gen, ind) + '\n'
             job_lines[keyword_line_i] = newLine
             with open(indDir + '/jobslurm.sh', 'w') as f_new:
                 f_new.writelines(job_lines)
@@ -116,21 +116,28 @@ class RunYALES2:
                 # grep for batch ID of each individual
                 out = check_output('squeue | grep --count %i || :' % batchIDs[bID_i], shell=True)
                 count.append(int(out))
+                # if job batch number can not be found then start post-processing
                 if int(count[bID_i]) == 0:
+                    self.postProc(bID_i)
                     # Run post processing once simulation finishes
-                    proc = Process(target=self.postProc(bID_i))
-                    proc.start()
-                    processes.append(proc)
+                    # proc = Process(target=self.postProc(bID_i))
+                    # proc.start()
+                    # processes.append(proc)
             # check if all batch jobs are done
             if sum(count) == 0:
                 # wait for post processing to complete
-                for proc in processes:
-                    proc.join()
+                # for proc in processes:
+                #     proc.join()
                 # end while loop
                 waiting = False
+            print(count)
+            print('SUM OF COUNT = %i' % sum(count))
+
+        print('GEN%i: EXECUTING SIMULATION COMPLETE' % self.gen)
 
     ####################################################################################################################
     def postProc(self, ind):
+        print("POST-PROCESSING: gen%i/ind%i" % (self.gen, ind))
         # for ind in range(len(self.x)):
         ####### Extract data from case file ########
         # create string for directory of individual's data file
@@ -147,5 +154,7 @@ class RunYALES2:
 
         obj_i = [drag]
         self.obj.append(obj_i)
+        print('GEN%i OBJECTIVE:')
+        print(self.obj)
 
         # ADD clean up of generation file (i.e. remove unnecessary data)

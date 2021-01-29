@@ -2,7 +2,7 @@ from pymoo.algorithms.nsga2 import NSGA2
 from pymoo.factory import get_sampling, get_crossover, get_mutation
 
 algorithm = NSGA2(
-    pop_size=7,
+    pop_size=2,
     #n_offsprings=2,
     sampling=get_sampling("real_random"),
     crossover=get_crossover("real_sbx", prob=0.9, eta=15),
@@ -30,7 +30,6 @@ class MyCallback(Callback):
         self.data['obj'].append(algorithm.pop.get('F'))
         self.gen += 1
 
-
 callback = MyCallback()
 ########################################################################################################################
 from pymoo.util.display import Display
@@ -43,10 +42,9 @@ class MyDisplay(Display):
         super()._do(problem, evaluator, algorithm)
         # self.output.append("metric_a", np.mean(algorithm.pop.get("X")))
         # self.output.append("metric_b", np.mean(algorithm.pop.get("F")))
-        self.output.append('Best Lift [N]', np.mean(algorithm.pop.get("F")[:, 0].min()))
-        self.output.append('Best Drag [N]', np.mean(algorithm.pop.get("F")[:, 1].min()))
+        self.output.append('Best Drag [N]', np.mean(algorithm.pop.get("F")[:, 0].min()))
+        # self.output.append('Best Drag [N]', np.mean(algorithm.pop.get("F")[:, 1].min()))
         # if
-
 
 display = MyDisplay()
 ########################################################################################################################
@@ -88,6 +86,7 @@ class MyProblem(Problem):
         sim = RunYALES2(x, gen)
 
         out['F'] = sim.obj
+        print('GEN%i COMPLETE' % gen)
 
         # objectives unconstrainted
         # g1 = 2*(x[:, 0]-0.1) * (x[:, 0]-0.9) / 0.18
@@ -156,48 +155,56 @@ print(res.pop.get('X'))
 
 
 ########################################################################################################################
-#
-# # the global factory method
-# from pymoo.factory import get_visualization
-# plot = get_visualization("scatter")
-#
-# for gen in callback.data['obj']:
-#     #print(gen)
-#     plot.add(gen)
-#
-# #plot.add(res.pop.get('F'), color="green", marker="x")
-# #print(res.pop.get('F'))
-# #plot.add(B, color="red", marker="*")
-# plot.show()
-#
-# from pymoo.visualization.scatter import Scatter
-#
-# # get the pareto-set and pareto-front for plotting
-# ps = problem.pareto_set(use_cache=False, flatten=False)
-# pf = problem.pareto_front(use_cache=False, flatten=False)
-#
-# # Design Space
-# plot = Scatter(title = "Design Space", axis_labels="x")
-# plot.add(res.X, s=30, facecolors='none', edgecolors='r')
-# plot.add(ps, plot_type="line", color="black", alpha=0.7)
-# plot.do()
-# plot.apply(lambda ax: ax.set_xlim(-0.5, 1.5))
-# plot.apply(lambda ax: ax.set_ylim(-2, 2))
-# plot.show()
-#
-# # Objective Space
-# plot = Scatter(title = "Objective Space")
-# plot.add(res.F)
-# plot.add(pf, plot_type="line", color="black", alpha=0.7)
-# plot.show()
-#
-# import matplotlib.pyplot as plt
+import os
+try:
+    os.mkdir('./plots')
+except OSError:
+    print(OSError)
+
+# the global factory method
+from pymoo.factory import get_visualization
+plot = get_visualization("scatter")
+
+for gen in callback.data['obj']:
+    #print(gen)
+    plot.add(gen)
+
+#plot.add(res.pop.get('F'), color="green", marker="x")
+#print(res.pop.get('F'))
+#plot.add(B, color="red", marker="*")
+plot.show()
+plot.savefig('plots/scatter_all_obj')
+
+from pymoo.visualization.scatter import Scatter
+
+# get the pareto-set and pareto-front for plotting
+ps = problem.pareto_set(use_cache=False, flatten=False)
+pf = problem.pareto_front(use_cache=False, flatten=False)
+
+# Design Space
+plot = Scatter(title = "Design Space", axis_labels="x")
+plot.add(res.X, s=30, facecolors='none', edgecolors='r')
+plot.add(ps, plot_type="line", color="black", alpha=0.7)
+plot.do()
+plot.apply(lambda ax: ax.set_xlim(-0.5, 1.5))
+plot.apply(lambda ax: ax.set_ylim(-2, 2))
+plot.show()
+plot.savefig('plots/design_space')
+
+# Objective Space
+plot = Scatter(title = "Objective Space")
+plot.add(res.F)
+plot.add(pf, plot_type="line", color="black", alpha=0.7)
+plot.show()
+plot.savefig('plots/obj_space')
+
+import matplotlib.pyplot as plt
 # matplotlib.use('GTK3Agg')
-#
-# val = [e.pop.get("F").min() for e in res.history]
-# plt.plot(np.arange(len(val)), val)
-# plt.show()
-#
-#
+val = [e.pop.get("F").min() for e in res.history]
+plt.plot(np.arange(len(val)), val)
+plt.show()
+plt.savefig('plots/best_obj_each_gen')
+
+
 
 ########################################################################################################################
