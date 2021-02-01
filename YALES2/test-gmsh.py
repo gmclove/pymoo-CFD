@@ -4,11 +4,11 @@ import math
 
 projName = '2D_cylinder'
 
-roomH = 2.5
-roomL = 4
+roomH = 5
+roomL = 13
 
-cylD = 0.05
-cylX = 0.25
+cylD = 1
+cylCenterX = 2
 
 meshSize = 0.05
 
@@ -29,7 +29,7 @@ gmsh.logger.start()
 rectTag = gmsh.model.occ.addRectangle(0, 0, 0, roomL, roomH)
 # print('room tag: %i' % roomTag)
 # add circle to rectangular domain to represent cylinder
-cirTag = gmsh.model.occ.addCircle(cylX, roomH/2, 0, cylD/2)  # 1-dim. entity
+cirTag = gmsh.model.occ.addCircle(cylCenterX, roomH / 2, 0, cylD / 2)  # 1-dim. entity
 # use 1-D circle to create curve loop entity
 cirLoopTag = gmsh.model.occ.addCurveLoop([cirTag])
 # print('cyl. tag: %i' % cylTag)
@@ -87,7 +87,7 @@ gmsh.model.setPhysicalName(1, grpTag, 'cyl')
 # # # create mesh construction lines
 # # NN_constL = 50
 # # pt1 = gmsh.model.occ.addPoint(0, roomH/2, 0)
-# # pt2 = gmsh.model.occ.addPoint(cylX - cylD/2, roomH/2, 0)
+# # pt2 = gmsh.model.occ.addPoint(cylCenterX - cylD/2, roomH/2, 0)
 # # constL = gmsh.model.occ.addLine(pt1, pt2)
 # # gmsh.model.occ.synchronize()
 # # gmsh.model.mesh.setTransfiniteCurve(constL, NN_constL, coef=1.2)
@@ -127,21 +127,23 @@ gmsh.model.setPhysicalName(1, grpTag, 'cyl')
 # Assign a mesh size to all the points:
 gmsh.model.mesh.setSize(gmsh.model.getEntities(0), meshSize)
 
-NN_cylWall = 80
+NN_cylWall = 120
 gmsh.model.mesh.setTransfiniteCurve(cylWall, NN_cylWall)
+#
+NN_domTB = 250
+gmsh.model.mesh.setTransfiniteCurve(domTWall, NN_domTB)#, coef=1.2)
+gmsh.model.mesh.setTransfiniteCurve(domBWall, NN_domTB)#, coef=1.2)
 
-NN_domBounds = 50
-gmsh.model.mesh.setTransfiniteCurve(domRWall, NN_domBounds)
-gmsh.model.mesh.setTransfiniteCurve(domLWall, NN_domBounds)
-gmsh.model.mesh.setTransfiniteCurve(domTWall, NN_domBounds)
-gmsh.model.mesh.setTransfiniteCurve(domBWall, NN_domBounds)
+NN_domLR = 200
+gmsh.model.mesh.setTransfiniteCurve(domRWall, NN_domLR, meshType='Bump', coef=.5)
+gmsh.model.mesh.setTransfiniteCurve(domLWall, NN_domLR, meshType='Bump', coef=.5)
 
 # gmsh.option.
 # We can then generate a 2D mesh...
 gmsh.model.mesh.generate(1)
 gmsh.model.mesh.generate(2)
 # ... and save it to disk
-gmsh.write("2D-room.msh22")
+gmsh.write(projName + '.msh22')
 
 # Inspect the log:
 # log = gmsh.logger.get()

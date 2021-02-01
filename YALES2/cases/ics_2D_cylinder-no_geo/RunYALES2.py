@@ -19,10 +19,11 @@ class RunYALES2:
         self.genDir = './gen%i' % gen
 
         # create array for objectives
-        self.obj = []
+        self.obj = np.zeros(len(self.x))
 
         self.preProc()
         self.executeSims()
+        self.postProc()
 
     ####################################################################################################################
     def preProc(self):
@@ -39,16 +40,19 @@ class RunYALES2:
             return kw_line, kw_line_i
 
         # MAIN BODY
+
+
         # test base case
-        # out = check_output(['sbatch', './base_case/jobslurm.sh'])
-        # batchID = int(out[20:])
-        # # print(batchID)
-        # waiting = True
-        # while waiting:
-        #     out = check_output('squeue | grep --count %i || :' % batchID, shell=True)
-        #     # print(int(out))
-        #     if int(out) == 0:
-        #         waiting = False
+        # if self.gen == 0:
+        #     out = check_output(['sbatch', './base_case/jobslurm.sh'])
+        #     batchID = int(out[20:])
+        #     # print(batchID)
+        #     waiting = True
+        #     while waiting:
+        #         out = check_output('squeue | grep --count %i || :' % batchID, shell=True)
+        #         # print(int(out))
+        #         if int(out) == 0:
+        #             waiting = False
 
         # create folder for individuals from base case:
         # change parameters and adjust path of jobslurm.sh file
@@ -60,6 +64,11 @@ class RunYALES2:
             # copy base case files to new directory for each individual
             indDir = self.genDir + '/ind%i' % ind
             copy_tree('base_case', indDir)
+
+            # see if simulation has already run
+            # Best way:
+            # check if individual already has correct values in .in file?
+            #       requires addition check of output
 
             # change jobslurm.sh to correct directory and change job name
             with open(indDir + '/jobslurm.sh', 'r') as f_orig:
@@ -109,20 +118,20 @@ class RunYALES2:
             batchIDs.append(int(out[20:]))
 
         waiting = True
-        count = []
+        count = np.ones(len(self.x))
         processes = []
         while waiting:
             for bID_i in range(len(batchIDs)):
                 # grep for batch ID of each individual
-                out = check_output('squeue | grep --count %i || :' % batchIDs[bID_i], shell=True)
-                count.append(int(out))
+                out = check_output('squeue | grep --count %i || :' % batchIDs[bID_i], shell=True)  # '|| :' ignores non-zero exit status error
+                count[bID_i] = int(out)
                 # if job batch number can not be found then start post-processing
-                if int(count[bID_i]) == 0:
-                    self.postProc(bID_i)
-                    # Run post processing once simulation finishes
-                    # proc = Process(target=self.postProc(bID_i))
-                    # proc.start()
-                    # processes.append(proc)
+                # if count[bID_i] == 0:
+                #     self.postProc(bID_i)
+                #     # Run post processing once simulation finishes
+                #     # proc = Process(target=self.postProc(bID_i))
+                #     # proc.start()
+                #     # processes.append(proc)
             # check if all batch jobs are done
             if sum(count) == 0:
                 # wait for post processing to complete
@@ -130,31 +139,55 @@ class RunYALES2:
                 #     proc.join()
                 # end while loop
                 waiting = False
-            print(count)
-            print('SUM OF COUNT = %i' % sum(count))
+            # print(count)
+            # print('SUM OF COUNT = %i' % sum(count))
 
         print('GEN%i: EXECUTING SIMULATION COMPLETE' % self.gen)
 
     ####################################################################################################################
-    def postProc(self, ind):
-        print("POST-PROCESSING: gen%i/ind%i" % (self.gen, ind))
-        # for ind in range(len(self.x)):
-        ####### Extract data from case file ########
-        # create string for directory of individual's data file
-        indDir = self.genDir + '/ind%i/' + self.dataFile % ind
-        data = np.genfromtxt(indDir, skip_header=1)
-        # collect data after 8 seconds
-        noffset = 8 * data.shape[0] // 10
-        # extract P_OVER_RHO_INTGRL_(1) and TAU_INTGRL_(1)
-        p_over_rho_intgrl_1 = data[noffset:, 4]
-        tau_intgrl_1 = data[noffset:, 6]
+    def postProc(self):
+        for ind in range(len(self.x)):
+            print("POST-PROCESSING: gen%i/ind%i" % (self.gen, ind))
+            # for ind in range(len(self.x)):
+            ####### Extract data from case file ########
+            # create string for directory of individual's data file
+            indDir = self.genDir + '/ind%i/' % ind + self.dataFile
+            data = np.genfromtxt(indDir, skip_header=1)
+            # collect data after 8 seconds
+            noffset = 8 * data.shape[0] // 10
+            # extract P_OVER_RHO_INTGRL_(1) and TAU_INTGRL_(1)
+            p_over_rho_intgrl_1 = data[noffset:, 4]
+            tau_intgrl_1 = data[noffset:, 6]
 
-        ######## Compute Objectives ##########
-        drag = np.mean(p_over_rho_intgrl_1 - tau_intgrl_1)
+            ######## Compute Objectives ##########
+            drag = np.mean(p_over_rho_intgrl_1 - tau_intgrl_1)
 
-        obj_i = [drag]
-        self.obj.append(obj_i)
-        print('GEN%i OBJECTIVE:')
-        print(self.obj)
+            # obj_i = [drag]
+            # self.obj.append(obj_i)
+            self.obj[ind] = drag
+            print('GEN%i OBJECTIVE:' % ind)
+            print(self.obj)
+    ####################################################################################################################
+    # def postProc(self, ind):
+    #     print("POST-PROCESSING: gen%i/ind%i" % (self.gen, ind))
+    #     # for ind in range(len(self.x)):
+    #     ####### Extract data from case file ########
+    #     # create string for directory of individual's data file
+    #     indDir = self.genDir + '/ind%i/' % ind + self.dataFile
+    #     data = np.genfromtxt(indDir, skip_header=1)
+    #     # collect data after 8 seconds
+    #     noffset = 8 * data.shape[0] // 10
+    #     # extract P_OVER_RHO_INTGRL_(1) and TAU_INTGRL_(1)
+    #     p_over_rho_intgrl_1 = data[noffset:, 4]
+    #     tau_intgrl_1 = data[noffset:, 6]
+    #
+    #     ######## Compute Objectives ##########
+    #     drag = np.mean(p_over_rho_intgrl_1 - tau_intgrl_1)
+    #
+    #     # obj_i = [drag]
+    #     # self.obj.append(obj_i)
+    #     self.obj[ind] = drag
+    #     print('GEN%i OBJECTIVE:' % ind)
+    #     print(self.obj)
 
         # ADD clean up of generation file (i.e. remove unnecessary data)

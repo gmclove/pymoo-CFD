@@ -1,0 +1,8 @@
+  File "/gpfs1/home/g/l/glove1/Simulations/yales2/pymoo-CFD/YALES2/cases/ics_2D_cylinder-no_geo/RunYALES2.py", line 145, in postProc
+    data = np.genfromtxt(indDir, skip_header=1)
+  File "/users/g/l/glove1/.conda/envs/pymoo-CFD/lib/python3.7/site-packages/numpy/lib/npyio.py", line 2080, in genfromtxt
+    raise ValueError(errmsg)
+ValueError: Some errors were detected !
+    Line #18302 (got 2 columns instead of 9)
+    Line #18483 (got 2 columns instead of 9)
+    Line #18564 (got 2 columns instead of 9)
