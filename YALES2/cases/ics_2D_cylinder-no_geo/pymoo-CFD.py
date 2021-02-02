@@ -9,15 +9,14 @@ class MyDisplay(Display):
     # bestObj = []
     def _do(self, problem, evaluator, algorithm):
         super()._do(problem, evaluator, algorithm)
-        # self.output.append("metric_a", np.mean(algorithm.pop.get("X")))
-        # self.output.append("metric_b", np.mean(algorithm.pop.get("F")))
-        self.output.append('Best Drag [N]', algorithm.pop.get("F")[:, 0].min())
+        self.output.append("metric_a", np.mean(algorithm.pop.get("X")))
+        self.output.append("metric_b", np.mean(algorithm.pop.get("F")))
+        # self.output.append('Best Drag [N]', algorithm.pop.get("F")[:, 0].min())
         # self.output.append('Best Drag [N]', np.mean(algorithm.pop.get("F")[:, 1].min()))
         # if
 
 
 display = MyDisplay()
-
 ########################################################################################################################
 ######    CALLBACK    ######
 from pymoo.model.callback import Callback
@@ -34,7 +33,7 @@ class MyCallback(Callback):
 
     def notify(self, algorithm):
         self.data["best_obj1"].append(algorithm.pop.get("F")[:, 0].min())
-        # self.data['best_obj2'].append(algorithm.pop.get('F')[:, 1].min())
+        self.data['best_obj2'].append(algorithm.pop.get('F')[:, 1].min())
         self.data['var'].append(algorithm.pop.get('X'))
         self.data['obj'].append(algorithm.pop.get('F'))
         self.gen += 1
@@ -54,17 +53,16 @@ from RunYALES2 import RunYALES2
 class MyProblem(Problem):
     def __init__(self):
         super().__init__(n_var=2,
-                         n_obj=1,
+                         n_obj=2,
                          n_constr=0,
-                         # omega freq
-                         xl=np.array([0, 0]),
-                         xu=np.array([0.5, 1])
+                                  # omega freq
+                         xl=np.array([0.1, 0.1]),
+                         xu=np.array([3, 1])
                          )
 
     def _evaluate(self, x, out, *args, **kwargs):
         ###### Initialize Generation ######
         gen = callback.gen
-
         # geometry variables index
         # geoVarsI = [0, 1]
         # GMSHapi(self.x, self.gen, geoVarsI)
@@ -73,8 +71,6 @@ class MyProblem(Problem):
         # procLim = 1
         # Number of processors for each individual (EQUAL or SMALLER than procLim)
         # nProc = 1
-
-        # print(x)
 
         # create sim object for this generation and it's population
         sim = RunYALES2(x, gen)
@@ -134,7 +130,7 @@ if os.path.exists('checkpoint.npy'):
     algorithm = checkpoint
 else:
     algorithm = NSGA2(
-        pop_size=100,
+        pop_size=10,
         # n_offsprings=2,
         sampling=get_sampling("real_random"),
         crossover=get_crossover("real_sbx", prob=0.9, eta=15),
@@ -147,7 +143,7 @@ from pymoo.optimize import minimize
 
 res = minimize(problem,
                algorithm,
-               ("n_gen", 10),
+               ("n_gen", 7),
                callback=callback,
                seed=1,
                copy_algorithm=False,
@@ -190,7 +186,6 @@ except OSError:
     print(OSError)
 
 from pymoo.visualization.scatter import Scatter
-
 # Design space
 ps = algorithm.problem.pareto_set()  # use_cache=False, flatten=False)
 plot = Scatter(title='Design Space')

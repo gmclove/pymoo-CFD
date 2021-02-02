@@ -4,6 +4,7 @@
 #SBATCH --time=12:00:00
 #SBATCH --mem-per-cpu=2G
 #SBATCH --output=output.dat
+#SBATCH --job-name=moo
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=glove1@uvm.edu
 

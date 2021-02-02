@@ -148,7 +148,10 @@ class RunYALES2:
     def postProc(self):
         for ind in range(len(self.x)):
             print("POST-PROCESSING: gen%i/ind%i" % (self.gen, ind))
-            # for ind in range(len(self.x)):
+            # Extract parameters for each individual
+            para = self.x[ind, :]
+            omega = para[0]
+            freq = para[1]
             ####### Extract data from case file ########
             # create string for directory of individual's data file
             indDir = self.genDir + '/ind%i/' % ind + self.dataFile
@@ -160,13 +163,27 @@ class RunYALES2:
             tau_intgrl_1 = data[noffset:, 6]
 
             ######## Compute Objectives ##########
+            # Objective 1: Drag on cylinder
             drag = np.mean(p_over_rho_intgrl_1 - tau_intgrl_1)
+
+            # Objective 2: Power consumed by rotating cylinder
+            D = 1  # [m] cylinder diameter
+            t = 0.1  # [m] thickness of cylinder wall
+            r_o = D/2  # [m] outer radius
+            r_i = r_o-t  # [m] inner radius
+            d = 2700  # [kg/m^3] density
+            L = 1  # [m] length of cylindrical tube
+            V = L*np.pi*(r_o**2-r_i**2)
+            m = d*V
+            I = 0.5*m*(r_i**2+r_o**2)  # [kg m^2] moment of inertia of a hollow cylinder
+            E = 0.5*I*omega**2  # [J] or [(kg m^2)/s^2] energy consumption at peak rotational velocity (omega)
+            P_avg = E*4*freq  # [J/s] average power over 1/4 cycle
 
             # obj_i = [drag]
             # self.obj.append(obj_i)
-            self.obj[ind] = drag
-            print('GEN%i OBJECTIVE:' % ind)
-            print(self.obj)
+            self.obj[ind] = [drag, P_avg]
+            # print('GEN%i OBJECTIVE:' % ind)
+            # print(self.obj)
     ####################################################################################################################
     # def postProc(self, ind):
     #     print("POST-PROCESSING: gen%i/ind%i" % (self.gen, ind))

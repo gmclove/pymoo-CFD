@@ -8,7 +8,7 @@ algorithm = checkpoint
 try:
     os.mkdir('./plots')
 except OSError:
-    print(OSError)
+    print('/plots directory already exists')
 
 from pymoo.visualization.scatter import Scatter
 
@@ -24,7 +24,7 @@ plot.save('plots/design_space.png')
 # Objective Space
 pf = algorithm.problem.pareto_front()
 plot = Scatter(title="Objective Space")
-plot.add(res.F)
+plot.add(algorithm)
 if pf is not None:
     plot.add(pf, plot_type="line", color="black", alpha=0.7)
 plot.save('plots/obj_space.png')
