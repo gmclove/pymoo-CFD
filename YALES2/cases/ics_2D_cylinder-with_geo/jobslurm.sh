@@ -1,12 +1,11 @@
 #!/bin/bash
-#SBATCH --partition=ib --constraint="ib&haswell_1"
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --time=3:00:00
+#SBATCH --time=30:00:00
 #SBATCH --mem-per-cpu=2G
-#SBATCH --job-name=1j
 #SBATCH --output=output.dat
-#SBATCH --mail-type=ALL
+#SBATCH --job-name=moo
+#SBATCH --mail-type=END
 #SBATCH --mail-user=glove1@uvm.edu
 
 source ~/.bashrc
