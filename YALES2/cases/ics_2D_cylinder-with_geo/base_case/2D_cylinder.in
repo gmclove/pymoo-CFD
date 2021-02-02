@@ -112,9 +112,9 @@ SPONGE_LAYER_FACTOR = 30.0
 #INJECTOR cyl_inj1 U = 0.15 0.0 0.0
 
 # Restart =================================
-RESTART_TYPE = GAMBIT
-RESTART_GAMBIT_MSH = 'meshes/2D_cyl_26.msh'
-RESTART_GAMBIT_SCALING = 1.0
+RESTART_TYPE = GMSH
+RESTART_GMSH_MSH = 'meshes/2D_cylinder.msh22'
+RESTART_GMSH_SCALING = 1.0
 
 #RESTART_TYPE = XMF
 #RESTART_XMF_SOLUTION = 'restart/2D_cyl.sol000001.xmf'

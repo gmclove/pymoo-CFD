@@ -11,6 +11,7 @@ cylD = 1
 cylCenterX = 2
 
 meshSize = 0.05
+meshSF = 0.4
 
 ########################################################################################################################
 # Before using any functions in the Python API, Gmsh must be initialized:
@@ -37,7 +38,6 @@ cirLoopTag = gmsh.model.occ.addCurveLoop([cirTag])
 domainTag = gmsh.model.occ.addPlaneSurface([rectTag, cirLoopTag])
 # remove original rectangular surface
 gmsh.model.occ.remove([(2, rectTag)])
-
 # We finish by synchronizing the data from OpenCASCADE CAD kernel with the Gmsh model:
 gmsh.model.occ.synchronize()
 ########################################################################################################################
@@ -127,14 +127,14 @@ gmsh.model.setPhysicalName(1, grpTag, 'cyl')
 # Assign a mesh size to all the points:
 gmsh.model.mesh.setSize(gmsh.model.getEntities(0), meshSize)
 
-NN_cylWall = 120
+NN_cylWall = int(120*meshSF)
 gmsh.model.mesh.setTransfiniteCurve(cylWall, NN_cylWall)
 #
-NN_domTB = 250
+NN_domTB = int(250*meshSF)
 gmsh.model.mesh.setTransfiniteCurve(domTWall, NN_domTB)#, coef=1.2)
 gmsh.model.mesh.setTransfiniteCurve(domBWall, NN_domTB)#, coef=1.2)
 
-NN_domLR = 200
+NN_domLR = int(200*meshSF)
 gmsh.model.mesh.setTransfiniteCurve(domRWall, NN_domLR, meshType='Bump', coef=.5)
 gmsh.model.mesh.setTransfiniteCurve(domLWall, NN_domLR, meshType='Bump', coef=.5)
 

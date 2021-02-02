@@ -52,12 +52,12 @@ from RunYALES2 import RunYALES2
 
 class MyProblem(Problem):
     def __init__(self):
-        super().__init__(n_var=2,
+        super().__init__(n_var=3,
                          n_obj=2,
                          n_constr=0,
                                   # omega freq
-                         xl=np.array([0.1, 0.1]),
-                         xu=np.array([3, 1])
+                         xl=np.array([0.1, 0.1, 0.8]),
+                         xu=np.array([3, 1, 1.2])
                          )
 
     def _evaluate(self, x, out, *args, **kwargs):

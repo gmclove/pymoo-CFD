@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --partition=ib --constraint="ib&haswell_2"
+#SBATCH --partition=ib --constraint="ib&haswell_1|haswell_2|sandybridge"
 #SBATCH --nodes=8
 #SBATCH --ntasks-per-node=2
 #SBATCH --time=3:00:00

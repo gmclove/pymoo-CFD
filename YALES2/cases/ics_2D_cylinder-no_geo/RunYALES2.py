@@ -19,7 +19,8 @@ class RunYALES2:
         self.genDir = './gen%i' % gen
 
         # create array for objectives
-        self.obj = np.zeros(len(self.x))
+        numObj = 2  # number of objectives
+        self.obj = np.zeros((len(self.x), numObj))
 
         self.preProc()
         self.executeSims()
@@ -171,7 +172,7 @@ class RunYALES2:
             t = 0.1  # [m] thickness of cylinder wall
             r_o = D/2  # [m] outer radius
             r_i = r_o-t  # [m] inner radius
-            d = 2700  # [kg/m^3] density
+            d = 2700  # [kg/m^3] density of aluminum
             L = 1  # [m] length of cylindrical tube
             V = L*np.pi*(r_o**2-r_i**2)
             m = d*V

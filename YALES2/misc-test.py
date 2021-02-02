@@ -1,3 +1,11 @@
-ind = 0
-indDir = 'string' + '/ind%i/' % ind + 'string'
-indDir = 'string' + '/ind%i/' + 'string' % ind
+import numpy as np
+
+def outer():
+    def inner():
+        print('inner')
+        print(x)
+
+    x = 1
+    inner()
+
+outer()
