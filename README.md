@@ -2,6 +2,12 @@
 
 
 ### References
+
+CORIA Reserch Group: YALES2
+https://www.coria-cfd.fr/index.php/Main_Page
+
+
+PyMOO: Multi-objective Optimization in Python¶
 pymoo.org 
 
 @ARTICLE{pymoo,

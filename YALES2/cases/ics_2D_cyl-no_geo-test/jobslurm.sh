@@ -1,0 +1,15 @@
+#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --time=30:00:00
+#SBATCH --mem-per-cpu=2G
+#SBATCH --output=output.dat
+#SBATCH --job-name=moo-test
+#SBATCH --mail-type=END
+#SBATCH --mail-user=glove1@uvm.edu
+
+source ~/.bashrc
+source activate pymoo-CFD
+module use $HOME/yales2/modules && module load $(cd $HOME/yales2/modules; ls)
+cd ~/Simulations/yales2/pymoo-CFD/YALES2/cases/ics_2D_cyl-no_geo-test
+python ./pymoo-CFD.py

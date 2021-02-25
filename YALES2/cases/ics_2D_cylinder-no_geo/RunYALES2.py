@@ -40,8 +40,19 @@ class RunYALES2:
 
             return kw_line, kw_line_i
 
-        # MAIN BODY
+        def testBaseCase():
+            if self.gen == 0:
+                out = check_output(['sbatch', './base_case/jobslurm.sh'])
+                batchID = int(out[20:])
+                # print(batchID)
+                waiting = True
+                while waiting:
+                    out = check_output('squeue | grep --count %i || :' % batchID, shell=True)
+                    # print(int(out))
+                    if int(out) == 0:
+                        waiting = False
 
+        # MAIN BODY
 
         # test base case
         # if self.gen == 0:
@@ -80,6 +91,7 @@ class RunYALES2:
             # create new string to replace line
             newLine = keyword_line[:keyword_line.find('base_case')] + 'gen%i/ind%i' % (self.gen, ind) + '\n'
             job_lines[keyword_line_i] = newLine
+
             # find job-name line
             keyword = 'job-name='
             keyword_line, keyword_line_i = findKeywordLine(keyword, job_lines)
@@ -143,12 +155,12 @@ class RunYALES2:
             # print(count)
             # print('SUM OF COUNT = %i' % sum(count))
 
-        print('GEN%i: EXECUTING SIMULATION COMPLETE' % self.gen)
+        # print('GEN%i: EXECUTING SIMULATION COMPLETE' % self.gen)
 
     ####################################################################################################################
     def postProc(self):
         for ind in range(len(self.x)):
-            print("POST-PROCESSING: gen%i/ind%i" % (self.gen, ind))
+            # print("POST-PROCESSING: gen%i/ind%i" % (self.gen, ind))
             # Extract parameters for each individual
             para = self.x[ind, :]
             omega = para[0]

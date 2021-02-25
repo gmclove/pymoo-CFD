@@ -25,7 +25,7 @@ from pymoo.model.callback import Callback
 class MyCallback(Callback):
     def __init__(self) -> None:
         super().__init__()
-        self.gen = 0
+        # self.gen = 0
         self.data["best_obj1"] = []
         self.data['best_obj2'] = []
         self.data['var'] = []
@@ -36,7 +36,7 @@ class MyCallback(Callback):
         self.data['best_obj2'].append(algorithm.pop.get('F')[:, 1].min())
         self.data['var'].append(algorithm.pop.get('X'))
         self.data['obj'].append(algorithm.pop.get('F'))
-        self.gen += 1
+        # self.gen += 1
 
 
 callback = MyCallback()
@@ -62,7 +62,7 @@ class MyProblem(Problem):
 
     def _evaluate(self, x, out, *args, **kwargs):
         ###### Initialize Generation ######
-        gen = callback.gen
+        gen = algorithm.n_gen
         # geometry variables index
         # geoVarsI = [0, 1]
         # GMSHapi(self.x, self.gen, geoVarsI)
@@ -79,7 +79,7 @@ class MyProblem(Problem):
 
         np.save("checkpoint", algorithm)
 
-        print('GEN%i COMPLETE' % gen)
+        # print('GEN%i COMPLETE' % gen)
 
         # objectives unconstrainted
         # g1 = 2*(x[:, 0]-0.1) * (x[:, 0]-0.9) / 0.18
@@ -131,7 +131,7 @@ if os.path.exists('checkpoint.npy'):
 else:
     algorithm = NSGA2(
         pop_size=10,
-        # n_offsprings=2,
+        n_offsprings=2,
         sampling=get_sampling("real_random"),
         crossover=get_crossover("real_sbx", prob=0.9, eta=15),
         mutation=get_mutation("real_pm", eta=20),
@@ -143,7 +143,7 @@ from pymoo.optimize import minimize
 
 res = minimize(problem,
                algorithm,
-               ("n_gen", 7),
+               ("n_gen", 20),
                callback=callback,
                seed=1,
                copy_algorithm=False,
@@ -183,7 +183,7 @@ algorithm = checkpoint
 try:
     os.mkdir('./plots')
 except OSError:
-    print(OSError)
+    print('./plots directory already exists')
 
 from pymoo.visualization.scatter import Scatter
 # Design space
