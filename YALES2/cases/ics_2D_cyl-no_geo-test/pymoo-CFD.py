@@ -70,7 +70,7 @@ class MyProblem(Problem):
         # create sim object for this generation and it's population
         sim = RunYALES2(x, gen)
 
-        out['F'] = sim.obj
+        out['F'] = np.column_stack(sim.obj)
 
         np.save("checkpoint-gen%i" % gen, algorithm)
         np.save("checkpoint", algorithm)
