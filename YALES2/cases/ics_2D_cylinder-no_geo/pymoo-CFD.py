@@ -16,7 +16,7 @@ class MyDisplay(Display):
         # if
 
 
-display = MyDisplay()
+# display = MyDisplay()
 ########################################################################################################################
 ######    CALLBACK    ######
 from pymoo.model.callback import Callback
@@ -37,9 +37,6 @@ class MyCallback(Callback):
         self.data['var'].append(algorithm.pop.get('X'))
         self.data['obj'].append(algorithm.pop.get('F'))
         # self.gen += 1
-
-
-callback = MyCallback()
 
 ########################################################################################################################
 ######    PROBLEM    ######
@@ -67,25 +64,10 @@ class MyProblem(Problem):
         # geoVarsI = [0, 1]
         # GMSHapi(self.x, self.gen, geoVarsI)
 
-        # Maximum processors to be used
-        # procLim = 1
-        # Number of processors for each individual (EQUAL or SMALLER than procLim)
-        # nProc = 1
-
         # create sim object for this generation and it's population
         sim = RunYALES2(x, gen)
 
         out['F'] = sim.obj
-
-        np.save("checkpoint", algorithm)
-
-        # print('GEN%i COMPLETE' % gen)
-
-        # objectives unconstrainted
-        # g1 = 2*(x[:, 0]-0.1) * (x[:, 0]-0.9) / 0.18
-        # g2 = - 20*(x[:, 0]-0.4) * (x[:, 0]-0.6) / 4.8
-        # out["G"] = np.column_stack([g1, g2])
-    #
     # # --------------------------------------------------
     # # Pareto-front - not necessary but used for plotting
     # # --------------------------------------------------
@@ -109,6 +91,15 @@ class MyProblem(Problem):
     #
     #     a, b = np.column_stack([x1_a, x2]), np.column_stack([x1_b, x2])
     #     return stack(a, b, flatten=flatten)
+
+        np.save("checkpoint", algorithm)
+
+        # print('GEN%i COMPLETE' % gen)
+
+        # objectives unconstrainted
+        # g1 = 2*(x[:, 0]-0.1) * (x[:, 0]-0.9) / 0.18
+        # g2 = - 20*(x[:, 0]-0.4) * (x[:, 0]-0.6) / 4.8
+        # out["G"] = np.column_stack([g1, g2])
 
 
 problem = MyProblem()
@@ -144,12 +135,12 @@ from pymoo.optimize import minimize
 res = minimize(problem,
                algorithm,
                ("n_gen", 20),
-               callback=callback,
+               callback=MyCallback(),
                seed=1,
                copy_algorithm=False,
                # pf=problem.pareto_front(use_cache=False),
                save_history=True,
-               display=display,
+               display=MyDisplay(),
                verbose=True
                )
 

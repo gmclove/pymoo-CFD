@@ -1,4 +1,2 @@
-from subprocess import check_output
-
-out = check_output(['sbatch', './cases/base-case/'])
-print(out)
+import numpy as np
+print(np.zeros((10, 5)))

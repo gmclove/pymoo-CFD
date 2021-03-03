@@ -1,7 +1,8 @@
 from distutils.dir_util import copy_tree
 from subprocess import check_output
+import os
 from multiprocessing import Process
-from os import getcwd
+
 
 import numpy as np
 
@@ -10,8 +11,6 @@ class RunYALES2:
     def __init__(self, x, gen):  #, procLim, nProc):
         self.x = x #np.array([[0, 1]])
         self.gen = gen
-        # self.procLim = procLim
-        # self.nProc = nProc
 
         self.exFile = '2D_cylinder'
         self.dataFile = 'ics_temporals.txt'
@@ -28,17 +27,37 @@ class RunYALES2:
 
     ####################################################################################################################
     def preProc(self):
-        def findKeywordLine(kw, file_lines):
-            kw_line = -1
-            kw_line_i = -1
+        def editJobslurm(wd, jobName):
+            def findKeywordLine(kw, file_lines):
+                kw_line = -1
+                kw_line_i = -1
 
-            for line_i in range(len(file_lines)):
-                line = file_lines[line_i]
-                if line.find(kw) >= 0:
-                    kw_line = line
-                    kw_line_i = line_i
+                for line_i in range(len(file_lines)):
+                    line = file_lines[line_i]
+                    if line.find(kw) >= 0:
+                        kw_line = line
+                        kw_line_i = line_i
 
-            return kw_line, kw_line_i
+                return kw_line, kw_line_i
+
+            # change jobslurm.sh to correct directory and change job name
+            with open(wd + '/jobslurm.sh', 'r') as f_orig:
+                job_lines = f_orig.readlines()
+            # use keyword 'cd' to find correct line
+            keyword = 'cd'
+            keyword_line, keyword_line_i = findKeywordLine(keyword, job_lines)
+            # create new string to replace line
+            newLine = 'cd ' + os.getcwd() + wd + '\n'
+            job_lines[keyword_line_i] = newLine
+
+            keyword = 'job-name='
+            keyword_line, keyword_line_i = findKeywordLine(keyword, job_lines)
+            # create new string to replace linefrom os import getcwd
+            newLine = keyword_line[:keyword_line.find(keyword)] + keyword + jobName + '\n'
+            job_lines[keyword_line_i] = newLine
+            with open(wd + '/jobslurm.sh', 'w') as f_new:
+                f_new.writelines(job_lines)
+        # editJobslurm(wd='./base_case', jobName='base_case')
 
         def testBaseCase():
             if self.gen == 0:
@@ -52,8 +71,19 @@ class RunYALES2:
                     if int(out) == 0:
                         waiting = False
 
-        # MAIN BODY
+        def findKeywordLine(kw, file_lines):
+            kw_line = -1
+            kw_line_i = -1
 
+            for line_i in range(len(file_lines)):
+                line = file_lines[line_i]
+                if line.find(kw) >= 0:
+                    kw_line = line
+                    kw_line_i = line_i
+
+            return kw_line, kw_line_i
+
+        # MAIN BODY
 
         # create folder for individuals from base case:
         # change parameters and adjust path of jobslurm.sh file

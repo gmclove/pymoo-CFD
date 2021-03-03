@@ -12,4 +12,4 @@ source ~/.bashrc
 source activate pymoo-CFD
 module use $HOME/yales2/modules && module load $(cd $HOME/yales2/modules; ls)
 cd ~/Simulations/yales2/pymoo-CFD/YALES2/cases/ics_2D_cyl-no_geo-test
-python ./pymoo-CFD.py
+python ./pymooExec.py
