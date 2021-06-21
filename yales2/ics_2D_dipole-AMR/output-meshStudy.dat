@@ -1,0 +1,30 @@
+==> Error: Spec 'cmake@3.9.6' matches no installed packages.
+	 loading CWIPI version 0.10.3 forgcc-7.3.0 
+	 loading HDF5 version 1.10.5 forgcc-7.3.0 
+	 loading HYPRE version 2.17.0 forgcc-7.3.0 
+	 loading METIS version 5.1.0 forgcc-7.3.0 
+	 loading MKL version 2020.2.254 forgcc-7.3.0 
+	 loading MMG version develop forgcc-7.3.0 
+	 loading MMG version master forgcc-7.3.0 
+	 loading OPENPALM version 4.3.0 forgcc-7.3.0 
+	 loading PAPI version 5.7.0 forgcc-7.3.0 
+	 loading PETSC version 3.11.3 forgcc-7.3.0 
+	 loading SCOTCH version 6.0.7 forgcc-7.3.0 
+	 loading SLEPC version 3.11.1 forgcc-7.3.0 
+MESH STUDY EXECUTING SIMULATIONS COMPLETE
+mesh size factor: 0.5
+[21.   1.6] [21.  -1.6]
+mesh size factor: 1.0
+[20.9  1.5] [20.9 -1.5]
+mesh size factor: 1.5
+[20.93333333  1.53333333] [20.93333333 -1.53333333]
+mesh size factor: 2.0
+[20.9  1.5] [20.9 -1.5]
+mesh size factor: 2.5
+[20.92  1.52] [20.92 -1.52]
+mesh size factor: 3.0
+[20.93333333  1.5       ] [20.93333333 -1.5       ]
+mesh size factor: 3.5
+[20.91428571  1.51428571] [20.91428571 -1.51428571]
+mesh size factor: 4.0
+[20.925  1.5  ] [20.925 -1.5  ]

@@ -1,0 +1,26 @@
+#### COMPUTE PRESSURE AND VISCOUS FORCES ####
+#############################################
+
+SCALAR TAU TYPE = POSTPROC
+SCALAR TAU POSTPROC_TYPE = TAU_WALL_VECTOR
+
+# temporals
+TEMPORAL temporal0 TYPE = ASCII
+TEMPORAL temporal0 FILE = "FORCES_temporal.txt"
+TEMPORAL temporal0 APPEND = TRUE
+TEMPORAL temporal0 NITER_PERIOD = 1
+TEMPORAL temporal0 DUMP_NBUFFER = 10
+
+TEMPORAL_DATA F_pressure TYPE = SURFACE_NORMAL_INTEGRAL
+TEMPORAL_DATA F_pressure DESTINATION = temporal0
+TEMPORAL_DATA F_pressure SOURCE = P_OVER_RHO
+TEMPORAL_DATA F_pressure BOUNDARY = af                 # Choose boundary of interest!
+TEMPORAL_DATA F_pressure LABEL = "F_PRESSURE"
+
+TEMPORAL_DATA F_shear TYPE = SURFACE_INTEGRAL
+TEMPORAL_DATA F_shear DESTINATION = temporal0
+TEMPORAL_DATA F_shear SOURCE = TAU
+TEMPORAL_DATA F_shear BOUNDARY = af                    # Choose boundary of interest!
+TEMPORAL_DATA F_shear LABEL = "F_SHEAR"
+
+#############################################

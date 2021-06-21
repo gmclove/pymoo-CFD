@@ -1,0 +1,306 @@
+==> Error: Spec 'cmake@3.9.6' matches no installed packages.
+	 loading CWIPI version 0.10.3 forgcc-7.3.0 
+	 loading HDF5 version 1.10.5 forgcc-7.3.0 
+	 loading HYPRE version 2.17.0 forgcc-7.3.0 
+	 loading METIS version 5.1.0 forgcc-7.3.0 
+	 loading MKL version 2020.2.254 forgcc-7.3.0 
+	 loading MMG version develop forgcc-7.3.0 
+	 loading MMG version master forgcc-7.3.0 
+	 loading OPENPALM version 4.3.0 forgcc-7.3.0 
+	 loading PAPI version 5.7.0 forgcc-7.3.0 
+	 loading PETSC version 3.11.3 forgcc-7.3.0 
+	 loading SCOTCH version 6.0.7 forgcc-7.3.0 
+	 loading SLEPC version 3.11.1 forgcc-7.3.0 
+<s01,r00>(1) =============================================================
+<s01,r00>(1) MPI_INIT_THREAD support: MPI_THREAD_MULTIPLE
+<s01,r00>(1) =============================================================
+[node131:105748:0:105748]    ud_iface.c:763  Fatal: transport error: Endpoint timeout
+[node536:21594:0:21594]    ud_iface.c:763  Fatal: transport error: Endpoint timeout
+[node129:38428:0:38428]    ud_iface.c:763  Fatal: transport error: Endpoint timeout
+[node130:139731:0:139731]    ud_iface.c:763  Fatal: transport error: Endpoint timeout
+[node535:23512:0:23512]    ud_iface.c:763  Fatal: transport error: Endpoint timeout
+[node534:18571:0:18571]    ud_iface.c:763  Fatal: transport error: Endpoint timeout
+==== backtrace (tid:  38428) ====
+ 0 0x000000000004cb95 ucs_debug_print_backtrace()  ???:0
+ 1 0x00000000000418e1 uct_ud_iface_dispatch_async_comps_do()  ???:0
+ 2 0x0000000000045a42 uct_ud_verbs_ep_t_delete()  ???:0
+ 3 0x000000000002158a ucp_worker_progress()  ???:0
+ 4 0x00000000000034f7 mca_pml_ucx_progress()  ???:0
+ 5 0x000000000003196c opal_progress()  ???:0
+ 6 0x00000000000050b5 mca_pml_ucx_send()  ???:0
+ 7 0x00000000000a7ba2 ompi_coll_base_barrier_intra_bruck()  ???:0
+ 8 0x0000000000063fab MPI_Barrier()  ???:0
+ 9 0x000000000003fc63 ompi_barrier_f()  ???:0
+10 0x00000000005ae1a5 __mpi_m_MOD_init_mpi()  /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/mpi_m.f90:240
+11 0x0000000000412568 __yales2_m_MOD_init_yales2_env()  /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/yales2_m.f90:531
+12 0x00000000004126b6 __yales2_m_MOD_run_yales2()  /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/yales2_m.f90:398
+13 0x000000000040bce1 MAIN__()  /users/g/l/glove1/pymoo-CFD/yales2/ics_2D_cylinder-no_geo/base_case/2D_cylinder.f90:20
+14 0x0000000000022555 __libc_start_main()  ???:0
+15 0x000000000040bd14 _start()  ???:0
+=================================
+
+Program received signal SIGABRT: Process abort signal.
+
+Backtrace for this error:
+==== backtrace (tid: 139731) ====
+ 0 0x000000000004cb95 ucs_debug_print_backtrace()  ???:0
+ 1 0x00000000000418e1 uct_ud_iface_dispatch_async_comps_do()  ???:0
+ 2 0x0000000000045a42 uct_ud_verbs_ep_t_delete()  ???:0
+ 3 0x000000000002158a ucp_worker_progress()  ???:0
+ 4 0x00000000000034f7 mca_pml_ucx_progress()  ???:0
+ 5 0x000000000003196c opal_progress()  ???:0
+ 6 0x00000000000050b5 mca_pml_ucx_send()  ???:0
+ 7 0x00000000000a7ba2 ompi_coll_base_barrier_intra_bruck()  ???:0
+ 8 0x0000000000063fab MPI_Barrier()  ???:0
+ 9 0x000000000003fc63 ompi_barrier_f()  ???:0
+10 0x00000000005ae1a5 __mpi_m_MOD_init_mpi()  /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/mpi_m.f90:240
+11 0x0000000000412568 __yales2_m_MOD_init_yales2_env()  /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/yales2_m.f90:531
+12 0x00000000004126b6 __yales2_m_MOD_run_yales2()  /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/yales2_m.f90:398
+13 0x000000000040bce1 MAIN__()  /users/g/l/glove1/pymoo-CFD/yales2/ics_2D_cylinder-no_geo/base_case/2D_cylinder.f90:20
+14 0x0000000000022555 __libc_start_main()  ???:0
+15 0x000000000040bd14 _start()  ???:0
+=================================
+
+Program received signal SIGABRT: Process abort signal.
+
+Backtrace for this error:
+==== backtrace (tid: 105748) ====
+ 0 0x000000000004cb95 ucs_debug_print_backtrace()  ???:0
+ 1 0x00000000000418e1 uct_ud_iface_dispatch_async_comps_do()  ???:0
+ 2 0x0000000000045a42 uct_ud_verbs_ep_t_delete()  ???:0
+ 3 0x000000000002158a ucp_worker_progress()  ???:0
+ 4 0x00000000000034f7 mca_pml_ucx_progress()  ???:0
+ 5 0x000000000003196c opal_progress()  ???:0
+ 6 0x00000000000050b5 mca_pml_ucx_send()  ???:0
+ 7 0x00000000000a7ba2 ompi_coll_base_barrier_intra_bruck()  ???:0
+ 8 0x0000000000063fab MPI_Barrier()  ???:0
+ 9 0x000000000003fc63 ompi_barrier_f()  ???:0
+10 0x00000000005ae1a5 __mpi_m_MOD_init_mpi()  /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/mpi_m.f90:240
+11 0x0000000000412568 __yales2_m_MOD_init_yales2_env()  /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/yales2_m.f90:531
+12 0x00000000004126b6 __yales2_m_MOD_run_yales2()  /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/yales2_m.f90:398
+13 0x000000000040bce1 MAIN__()  /users/g/l/glove1/pymoo-CFD/yales2/ics_2D_cylinder-no_geo/base_case/2D_cylinder.f90:20
+14 0x0000000000022555 __libc_start_main()  ???:0
+15 0x000000000040bd14 _start()  ???:0
+=================================
+
+Program received signal SIGABRT: Process abort signal.
+
+Backtrace for this error:
+#0  0x2b38d9ce23ff in ???
+#1  0x2b38d9ce2387 in ???
+#2  0x2b38d9ce3a77 in ???
+#3  0x2b38eb5255c4 in ???
+#4  0x2b38eb525764 in ???
+#5  0x2b38ebcad8e0 in ???
+#6  0x2b38ebcb1a41 in ???
+#7  0x2b38eae60589 in ???
+#8  0x2b38eac374f6 in ???
+#9  0x2b38da35f96b in ???
+#10  0x2b38eac390b4 in ???
+#11  0x2b38d8ac9ba1 in ???
+#12  0x2b38d8a85faa in ???
+#13  0x2b38d880ac62 in ???
+#14  0x5ae1a4 in __mpi_m_MOD_init_mpi
+	at /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/mpi_m.f90:240
+#15  0x412567 in __yales2_m_MOD_init_yales2_env
+	at /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/yales2_m.f90:531
+#16  0x4126b5 in __yales2_m_MOD_run_yales2
+	at /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/yales2_m.f90:398
+#17  0x40bce0 in MAIN__
+	at /users/g/l/glove1/pymoo-CFD/yales2/ics_2D_cylinder-no_geo/base_case/2D_cylinder.f90:20
+#18  0x40bce0 in main
+	at /users/g/l/glove1/pymoo-CFD/yales2/ics_2D_cylinder-no_geo/base_case/2D_cylinder.f90:8
+#0  0x2ab2ce11d3ff in ???
+#1  0x2ab2ce11d387 in ???
+#2  0x2ab2ce11ea77 in ???
+#3  0x2ab2df9ad5c4 in ???
+#4  0x2ab2df9ad764 in ???
+#5  0x2ab2e01358e0 in ???
+#6  0x2ab2e0139a41 in ???
+#7  0x2ab2df2e8589 in ???
+#8  0x2ab2df0bf4f6 in ???
+#9  0x2ab2ce79a96b in ???
+#10  0x2ab2df0c10b4 in ???
+#11  0x2ab2ccf04ba1 in ???
+#12  0x2ab2ccec0faa in ???
+#13  0x2ab2ccc45c62 in ???
+#14  0x5ae1a4 in __mpi_m_MOD_init_mpi
+	at /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/mpi_m.f90:240
+#15  0x412567 in __yales2_m_MOD_init_yales2_env
+	at /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/yales2_m.f90:531
+#16  0x4126b5 in __yales2_m_MOD_run_yales2
+	at /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/yales2_m.f90:398
+#17  0x40bce0 in MAIN__
+	at /users/g/l/glove1/pymoo-CFD/yales2/ics_2D_cylinder-no_geo/base_case/2D_cylinder.f90:20
+#18  0x40bce0 in main
+	at /users/g/l/glove1/pymoo-CFD/yales2/ics_2D_cylinder-no_geo/base_case/2D_cylinder.f90:8
+#0  0x2ba9627593ff in ???
+#1  0x2ba962759387 in ???
+#2  0x2ba96275aa77 in ???
+#3  0x2ba973fd85c4 in ???
+#4  0x2ba973fd8764 in ???
+#5  0x2ba9747608e0 in ???
+#6  0x2ba974764a41 in ???
+#7  0x2ba973913589 in ???
+#8  0x2ba9736ea4f6 in ???
+#9  0x2ba962dd696b in ???
+#10  0x2ba9736ec0b4 in ???
+#11  0x2ba961540ba1 in ???
+#12  0x2ba9614fcfaa in ???
+#13  0x2ba961281c62 in ???
+#14  0x5ae1a4 in __mpi_m_MOD_init_mpi
+	at /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/mpi_m.f90:240
+#15  0x412567 in __yales2_m_MOD_init_yales2_env
+	at /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/yales2_m.f90:531
+#16  0x4126b5 in __yales2_m_MOD_run_yales2
+	at /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/yales2_m.f90:398
+#17  0x40bce0 in MAIN__
+	at /users/g/l/glove1/pymoo-CFD/yales2/ics_2D_cylinder-no_geo/base_case/2D_cylinder.f90:20
+#18  0x40bce0 in main
+	at /users/g/l/glove1/pymoo-CFD/yales2/ics_2D_cylinder-no_geo/base_case/2D_cylinder.f90:8
+==== backtrace (tid:  21594) ====
+ 0 0x000000000004cb95 ucs_debug_print_backtrace()  ???:0
+ 1 0x00000000000418e1 uct_ud_iface_dispatch_async_comps_do()  ???:0
+ 2 0x0000000000045a42 uct_ud_verbs_ep_t_delete()  ???:0
+ 3 0x000000000002158a ucp_worker_progress()  ???:0
+ 4 0x00000000000034f7 mca_pml_ucx_progress()  ???:0
+ 5 0x000000000003196c opal_progress()  ???:0
+ 6 0x00000000000050b5 mca_pml_ucx_send()  ???:0
+ 7 0x00000000000a7ba2 ompi_coll_base_barrier_intra_bruck()  ???:0
+ 8 0x0000000000063fab MPI_Barrier()  ???:0
+ 9 0x000000000003fc63 ompi_barrier_f()  ???:0
+10 0x00000000005ae1a5 __mpi_m_MOD_init_mpi()  /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/mpi_m.f90:240
+11 0x0000000000412568 __yales2_m_MOD_init_yales2_env()  /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/yales2_m.f90:531
+12 0x00000000004126b6 __yales2_m_MOD_run_yales2()  /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/yales2_m.f90:398
+13 0x000000000040bce1 MAIN__()  /users/g/l/glove1/pymoo-CFD/yales2/ics_2D_cylinder-no_geo/base_case/2D_cylinder.f90:20
+14 0x0000000000022555 __libc_start_main()  ???:0
+15 0x000000000040bd14 _start()  ???:0
+=================================
+
+Program received signal SIGABRT: Process abort signal.
+
+Backtrace for this error:
+==== backtrace (tid:  23512) ====
+ 0 0x000000000004cb95 ucs_debug_print_backtrace()  ???:0
+ 1 0x00000000000418e1 uct_ud_iface_dispatch_async_comps_do()  ???:0
+ 2 0x0000000000045a42 uct_ud_verbs_ep_t_delete()  ???:0
+ 3 0x000000000002158a ucp_worker_progress()  ???:0
+ 4 0x00000000000034f7 mca_pml_ucx_progress()  ???:0
+ 5 0x000000000003196c opal_progress()  ???:0
+ 6 0x00000000000050b5 mca_pml_ucx_send()  ???:0
+ 7 0x00000000000a7ba2 ompi_coll_base_barrier_intra_bruck()  ???:0
+ 8 0x0000000000063fab MPI_Barrier()  ???:0
+ 9 0x000000000003fc63 ompi_barrier_f()  ???:0
+10 0x00000000005ae1a5 __mpi_m_MOD_init_mpi()  /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/mpi_m.f90:240
+11 0x0000000000412568 __yales2_m_MOD_init_yales2_env()  /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/yales2_m.f90:531
+12 0x00000000004126b6 __yales2_m_MOD_run_yales2()  /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/yales2_m.f90:398
+13 0x000000000040bce1 MAIN__()  /users/g/l/glove1/pymoo-CFD/yales2/ics_2D_cylinder-no_geo/base_case/2D_cylinder.f90:20
+14 0x0000000000022555 __libc_start_main()  ???:0
+15 0x000000000040bd14 _start()  ???:0
+=================================
+
+Program received signal SIGABRT: Process abort signal.
+
+Backtrace for this error:
+==== backtrace (tid:  18571) ====
+ 0 0x000000000004cb95 ucs_debug_print_backtrace()  ???:0
+ 1 0x00000000000418e1 uct_ud_iface_dispatch_async_comps_do()  ???:0
+ 2 0x0000000000045a42 uct_ud_verbs_ep_t_delete()  ???:0
+ 3 0x000000000002158a ucp_worker_progress()  ???:0
+ 4 0x00000000000034f7 mca_pml_ucx_progress()  ???:0
+ 5 0x000000000003196c opal_progress()  ???:0
+ 6 0x00000000000050b5 mca_pml_ucx_send()  ???:0
+ 7 0x00000000000a7ba2 ompi_coll_base_barrier_intra_bruck()  ???:0
+ 8 0x0000000000063fab MPI_Barrier()  ???:0
+ 9 0x000000000003fc63 ompi_barrier_f()  ???:0
+10 0x00000000005ae1a5 __mpi_m_MOD_init_mpi()  /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/mpi_m.f90:240
+11 0x0000000000412568 __yales2_m_MOD_init_yales2_env()  /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/yales2_m.f90:531
+12 0x00000000004126b6 __yales2_m_MOD_run_yales2()  /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/yales2_m.f90:398
+13 0x000000000040bce1 MAIN__()  /users/g/l/glove1/pymoo-CFD/yales2/ics_2D_cylinder-no_geo/base_case/2D_cylinder.f90:20
+14 0x0000000000022555 __libc_start_main()  ???:0
+15 0x000000000040bd14 _start()  ???:0
+=================================
+
+Program received signal SIGABRT: Process abort signal.
+
+Backtrace for this error:
+#0  0x2b1eed6073ff in ???
+#1  0x2b1eed607387 in ???
+#2  0x2b1eed608a77 in ???
+#3  0x2b1efeeb35c4 in ???
+#4  0x2b1efeeb3764 in ???
+#5  0x2b1eff63b8e0 in ???
+#6  0x2b1eff63fa41 in ???
+#7  0x2b1efe7ee589 in ???
+#8  0x2b1efe5c54f6 in ???
+#9  0x2b1eedc8496b in ???
+#10  0x2b1efe5c70b4 in ???
+#11  0x2b1eec3eeba1 in ???
+#12  0x2b1eec3aafaa in ???
+#13  0x2b1eec12fc62 in ???
+#14  0x5ae1a4 in __mpi_m_MOD_init_mpi
+	at /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/mpi_m.f90:240
+#15  0x412567 in __yales2_m_MOD_init_yales2_env
+	at /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/yales2_m.f90:531
+#16  0x4126b5 in __yales2_m_MOD_run_yales2
+	at /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/yales2_m.f90:398
+#17  0x40bce0 in MAIN__
+	at /users/g/l/glove1/pymoo-CFD/yales2/ics_2D_cylinder-no_geo/base_case/2D_cylinder.f90:20
+#18  0x40bce0 in main
+	at /users/g/l/glove1/pymoo-CFD/yales2/ics_2D_cylinder-no_geo/base_case/2D_cylinder.f90:8
+#0  0x2b12d6eec3ff in ???
+#1  0x2b12d6eec387 in ???
+#2  0x2b12d6eeda77 in ???
+#3  0x2b12e86c85c4 in ???
+#4  0x2b12e86c8764 in ???
+#5  0x2b12e8e508e0 in ???
+#6  0x2b12e8e54a41 in ???
+#7  0x2b12e8003589 in ???
+#8  0x2b12e7dda4f6 in ???
+#9  0x2b12d756996b in ???
+#10  0x2b12e7ddc0b4 in ???
+#11  0x2b12d5cd3ba1 in ???
+#12  0x2b12d5c8ffaa in ???
+#13  0x2b12d5a14c62 in ???
+#14  0x5ae1a4 in __mpi_m_MOD_init_mpi
+	at /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/mpi_m.f90:240
+#15  0x412567 in __yales2_m_MOD_init_yales2_env
+	at /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/yales2_m.f90:531
+#16  0x4126b5 in __yales2_m_MOD_run_yales2
+	at /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/yales2_m.f90:398
+#17  0x40bce0 in MAIN__
+	at /users/g/l/glove1/pymoo-CFD/yales2/ics_2D_cylinder-no_geo/base_case/2D_cylinder.f90:20
+#18  0x40bce0 in main
+	at /users/g/l/glove1/pymoo-CFD/yales2/ics_2D_cylinder-no_geo/base_case/2D_cylinder.f90:8
+#0  0x2b9c490473ff in ???
+#1  0x2b9c49047387 in ???
+#2  0x2b9c49048a77 in ???
+#3  0x2b9c5a8a75c4 in ???
+#4  0x2b9c5a8a7764 in ???
+#5  0x2b9c5b02f8e0 in ???
+#6  0x2b9c5b033a41 in ???
+#7  0x2b9c5a1e2589 in ???
+#8  0x2b9c59fb94f6 in ???
+#9  0x2b9c496c496b in ???
+#10  0x2b9c59fbb0b4 in ???
+#11  0x2b9c47e2eba1 in ???
+#12  0x2b9c47deafaa in ???
+#13  0x2b9c47b6fc62 in ???
+#14  0x5ae1a4 in __mpi_m_MOD_init_mpi
+	at /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/mpi_m.f90:240
+#15  0x412567 in __yales2_m_MOD_init_yales2_env
+	at /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/yales2_m.f90:531
+#16  0x4126b5 in __yales2_m_MOD_run_yales2
+	at /gpfs1/home/y/d/ydubief/gitrepo/yales2-devel/src/main/yales2_m.f90:398
+#17  0x40bce0 in MAIN__
+	at /users/g/l/glove1/pymoo-CFD/yales2/ics_2D_cylinder-no_geo/base_case/2D_cylinder.f90:20
+#18  0x40bce0 in main
+	at /users/g/l/glove1/pymoo-CFD/yales2/ics_2D_cylinder-no_geo/base_case/2D_cylinder.f90:8
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun noticed that process rank 3 with PID 38428 on node node129 exited on signal 6 (Aborted).
+--------------------------------------------------------------------------
+6 total processes killed (some possibly by mpirun during cleanup)
