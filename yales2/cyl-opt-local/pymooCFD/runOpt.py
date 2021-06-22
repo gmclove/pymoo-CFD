@@ -1,6 +1,27 @@
 from pymooCFD.setupOpt import *
 
-def runOpt():
+def runOpt(restart=True):
+    if restart == True:
+        try:
+            checkpoint, = np.load("checkpoint.npy", allow_pickle=True).flatten()
+            print("Loaded Checkpoint:", checkpoint)
+            # only necessary if for the checkpoint the termination criterion has been met
+            checkpoint.has_terminated = False
+            algorithm = checkpoint
+            print('Last checkpoint at generation %i' % len(algorithm.callback.data['var']))
+        except OSError as err:
+            print(err)
+            # try:
+            #     X = np.loadtxt('var.txt')
+            #     F = np.loadtxt('obj.txt')
+            #     from pymoo.model.evaluator import Evaluator
+            #     from pymoo.model.population import Population
+            #     from pymoo.model.problem import StaticProblem
+            #
+            #     # now the population object with all its attributes is created (CV, feasible, ...)
+            #     pop = Population.new("X", X)
+            #     pop = Evaluator().eval(StaticProblem(problem, F=F, G=G), pop)
+
     ########################################################################################################################
     ######    OPTIMIZATION    ######
     from pymoo.optimize import minimize

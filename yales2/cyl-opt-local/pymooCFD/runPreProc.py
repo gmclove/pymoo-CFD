@@ -1,6 +1,6 @@
 from setup import *
 
-def runPreProc():
+def runGen0():
     ########################################################################################################################
     ######    RUN GENERATION 0    #######
     from pymoo.optimize import minimize
@@ -20,9 +20,5 @@ def runPreProc():
     # np.save("checkpoint", algorithm)
     print("EXEC TIME: %.3f seconds" % res.exec_time)
 
-    ########################################################################################################################
-    ######     ######
-    # from optPreProc import gen0Map
-
 if __name__ == "__main__":
-    runPreProc()
+    runGen0()

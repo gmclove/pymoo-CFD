@@ -96,6 +96,7 @@ class MyCallback(Callback):
 
     def notify(self, algorithm):
         gen = algorithm.n_gen
+        genDir = f'gen{gen}'
         genX = algorithm.pop.get('X')
         genF = algorithm.pop.get('F')
 
@@ -111,9 +112,13 @@ class MyCallback(Callback):
             np.save("checkpoint-gen%i" % gen, algorithm)
         # save text file of variables and objectives as well
         # this provides more options for post-processesing data
-        with open("obj.txt", "a") as file: # append file
+        with open("obj.txt", "a+") as file: # create or append file
             np.savetxt(file, genF)
-        with open("var.txt", "a") as file: # append file
+        with open("var.txt", "a+") as file: # create or append file
+            np.savetxt(file, genX)
+        with open(f'{genDir}/obj.txt', "w") as file: # write file
+            np.savetxt(file, genF)
+        with open(f'{genDir}/var.txt', "w") as file: # write file
             np.savetxt(file, genX)
         # self.gen += 1 #= algorithm.n_gen
 
@@ -177,9 +182,6 @@ class GA_CFD(Problem):
         # create sim object for this generation and it's population
         out['F'] = obj
 
-        # out['F'] = np.zeros((pop, n_obj))
-        # out['F'] = [[0, 1], [0, 1]]
-
         print('GEN%i COMPLETE' % gen)
 
 problem = GA_CFD()
@@ -192,19 +194,19 @@ problem = GA_CFD()
 from pymoo.algorithms.nsga2 import NSGA2
 from pymoo.factory import get_sampling, get_crossover, get_mutation
 
-if os.path.exists('checkpoint.npy'):
-    checkpoint, = np.load("checkpoint.npy", allow_pickle=True).flatten()
-    print("Loaded Checkpoint:", checkpoint)
-    # only necessary if for the checkpoint the termination criterion has been met
-    checkpoint.has_terminated = False
-    algorithm = checkpoint
-    print('Last checkpoint at generation %i' % len(algorithm.callback.data['var']))
-else:
-    algorithm = NSGA2(
-        pop_size=pop,
-        # n_offsprings=2,
-        sampling=sampling,
-        crossover=crossover,
-        mutation=mutation,
-        eliminate_duplicates=True
-    )
+# if os.path.exists('checkpoint.npy'):
+#     checkpoint, = np.load("checkpoint.npy", allow_pickle=True).flatten()
+#     print("Loaded Checkpoint:", checkpoint)
+#     # only necessary if for the checkpoint the termination criterion has been met
+#     checkpoint.has_terminated = False
+#     algorithm = checkpoint
+#     print('Last checkpoint at generation %i' % len(algorithm.callback.data['var']))
+# else:
+algorithm = NSGA2(
+    pop_size=pop,
+    # n_offsprings=2,
+    sampling=sampling,
+    crossover=crossover,
+    mutation=mutation,
+    eliminate_duplicates=True
+)
