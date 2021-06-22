@@ -28,9 +28,7 @@ def makeClean(recompBase=False, stashPrev=True): #, rmGen=False):
         except OSError as err:
             print(err)
             print('obj.txt and/or var.txt do not exist')
-        try: 
-            os.system(f'mv checkpoint* {stashDir}')
-
+        os.system(f'mv checkpoint* {stashDir}')
 
     # os.system('source activate pymoo-CFD')
     os.system('rm -rfv gen*/ checkpoint* output.dat __pycache__ plots/')

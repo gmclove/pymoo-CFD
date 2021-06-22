@@ -1,4 +1,4 @@
-from pymooCFD.setupOpt import *
+import numpy as np
 
 def runOpt(restart=True):
     if restart == True:
@@ -11,6 +11,7 @@ def runOpt(restart=True):
             print('Last checkpoint at generation %i' % len(algorithm.callback.data['var']))
         except OSError as err:
             print(err)
+            from pymooCFD.setupOpt import algorithm
             # try:
             #     X = np.loadtxt('var.txt')
             #     F = np.loadtxt('obj.txt')
@@ -25,10 +26,12 @@ def runOpt(restart=True):
     ########################################################################################################################
     ######    OPTIMIZATION    ######
     from pymoo.optimize import minimize
+    from pymooCFD.setupOpt import problem, callback, termination, display
 
     res = minimize(problem,
                    algorithm,
-                   ('n_gen', n_gen),
+                   termination=termination,
+                   # ('n_gen', n_gen),
                    callback=callback,
                    seed=1,
                    copy_algorithm=False,
@@ -41,5 +44,5 @@ def runOpt(restart=True):
     # np.save("checkpoint", algorithm)
     print("EXEC TIME: %.3f seconds" % res.exec_time)
 
-if __name__ == "__main__":
-    runOpt()
+# if __name__ == "__main__":
+#     runOpt()

@@ -12,8 +12,8 @@ procLim = 60  # Maximum processors to be used, defined in jobslurm.sh as well
 nProc = 12  # Number of processors for each individual (EQUAL or SMALLER than procLim)
 solverExec = '2D_cylinder'
 
-n_gen = 3
-pop = 30
+n_gen = 1
+pop = 5
 
 # Define Design Space
 n_var = 2
@@ -116,9 +116,9 @@ class MyCallback(Callback):
             np.savetxt(file, genF)
         with open("var.txt", "a+") as file: # create or append file
             np.savetxt(file, genX)
-        with open(f'{genDir}/obj.txt', "w") as file: # write file
+        with open(f'{genDir}/obj.txt', "w+") as file: # write file
             np.savetxt(file, genF)
-        with open(f'{genDir}/var.txt', "w") as file: # write file
+        with open(f'{genDir}/var.txt', "w+") as file: # write file
             np.savetxt(file, genX)
         # self.gen += 1 #= algorithm.n_gen
 
@@ -158,7 +158,9 @@ class GA_CFD(Problem):
         ###### Initialize Generation ######
         # gen = algorithm.n_gen. A thick orange line illustrates the pareto-optimal set. Through the combination of both constraints, the pareto-set is split into two parts. Analytically, the pareto-optimal set is given by PS={(x1,x2)|(0.1≤x1≤0.4)∨(0.6≤x1≤0.9)∧x2=0}
         # print('algorithm.n_gen:' + str(algorithm.n_gen) + ' len(alg...data[''var'']):' + str(len(algorithm.callback.data['var'])))
-        gen = len(algorithm.callback.data['var'])
+        gen = algorithm.n_gen - 1 #len(algorithm.callback.data['var'])
+        if algorithm.n_gen is None:
+            gen = 0
         genDir = f'gen{gen}'
         subdir = 'ind'
         # print('GEN:%i' % gen)
@@ -209,4 +211,4 @@ algorithm = NSGA2(
     crossover=crossover,
     mutation=mutation,
     eliminate_duplicates=True
-)
+    )
