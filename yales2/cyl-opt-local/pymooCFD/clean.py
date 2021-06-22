@@ -1,7 +1,8 @@
 import os
+import shutil
 from pymooCFD.setupOpt import *
 
-def makeClean(recompBase=False): #, rmGen=False):
+def makeClean(recompBase=False, stashPrev=True): #, rmGen=False):
     def findKeywordLine(kw, file_lines):
         kw_line = -1
         kw_line_i = -1
@@ -13,11 +14,28 @@ def makeClean(recompBase=False): #, rmGen=False):
                 kw_line_i = line_i
 
         return kw_line, kw_line_i
+    ########################################################################################################################
+    if stashPrev == True:
+        stashDir = 'stash'
+        try:
+            os.mkdir(stashDir)
+        except OSError as err:
+            print(err)
+            print('"stash" directory already exists')
+        try:
+            shutil.move('obj.txt', f'{stashDir}/obj.txt')
+            shutil.move('var.txt', f'{stashDir}/var.txt')
+        except OSError as err:
+            print(err)
+            print('obj.txt and/or var.txt do not exist')
+        try: 
+            os.system(f'mv checkpoint* {stashDir}')
+
 
     # os.system('source activate pymoo-CFD')
     os.system('rm -rfv gen*/ checkpoint* output.dat __pycache__ plots/')
     os.system('rm -rfv base_case/output.dat base_case/dump/ base_case/solver01_*')  # base_case/'+dataFile)
-
+    os.system('rm -fv obj.txt var.txt')
     ########################################################################################################################
     ###### MOO JOBSLURM ######
     ##########################
