@@ -11,7 +11,7 @@ def gen0Map(heatmap=False):
     except OSError as err:
         print(err)
     ########################################################################################################################
-    
+
     ########################################################################################################################
     X = np.loadtxt('var.txt')
     F = np.loadtxt('obj.txt')
@@ -25,12 +25,19 @@ def gen0Map(heatmap=False):
     from pymoo.visualization.scatter import Scatter
     # https://pymoo.org/visualization/scatter.html
     ##### Function Space ######
-    f_space = Scatter(title = 'Objective Space'
+    f_space = Scatter(title = 'Objective Space',
                         labels = obj_labels)
     f_space.add(F)
-    if pf is not None:
-        f_space.add(pf)
-
+    # if pf is not None:
+    #     f_space.add(pf)
+    f_space.save(f'{plotDir}/obj-space.png')
+    ##### Variable Space ######
+    f_space = Scatter(title = 'Design Space',
+                        labels = obj_labels)
+    f_space.add(X)
+    # if pf is not None:
+    #     f_space.add(pf)
+    f_space.save(f'{plotDir}/var-space.png')
 
     ##### Variable vs. Objective Plots ######
     # extract objectives and variables columns and plot them against each other

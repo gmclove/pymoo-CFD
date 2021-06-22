@@ -12,7 +12,7 @@ procLim = 60  # Maximum processors to be used, defined in jobslurm.sh as well
 nProc = 12  # Number of processors for each individual (EQUAL or SMALLER than procLim)
 solverExec = '2D_cylinder'
 
-n_gen = 1
+n_gen = 3
 pop = 30
 
 # Define Design Space
@@ -95,10 +95,26 @@ class MyCallback(Callback):
         self.data['obj'] = []
 
     def notify(self, algorithm):
+        gen = algorithm.n_gen
+        genX = algorithm.pop.get('X')
+        genF = algorithm.pop.get('F')
+
         for obj in range(n_obj):
-            self.data["best_obj"+str(obj)].append(algorithm.pop.get("F")[:, obj].min())
-        self.data['var'].append(algorithm.pop.get('X'))
-        self.data['obj'].append(algorithm.pop.get('F'))
+            self.data["best_obj"+str(obj)].append(genF[:, obj].min())
+        self.data['var'].append(genX)
+        self.data['obj'].append(genF)
+
+        # save checkpoint after each generation
+        np.save("checkpoint", algorithm)
+        # gen0 and every nCP generations save additional static checkpoint
+        if gen % nCP == 0:
+            np.save("checkpoint-gen%i" % gen, algorithm)
+        # save text file of variables and objectives as well
+        # this provides more options for post-processesing data
+        with open("obj.txt", "a") as file: # append file
+            np.savetxt(file, genF)
+        with open("var.txt", "a") as file: # append file
+            np.savetxt(file, genX)
         # self.gen += 1 #= algorithm.n_gen
 
 callback = MyCallback()
@@ -164,18 +180,7 @@ class GA_CFD(Problem):
         # out['F'] = np.zeros((pop, n_obj))
         # out['F'] = [[0, 1], [0, 1]]
 
-        # save checkpoint after each generation
-        np.save("checkpoint", algorithm)
-        # gen0 and every nCP generations save additional static checkpoint
-        if gen % nCP == 0:
-            np.save("checkpoint-gen%i" % gen, algorithm)
-        # save text file of variables and objectives as well
-        # this provides more options for post-processesing data 
-        with open("obj.txt", "a") as f: # append file
-            np.savetxt(f, obj)
-        with open("var.txt", "a") as f: # append file
-            np.savetxt(f, x)
-        # print('GEN%i COMPLETE' % gen)
+        print('GEN%i COMPLETE' % gen)
 
 problem = GA_CFD()
 
