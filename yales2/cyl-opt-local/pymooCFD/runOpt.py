@@ -3,15 +3,28 @@ import numpy as np
 def runOpt(restart=True):
     if restart == True:
         try:
-            checkpoint, = np.load("checkpoint.npy", allow_pickle=True).flatten()
-            print("Loaded Checkpoint:", checkpoint)
-            # only necessary if for the checkpoint the termination criterion has been met
-            checkpoint.has_terminated = False
-            algorithm = checkpoint
-            print('Last checkpoint at generation %i' % len(algorithm.callback.data['var']))
+            from pymooCFD.setupOpt import loadCP
+            algorithm = loadCP()
         except OSError as err:
+            from pymooCFD.setupOpt import checkpointFile
             print(err)
-            from pymooCFD.setupOpt import algorithm
+            print(f'{checkpointFile} load failed.')
+            print('Data loading failed returning "None"...')
+            print('RESTART FAILED')
+            return
+
+    else:
+        from pymooCFD.setupOpt import algorithm
+        # try:
+        #     checkpoint, = np.load("checkpoint.npy", allow_pickle=True).flatten()
+        #     print("Loaded Checkpoint:", checkpoint)
+        #     # only necessary if for the checkpoint the termination criterion has been met
+        #     checkpoint.has_terminated = False
+        #     algorithm = checkpoint
+        #     print('Last checkpoint at generation %i' % len(algorithm.callback.data['var']))
+        # except OSError as err:
+        #     print(err)
+        #     from pymooCFD.setupOpt import algorithm
             # try:
             #     X = np.loadtxt('var.txt')
             #     F = np.loadtxt('obj.txt')

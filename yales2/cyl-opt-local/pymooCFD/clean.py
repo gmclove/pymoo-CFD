@@ -23,11 +23,12 @@ def makeClean(recompBase=False, stashPrev=True): #, rmGen=False):
             print(err)
             print('"stash" directory already exists')
         try:
-            shutil.move('obj.txt', f'{stashDir}/obj.txt')
-            shutil.move('var.txt', f'{stashDir}/var.txt')
+            shutil.copytree(dataDir, f'{stashDir}/prev_run')
+            # shutil.move('obj.txt', f'{stashDir}/obj.txt')
+            # shutil.move('var.txt', f'{stashDir}/var.txt')
         except OSError as err:
             print(err)
-            print('obj.txt and/or var.txt do not exist')
+            print(f'{dataDir} do not exist')
         os.system(f'mv checkpoint* {stashDir}')
 
     # os.system('source activate pymoo-CFD')

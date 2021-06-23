@@ -4,17 +4,15 @@ from pymooCFD.setupOpt import *
 
 def gen0Map(heatmap=False):
     # checkpointDir = 'checkpoint' + '.npy'
-    checkpointDir = 'checkpoint.npy'
+    # checkpointFile = 'checkpoint.npy'
     plotDir = './plots'
     try:
         os.mkdir(plotDir)
     except OSError as err:
         print(err)
     ########################################################################################################################
-
+    X, F = loadData()
     ########################################################################################################################
-    X = np.loadtxt('var.txt')
-    F = np.loadtxt('obj.txt')
     print('VARS')
     print(X)
     print('OBJ')
@@ -22,6 +20,8 @@ def gen0Map(heatmap=False):
     ########################################################################################################################
     ##### SCATTER PLOTS #######
     ###########################
+    X = np.array(X)
+    F = np.array(F)
     from pymoo.visualization.scatter import Scatter
     # https://pymoo.org/visualization/scatter.html
     ##### Function Space ######

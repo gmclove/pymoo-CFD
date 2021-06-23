@@ -45,7 +45,46 @@ def normalize(obj):
 
 # dirCP =
 nCP = 10  # number of generations between extra checkpoints
+dataDir = 'dump'
+checkpointFile = f'{dataDir}/checkpoint.npy'
+try:
+    os.mkdir(dataDir)
+except OSError as err:
+    print(err)
+    print('data directory already exists')
 
+def saveData(algorithm):
+    gen = algorithm.n_gen
+    genDir = f'gen{gen}'
+    # retrieve population from lastest generation
+    genX = algorithm.pop.get('X')
+    genF = algorithm.pop.get('F')
+    # save checkpoint after each generation
+    np.save(f"{dataDir}/checkpoint", algorithm)
+    # gen0 and every nCP generations save additional static checkpoint
+    if gen % nCP == 1:
+        np.save(f"{dataDir}/checkpoint-gen%i" % gen, algorithm)
+    # save text file of variables and objectives as well
+    # this provides more options for post-processesing data
+    with open(f'{dataDir}/gen{gen}X.txt', "w+") as file: # write file
+        np.savetxt(file, genF)
+    with open(f'{dataDir}/gen{gen}F.txt', "w+") as file: # write file
+        np.savetxt(file, genX)
+
+
+def loadCP(checkpointFile=checkpointFile, hasTerminated=False):
+    checkpoint, = np.load(checkpointFile, allow_pickle=True).flatten()
+    print("Loaded Checkpoint:", checkpoint)
+    # only necessary if for the checkpoint the termination criterion has been met
+    checkpoint.has_terminated = hasTerminated
+    algorithm = checkpoint
+    print('Last checkpoint at generation %i' % len(algorithm.callback.data['var']))
+    return algorithm
+
+'''
+pyMOO SETUP
+pymoo.org
+'''
 ########################################################################################################################
 ######    MIXED VARIABLE    ######
 from pymoo.factory import get_sampling, get_crossover, get_mutation
@@ -95,32 +134,12 @@ class MyCallback(Callback):
         self.data['obj'] = []
 
     def notify(self, algorithm):
-        gen = algorithm.n_gen
-        genDir = f'gen{gen}'
-        genX = algorithm.pop.get('X')
-        genF = algorithm.pop.get('F')
-
         for obj in range(n_obj):
-            self.data["best_obj"+str(obj)].append(genF[:, obj].min())
-        self.data['var'].append(genX)
-        self.data['obj'].append(genF)
+            self.data["best_obj"+str(obj)].append(algorithm.pop.get('F')[:, obj].min())
+        self.data['var'].append(algorithm.pop.get('X'))
+        self.data['obj'].append(algorithm.pop.get('F'))
 
-        # save checkpoint after each generation
-        np.save("checkpoint", algorithm)
-        # gen0 and every nCP generations save additional static checkpoint
-        if gen % nCP == 0:
-            np.save("checkpoint-gen%i" % gen, algorithm)
-        # save text file of variables and objectives as well
-        # this provides more options for post-processesing data
-        with open("obj.txt", "a+") as file: # create or append file
-            np.savetxt(file, genF)
-        with open("var.txt", "a+") as file: # create or append file
-            np.savetxt(file, genX)
-        with open(f'{genDir}/obj.txt', "w+") as file: # write file
-            np.savetxt(file, genF)
-        with open(f'{genDir}/var.txt', "w+") as file: # write file
-            np.savetxt(file, genX)
-        # self.gen += 1 #= algorithm.n_gen
+        saveData(algorithm)
 
 callback = MyCallback()
 ########################################################################################################################
@@ -158,9 +177,11 @@ class GA_CFD(Problem):
         ###### Initialize Generation ######
         # gen = algorithm.n_gen. A thick orange line illustrates the pareto-optimal set. Through the combination of both constraints, the pareto-set is split into two parts. Analytically, the pareto-optimal set is given by PS={(x1,x2)|(0.1≤x1≤0.4)∨(0.6≤x1≤0.9)∧x2=0}
         # print('algorithm.n_gen:' + str(algorithm.n_gen) + ' len(alg...data[''var'']):' + str(len(algorithm.callback.data['var'])))
-        gen = algorithm.n_gen - 1 #len(algorithm.callback.data['var'])
+        # gen = len(algorithm.callback.data['var'])
         if algorithm.n_gen is None:
             gen = 0
+        else:
+            gen = algorithm.n_gen
         genDir = f'gen{gen}'
         subdir = 'ind'
         # print('GEN:%i' % gen)
@@ -196,14 +217,8 @@ problem = GA_CFD()
 from pymoo.algorithms.nsga2 import NSGA2
 from pymoo.factory import get_sampling, get_crossover, get_mutation
 
-# if os.path.exists('checkpoint.npy'):
-#     checkpoint, = np.load("checkpoint.npy", allow_pickle=True).flatten()
-#     print("Loaded Checkpoint:", checkpoint)
-#     # only necessary if for the checkpoint the termination criterion has been met
-#     checkpoint.has_terminated = False
-#     algorithm = checkpoint
-#     print('Last checkpoint at generation %i' % len(algorithm.callback.data['var']))
-# else:
+# initialize algorithm here
+# will be overwritten in runOpt() if checkpoint already exists
 algorithm = NSGA2(
     pop_size=pop,
     # n_offsprings=2,
