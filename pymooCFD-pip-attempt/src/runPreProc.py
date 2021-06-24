@@ -1,7 +1,6 @@
 import os
 import numpy as np
 from pymooCFD.setupOpt import *
-from pymooCFD.util.handleData import loadCP
 
 def runGen0():
     ########################################################################################################################

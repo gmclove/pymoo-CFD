@@ -12,8 +12,8 @@ procLim = 60  # Maximum processors to be used, defined in jobslurm.sh as well
 nProc = 12  # Number of processors for each individual (EQUAL or SMALLER than procLim)
 solverExec = '2D_cylinder'
 
-n_gen = 50
-pop = 4
+n_gen = 1
+pop = 5
 #####################################
 ####### Define Design Space #########
 #####################################
@@ -50,7 +50,7 @@ def normalize(obj):
 ####################################
 ####### Define Data Handling #######
 ####################################
-archDir = 'archive'
+# dirCP =
 nCP = 10  # number of generations between extra checkpoints
 dataDir = 'dump'
 checkpointFile = f'{dataDir}/checkpoint.npy'
@@ -58,11 +58,34 @@ try:
     os.mkdir(dataDir)
 except OSError as err:
     print(err)
-try:
-    os.mkdir(archDir)
-except OSError as err:
-    print(err)
+    print('data directory already exists')
 
+def saveData(algorithm):
+    gen = algorithm.n_gen
+    genDir = f'gen{gen}'
+    # retrieve population from lastest generation
+    genX = algorithm.pop.get('X')
+    genF = algorithm.pop.get('F')
+    # save checkpoint after each generation
+    np.save(f"{dataDir}/checkpoint", algorithm)
+    # gen0 and every nCP generations save additional static checkpoint
+    if gen % nCP == 1:
+        np.save(f"{dataDir}/checkpoint-gen%i" % gen, algorithm)
+    # save text file of variables and objectives as well
+    # this provides more options for post-processesing data
+    with open(f'{dataDir}/gen{gen}X.txt', "w+") as file: # write file
+        np.savetxt(file, genF)
+    with open(f'{dataDir}/gen{gen}F.txt', "w+") as file: # write file
+        np.savetxt(file, genX)
+
+def loadCP(checkpointFile=checkpointFile, hasTerminated=False):
+    checkpoint, = np.load(checkpointFile, allow_pickle=True).flatten()
+    print("Loaded Checkpoint:", checkpoint)
+    # only necessary if for the checkpoint the termination criterion has been met
+    checkpoint.has_terminated = hasTerminated
+    algorithm = checkpoint
+    print('Last checkpoint at generation %i' % len(algorithm.callback.data['var']))
+    return algorithm
 
 #####################################################
 ###### Define Optimization Pre/Post Processing ######
@@ -72,6 +95,7 @@ try:
     os.mkdir(plotDir)
 except OSError as err:
     print(err)
+    print(f'{plotDir} already exists.')
 '''
 pyMOO SETUP
 pymoo.org
@@ -167,14 +191,11 @@ class GA_CFD(Problem):
         # print(x)
         ###### Initialize Generation ######
         # gen = algorithm.n_gen. A thick orange line illustrates the pareto-optimal set. Through the combination of both constraints, the pareto-set is split into two parts. Analytically, the pareto-optimal set is given by PS={(x1,x2)|(0.1≤x1≤0.4)∨(0.6≤x1≤0.9)∧x2=0}
-        # print(algorithm)
-        # print('algorithm.n_gen:' + str(algorithm.n_gen) + ' len(alg...data[''var'']):' + str(len(algorithm.callback.data['var'])))
+        print(algorithm)
+        print('algorithm.n_gen:' + str(algorithm.n_gen) + ' len(alg...data[''var'']):' + str(len(algorithm.callback.data['var'])))
         # gen = len(algorithm.callback.data['var'])
-        # if gen is None:
-        from pymooCFD.util.handleData import loadCP
-        algorithm = loadCP()
-        gen = algorithm.n_gen - 1
-        print(f'Evaluating generation {gen}')
+        # algorithm = loadCP()
+        gen = algorithm.n_gen
         if gen is None:
             print('gen is None. exiting...')
             exit()
@@ -201,12 +222,7 @@ class GA_CFD(Problem):
         # create sim object for this generation and it's population
         out['F'] = obj
 
-        # archive generation folder to prevent
-        from pymooCFD.util.handleData import removeDir # archive
-        removeDir(genDir)
-        # archive(genDir, archDir, background=True)
-
-        print(f'GENERATION {gen} COMPLETE')
+        print('GEN%i COMPLETE' % gen)
 
 problem = GA_CFD()
 
@@ -221,7 +237,7 @@ from pymoo.factory import get_sampling, get_crossover, get_mutation
 # initialize algorithm here
 # will be overwritten in runOpt() if checkpoint already exists
 algorithm = NSGA2(
-    n_ind_size=pop,
+    pop_size=pop,
     # n_offsprings=2,
     sampling=sampling,
     crossover=crossover,

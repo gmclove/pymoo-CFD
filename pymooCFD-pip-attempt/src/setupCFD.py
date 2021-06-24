@@ -49,7 +49,7 @@ def preProc(caseDir, var): #, jobName=jobName, jobFile=jobFile):
     keyword = 'CYL_ROTATION_PROP'
     keyword_line, keyword_line_i = findKeywordLine(keyword, in_lines)
     # create new string to replace line
-    newLine = f'{keyword_line[:keyword_line.index("=")]} {amp} {freq} \n'
+    newLine = keyword_line[:keyword_line.find('=')+2] + str(amp) + ' ' + str(freq)+ '\n'
     in_lines[keyword_line_i] = newLine
     # REPEAT FOR EACH LINE THAT MUST BE CHANGED
 
@@ -157,7 +157,11 @@ def postProc(caseDir, var):
 #     with open(file, 'w') as f_new:
 #         f_new.writelines(job_lines)
 
+
 def findKeywordLine(kw, file_lines):
+    '''
+
+    '''
     kw_line = -1
     kw_line_i = -1
 
@@ -169,8 +173,8 @@ def findKeywordLine(kw, file_lines):
 
     return kw_line, kw_line_i
 
-# def getVar():
-#     para = x[ind, :]
-#     amp = para[0]
-#     freq = para[1]
-#     return amp, freq
+def getVar():
+    para = x[ind, :]
+    amp = para[0]
+    freq = para[1]
+    return amp, freq

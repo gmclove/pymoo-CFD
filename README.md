@@ -42,12 +42,16 @@ This is a GitHub organization containing repositories of conda recipes.
 Next install jupyter notebook using the conda-forge channel.
 ```bash
 conda config --add channels conda-forge
+```
+```bash
 conda install -c conda-forge notebook
 ```
 Finally, install ipykernel and set up the pymoo-CFD conda environment as a kernel in Jupyter Notebook.
 This will allow you to use the pymoo-CFD environment for your post-processing python notebooks.
 ```bash
 conda install -c anaconda ipykernel
+```
+```bash
 python -m ipykernel install --user --name=pymoo-CFD
 ```
 To launch Jupyter Notebook with conda environemnt configured use the command:
@@ -61,6 +65,12 @@ jupyter notebook
 conda install dask-jobqueue -c conda-forge
 ```
 
+### Diagrams installation
+```bash
+sudo apt-get install graphviz
+pip install diagrams
+```
+
 
 
 #### Other Packages
@@ -72,11 +82,6 @@ where the channels we have set up so far are 'conda-forge' or the default 'anaco
 The package could be something like 'h5py' which is used for post-processing YALES2 simulations.
 ```bash
 conda install h5py
-```
-
-```bash
-sudo apt-get install graphviz
-pip install diagrams
 ```
 
 Remember that the pymoo-CFD environment should be active during this build.

@@ -3,18 +3,17 @@ import numpy as np
 def runOpt(restart=True):
     if restart == True:
         try:
-            from pymooCFD.util.handleData import loadCP
+            from pymooCFD.setupOpt import loadCP
             algorithm = loadCP()
         except OSError as err:
-            print(err)
             from pymooCFD.setupOpt import checkpointFile
+            print(err)
             print(f'{checkpointFile} load failed.')
             print('Data loading failed returning "None"...')
             print('RESTART FAILED')
             return
 
     else:
-        # load algorithm initialize in setupOpt.py module
         from pymooCFD.setupOpt import algorithm
         # try:
         #     checkpoint, = np.load("checkpoint.npy", allow_pickle=True).flatten()
@@ -40,15 +39,15 @@ def runOpt(restart=True):
     ########################################################################################################################
     ######    OPTIMIZATION    ######
     from pymoo.optimize import minimize
-    from pymooCFD.setupOpt import problem, callback, display, n_gen #, termination
+    from pymooCFD.setupOpt import problem, callback, termination, display
 
-    res = minimize(problem=problem,
-                   algorithm=algorithm,
-                   # termination=termination,
-                   termination=('n_gen', n_gen),
+    res = minimize(problem,
+                   algorithm,
+                   termination=termination,
+                   # ('n_gen', n_gen),
                    callback=callback,
                    seed=1,
-                   copy_algorithm=True,
+                   copy_algorithm=False,
                    # pf=problem.pareto_front(use_cache=False),
                    save_history=True,
                    display=display,
