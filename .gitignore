@@ -7,7 +7,8 @@
 **/*.msh*
 **/core.*
 **/base_case
-
+**/scratch*
+**/stash
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

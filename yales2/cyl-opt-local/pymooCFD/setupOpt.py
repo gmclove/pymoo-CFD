@@ -13,7 +13,7 @@ nProc = 12  # Number of processors for each individual (EQUAL or SMALLER than pr
 solverExec = '2D_cylinder'
 
 n_gen = 50
-pop = 4
+n_ind = 4
 #####################################
 ####### Define Design Space #########
 #####################################
@@ -129,7 +129,7 @@ class MyCallback(Callback):
             self.data["best_obj"+str(obj)].append(algorithm.pop.get('F')[:, obj].min())
         self.data['var'].append(algorithm.pop.get('X'))
         self.data['obj'].append(algorithm.pop.get('F'))
-
+        from pymooCFD.util.handleData import saveData
         saveData(algorithm)
 
 callback = MyCallback()
@@ -171,8 +171,11 @@ class GA_CFD(Problem):
         # print('algorithm.n_gen:' + str(algorithm.n_gen) + ' len(alg...data[''var'']):' + str(len(algorithm.callback.data['var'])))
         # gen = len(algorithm.callback.data['var'])
         # if gen is None:
-        from pymooCFD.util.handleData import loadCP
-        algorithm = loadCP()
+        # from pymooCFD.util.handleData import loadCP
+        # algorithm = loadCP()
+        # from pymooCFD.util.handleData import loadTxt
+        # algorithm = loadTxt(archDir,sub)
+        
         gen = algorithm.n_gen - 1
         print(f'Evaluating generation {gen}')
         if gen is None:
@@ -194,7 +197,7 @@ class GA_CFD(Problem):
         execSims(genDir, subdir, len(x))
 
         from pymooCFD.setupCFD import postProc
-        obj = np.ones((pop, n_obj))
+        obj = np.ones((n_ind, n_obj))
         for ind in range(len(x)):
             indDir = f'{genDir}/{subdir}{ind}'
             obj[ind] = postProc(indDir, x[ind, :])
@@ -221,10 +224,10 @@ from pymoo.factory import get_sampling, get_crossover, get_mutation
 # initialize algorithm here
 # will be overwritten in runOpt() if checkpoint already exists
 algorithm = NSGA2(
-    n_ind_size=pop,
+    pop_size=n_ind,
+    # n_ind_size=n_ind,
     # n_offsprings=2,
     sampling=sampling,
     crossover=crossover,
     mutation=mutation,
-    eliminate_duplicates=True
-    )
+    eliminate

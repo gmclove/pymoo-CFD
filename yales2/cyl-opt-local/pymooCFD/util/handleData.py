@@ -1,5 +1,5 @@
 import tarfile
-from pymooCFD.setupOpt import checkpointFile
+from pymooCFD.setupOpt import checkpointFile, dataDir, problem, nCP
 import shutil
 import numpy as np
 
@@ -51,6 +51,7 @@ def saveData(algorithm):
     with open(f'{dataDir}/gen{gen}F.txt', "w+") as file: # write file
         np.savetxt(file, genX)
 
+
 def loadCP(checkpointFile=checkpointFile, hasTerminated=False):
     checkpoint, = np.load(checkpointFile, allow_pickle=True).flatten()
     print("Loaded Checkpoint:", checkpoint)
@@ -60,9 +61,39 @@ def loadCP(checkpointFile=checkpointFile, hasTerminated=False):
     print('Last checkpoint at generation %i' % len(alg.callback.data['var']))
     
     # Update any changes made to the algorithms between runs 
-    # from pymooCFD.setupCFD import pop
-    alg.pop_size = 1
+    from pymooCFD.setupCFD import n_ind
+    alg.pop_size = n_ind
     return alg
+
+
+def loadTxt(fileX, fileF, fileG=None):
+    print(f'Loading population from files {fileX} and {fileF}...')
+    X = np.loadtxt(fileX)
+    F = np.loadtxt(fileF)
+    # F = np.loadtxt(f'{dataDir}/{fileF}')
+    if fileG is not None:
+        # G = np.loadtxt(f'{dataDir}/{fileG}')
+        G = np.loadtxt(fileG)
+    else:
+        G = None 
+
+    from pymoo.model.evaluator import Evaluator
+    from pymoo.model.population import Population
+    from pymoo.model.problem import StaticProblem
+    # now the population object with all its attributes is created (CV, feasible, ...)
+    pop = Population.new("X", X)
+    pop = Evaluator().eval(StaticProblem(problem, F=F, G=G), pop)
+    
+    from pymooCFD.setupOpt import n_ind
+    # from pymoo.algorithms.so_genetic_algorithm import GA
+    # # the algorithm is now called with the population - biased initialization
+    # algorithm = GA(pop_size=n_ind, sampling=pop)
+    from pymoo.algorithms.nsga2 import NSGA2
+    algorithm = NSGA2(pop_size=n_ind, sampling=pop)
+    
+    return algorithm
+    
+    
 
 
 # def archive(dirName, archName = 'archive.tar.gz'):

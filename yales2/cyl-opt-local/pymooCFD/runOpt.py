@@ -3,8 +3,10 @@ import numpy as np
 def runOpt(restart=True):
     if restart == True:
         try:
-            from pymooCFD.util.handleData import loadCP
-            algorithm = loadCP()
+            # from pymooCFD.util.handleData import loadCP
+            # algorithm = loadCP()
+            from pymooCFD.util.handleData import loadTxt
+            algorithm = loadTxt('dump/gen13X.txt', 'dump/gen13F.txt')
         except OSError as err:
             print(err)
             from pymooCFD.setupOpt import checkpointFile
