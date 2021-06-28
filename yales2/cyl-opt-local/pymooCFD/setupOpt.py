@@ -56,20 +56,21 @@ dataDir = 'dump'
 checkpointFile = f'{dataDir}/checkpoint.npy'
 try:
     os.mkdir(dataDir)
+    print(f'{dataDir} directory created')
 except OSError as err:
     print(err)
 try:
     os.mkdir(archDir)
+    print(f'{archDir} directory created')
 except OSError as err:
     print(err)
-
-
 #####################################################
 ###### Define Optimization Pre/Post Processing ######
 #####################################################
 plotDir = './plots'
 try:
     os.mkdir(plotDir)
+    print(f'{plotDir} directory created')
 except OSError as err:
     print(err)
 '''
@@ -99,21 +100,22 @@ mutation = MixedVariableMutation(varType, {
 ########################################################################################################################
 ######    DISPLAY    ######
 from pymoo.util.display import Display
-
-
 class MyDisplay(Display):
     # bestObj = []
     def _do(self, problem, evaluator, algorithm):
         super()._do(problem, evaluator, algorithm)
         for obj in range(n_obj):
-            self.output.append("mean obj."+str(obj), np.mean(algorithm.pop.get('F')[:, obj]))
-            self.output.append("best obj."+str(obj), algorithm.pop.get('F')[:, obj].min())
+            self.output.append(f'Mean {obj_labels[obj]}', np.mean(algorithm.pop.get('F')[:, obj]))
+            self.output.append(f'Best {obj_labels[obj]}', algorithm.pop.get('F')[:, obj].min())
+
+        # display header before each display call (every generation by default)
+        self.output.header()
+
 
 display = MyDisplay()
 ########################################################################################################################
 ######    CALLBACK    ######
 from pymoo.model.callback import Callback
-
 
 class MyCallback(Callback):
     def __init__(self) -> None:
@@ -125,6 +127,7 @@ class MyCallback(Callback):
         self.data['obj'] = []
 
     def notify(self, algorithm):
+        self.display_header = True
         for obj in range(n_obj):
             self.data["best_obj"+str(obj)].append(algorithm.pop.get('F')[:, obj].min())
         self.data['var'].append(algorithm.pop.get('X'))
@@ -168,46 +171,53 @@ class GA_CFD(Problem):
         ###### Initialize Generation ######
         # gen = algorithm.n_gen. A thick orange line illustrates the pareto-optimal set. Through the combination of both constraints, the pareto-set is split into two parts. Analytically, the pareto-optimal set is given by PS={(x1,x2)|(0.1≤x1≤0.4)∨(0.6≤x1≤0.9)∧x2=0}
         # print(algorithm)
-        # print('algorithm.n_gen:' + str(algorithm.n_gen) + ' len(alg...data[''var'']):' + str(len(algorithm.callback.data['var'])))
+        print('algorithm.n_gen:' + str(algorithm.n_gen) + ' len(alg...data[''var'']):' + str(len(algorithm.callback.data['var'])))
         # gen = len(algorithm.callback.data['var'])
         # if gen is None:
         # from pymooCFD.util.handleData import loadCP
         # algorithm = loadCP()
         # from pymooCFD.util.handleData import loadTxt
         # algorithm = loadTxt(archDir,sub)
-        
-        gen = algorithm.n_gen - 1
+        # gen = algorithm.n_gen - 1
+
+
+
         print(f'Evaluating generation {gen}')
         if gen is None:
             print('gen is None. exiting...')
             exit()
         genDir = f'gen{gen}'
-        subdir = 'ind'
+        subDir = 'ind'
         # print('GEN:%i' % gen)
 
         ###### RUN GENERATION ######
-        from distutils.dir_util import copy_tree
-        from pymooCFD.setupCFD import preProc
-        for ind in range(len(x)):
-            indDir = f'{genDir}/{subdir}{ind}'
-            copy_tree(baseCaseDir, indDir)
-            preProc(indDir, x[ind, :])
-
-        from pymooCFD.execSimsBatch.singleNode import execSims
-        execSims(genDir, subdir, len(x))
-
-        from pymooCFD.setupCFD import postProc
-        obj = np.ones((n_ind, n_obj))
-        for ind in range(len(x)):
-            indDir = f'{genDir}/{subdir}{ind}'
-            obj[ind] = postProc(indDir, x[ind, :])
+        # from distutils.dir_util import copy_tree
+        # from pymooCFD.setupCFD import preProc
+        # for ind in range(len(x)):
+        #     indDir = f'{genDir}/{subDir}{ind}'
+        #     copy_tree(baseCaseDir, indDir)
+        #     preProc(indDir, x[ind, :])
+        #
+        # from pymooCFD.execSimsBatch.singleNode import execSims
+        # execSims(genDir, subDir, len(x))
+        #
+        # from pymooCFD.setupCFD import postProc
+        # obj = np.ones((n_ind, n_obj))
+        # for ind in range(len(x)):
+        #     indDir = f'{genDir}/{subDir}{ind}'
+        #     obj[ind] = postProc(indDir, x[ind, :])
         # create sim object for this generation and it's population
-        out['F'] = obj
+        # out['F'] = obj
 
-        # archive generation folder to prevent
-        from pymooCFD.util.handleData import removeDir # archive
-        removeDir(genDir)
-        # archive(genDir, archDir, background=True)
+        out['F'] = np.zeros((len(x),n_obj))
+
+        ##### Archive or Remove Data ######
+        # archive generation folder or remove folder after generation is complete
+        # this prevents undesired data accumulation
+        # from pymooCFD.util.handleData import removeDir, archive
+        # removeDir(genDir)
+        # archive(genDir)
+        # archive(genDir, archDir=archDir, background=True)
 
         print(f'GENERATION {gen} COMPLETE')
 
@@ -230,4 +240,5 @@ algorithm = NSGA2(
     sampling=sampling,
     crossover=crossover,
     mutation=mutation,
-    eliminate
+    eliminate_duplicates=True
+    )

@@ -89,7 +89,7 @@ def genMesh(indDir, geoVar, meshSF):
     grpTag = gmsh.model.addPhysicalGroup(dim, [domTWall])
     gmsh.model.setPhysicalName(dim, grpTag, 'y1')
 
-    af_tags = np.array(range(5, 5+num_pt))
+    af_tags = np.array(range(4, 4+num_pt))
     print(af_tags)
     grpTag = gmsh.model.addPhysicalGroup(dim, af_tags)
     gmsh.model.setPhysicalName(dim, grpTag, 'af')
@@ -188,7 +188,7 @@ def joukowski_map(mu_x, mu_y, num_pt):
     return x, y
 
 
-genMesh('./base_case', [-0.2, 0.075], 1)
+genMesh('.', [-0.2, 0.075], 1)
 
 
 '''

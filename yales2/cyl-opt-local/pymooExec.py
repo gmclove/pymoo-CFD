@@ -4,8 +4,14 @@
 #from pymooCFD.optPreProc.gen0Map import gen0Map
 #gen0Map()
 
+# from pymooCFD.util.handleData import archive
+# archive('dump', 'archive')
+
+# from pymooCFD.util.handleData import archive
+# archive('dump')
+
 from pymooCFD.runOpt import runOpt
-runOpt(restart=True)
+runOpt(restart=False)
 
 # from pymooCFD import runPostProc
 # runPostProc()

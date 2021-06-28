@@ -8,7 +8,7 @@ conda create -n pymoo-CFD python==3.7 numpy
 conda activate pymoo-CFD
 ```
 
-#### pymoo Installation
+#### pyMOO Installation
 Next install pymoo using pip.
 Please see pymoo.org for future installation instructions if modules do not compile and latest updates.
 Pymoo will run without modules compiled just slower.
@@ -32,6 +32,7 @@ pip install --upgrade gmsh
 Please refer to gmsh.info for future installation instructions and the latest updates on the software.
 As with pymoo this software is actively being developed.
 
+http://gmsh.info/
 
 #### Jupyter Notebook Installation
 Jupyter Notebook offers an excellent way to pre/post-process the optimization problems
@@ -46,6 +47,15 @@ conda config --add channels conda-forge
 ```bash
 conda install -c conda-forge notebook
 ```
+Finally, after making sure you are in the desired directory type the following command to launch jupyter notebook:
+```bash
+jupyter notebook
+```
+
+<!--
+#### Option 2:
+Not robust, had problems. May require re-running python ipykernel install after changes to kernel
+
 Finally, install ipykernel and set up the pymoo-CFD conda environment as a kernel in Jupyter Notebook.
 This will allow you to use the pymoo-CFD environment for your post-processing python notebooks.
 ```bash
@@ -57,7 +67,7 @@ python -m ipykernel install --user --name=pymoo-CFD
 To launch Jupyter Notebook with conda environemnt configured use the command:
 ```bash
 jupyter notebook
-```
+``` -->
 
 ### Dask installation
 
@@ -124,7 +134,7 @@ Thesis Advisor: Dr. Yves Dubief, University of Vermont, https://scholar.google.c
 
 
 PyMOO - Multi-objective Optimization in Python
-pymoo.org
+https://pymoo.org
 
 @ARTICLE{pymoo,
     author={J. {Blank} and K. {Deb}},
