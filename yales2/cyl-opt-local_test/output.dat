@@ -1,0 +1,1093 @@
+[Errno 17] File exists: 'dump'
+data directory already exists
+[Errno 17] File exists: './plots'
+./plots already exists.
+algorithm.n_gen:1 len(alg...data[var]):0
+Evaluating generation 0
+PRE-PROCESSING CFD CASE: gen0/ind0
+PRE-PROCESSING CFD CASE: gen0/ind1
+PRE-PROCESSING CFD CASE: gen0/ind2
+PRE-PROCESSING CFD CASE: gen0/ind3
+PRE-PROCESSING CFD CASE: gen0/ind4
+PRE-PROCESSING CFD CASE: gen0/ind5
+PRE-PROCESSING CFD CASE: gen0/ind6
+PRE-PROCESSING CFD CASE: gen0/ind7
+PRE-PROCESSING CFD CASE: gen0/ind8
+PRE-PROCESSING CFD CASE: gen0/ind9
+EXECUTING BATCH OF SIMULATIONS
+## Sending ind0 to simulation...
+## Sending ind1 to simulation...
+## Sending ind2 to simulation...
+## Sending ind3 to simulation...
+## Sending ind4 to simulation...
+WAITING
+## Sending ind5 to simulation...
+## Sending ind6 to simulation...
+## Sending ind7 to simulation...
+## Sending ind8 to simulation...
+## Sending ind9 to simulation...
+WAITING
+BATCH OF SIMULATIONS COMPLETE
+POST-PROCESSING CFD CASE: gen0/ind0
+POST-PROCESSING CFD CASE: gen0/ind1
+POST-PROCESSING CFD CASE: gen0/ind2
+POST-PROCESSING CFD CASE: gen0/ind3
+POST-PROCESSING CFD CASE: gen0/ind4
+POST-PROCESSING CFD CASE: gen0/ind5
+POST-PROCESSING CFD CASE: gen0/ind6
+POST-PROCESSING CFD CASE: gen0/ind7
+POST-PROCESSING CFD CASE: gen0/ind8
+POST-PROCESSING CFD CASE: gen0/ind9
+GEN0 COMPLETE
+===========================================================================
+n_gen |  n_eval |  mean obj.0  |  best obj.0  |  mean obj.1  |  best obj.1
+===========================================================================
+    1 |      10 |  1.132228088 |  1.110182611 |  1.28262E+02 |  0.920799308
+algorithm.n_gen:1 len(alg...data[var]):1
+Evaluating generation 1
+PRE-PROCESSING CFD CASE: gen1/ind0
+PRE-PROCESSING CFD CASE: gen1/ind1
+PRE-PROCESSING CFD CASE: gen1/ind2
+PRE-PROCESSING CFD CASE: gen1/ind3
+PRE-PROCESSING CFD CASE: gen1/ind4
+PRE-PROCESSING CFD CASE: gen1/ind5
+PRE-PROCESSING CFD CASE: gen1/ind6
+PRE-PROCESSING CFD CASE: gen1/ind7
+PRE-PROCESSING CFD CASE: gen1/ind8
+PRE-PROCESSING CFD CASE: gen1/ind9
+EXECUTING BATCH OF SIMULATIONS
+## Sending ind0 to simulation...
+## Sending ind1 to simulation...
+## Sending ind2 to simulation...
+## Sending ind3 to simulation...
+## Sending ind4 to simulation...
+WAITING
+## Sending ind5 to simulation...
+## Sending ind6 to simulation...
+## Sending ind7 to simulation...
+## Sending ind8 to simulation...
+## Sending ind9 to simulation...
+WAITING
+BATCH OF SIMULATIONS COMPLETE
+POST-PROCESSING CFD CASE: gen1/ind0
+POST-PROCESSING CFD CASE: gen1/ind1
+POST-PROCESSING CFD CASE: gen1/ind2
+POST-PROCESSING CFD CASE: gen1/ind3
+POST-PROCESSING CFD CASE: gen1/ind4
+POST-PROCESSING CFD CASE: gen1/ind5
+POST-PROCESSING CFD CASE: gen1/ind6
+POST-PROCESSING CFD CASE: gen1/ind7
+POST-PROCESSING CFD CASE: gen1/ind8
+POST-PROCESSING CFD CASE: gen1/ind9
+GEN1 COMPLETE
+    2 |      20 |  1.122963489 |  1.109468221 |  1.10941E+02 |  0.920799308
+algorithm.n_gen:2 len(alg...data[var]):2
+Evaluating generation 2
+PRE-PROCESSING CFD CASE: gen2/ind0
+PRE-PROCESSING CFD CASE: gen2/ind1
+PRE-PROCESSING CFD CASE: gen2/ind2
+PRE-PROCESSING CFD CASE: gen2/ind3
+PRE-PROCESSING CFD CASE: gen2/ind4
+PRE-PROCESSING CFD CASE: gen2/ind5
+PRE-PROCESSING CFD CASE: gen2/ind6
+PRE-PROCESSING CFD CASE: gen2/ind7
+PRE-PROCESSING CFD CASE: gen2/ind8
+PRE-PROCESSING CFD CASE: gen2/ind9
+EXECUTING BATCH OF SIMULATIONS
+## Sending ind0 to simulation...
+## Sending ind1 to simulation...
+## Sending ind2 to simulation...
+## Sending ind3 to simulation...
+## Sending ind4 to simulation...
+WAITING
+## Sending ind5 to simulation...
+## Sending ind6 to simulation...
+## Sending ind7 to simulation...
+## Sending ind8 to simulation...
+## Sending ind9 to simulation...
+WAITING
+BATCH OF SIMULATIONS COMPLETE
+POST-PROCESSING CFD CASE: gen2/ind0
+POST-PROCESSING CFD CASE: gen2/ind1
+POST-PROCESSING CFD CASE: gen2/ind2
+POST-PROCESSING CFD CASE: gen2/ind3
+POST-PROCESSING CFD CASE: gen2/ind4
+POST-PROCESSING CFD CASE: gen2/ind5
+POST-PROCESSING CFD CASE: gen2/ind6
+POST-PROCESSING CFD CASE: gen2/ind7
+POST-PROCESSING CFD CASE: gen2/ind8
+POST-PROCESSING CFD CASE: gen2/ind9
+GEN2 COMPLETE
+    3 |      30 |  1.124230650 |  1.104018398 |  7.93150E+01 |  0.920799308
+algorithm.n_gen:3 len(alg...data[var]):3
+Evaluating generation 3
+PRE-PROCESSING CFD CASE: gen3/ind0
+PRE-PROCESSING CFD CASE: gen3/ind1
+PRE-PROCESSING CFD CASE: gen3/ind2
+PRE-PROCESSING CFD CASE: gen3/ind3
+PRE-PROCESSING CFD CASE: gen3/ind4
+PRE-PROCESSING CFD CASE: gen3/ind5
+PRE-PROCESSING CFD CASE: gen3/ind6
+PRE-PROCESSING CFD CASE: gen3/ind7
+PRE-PROCESSING CFD CASE: gen3/ind8
+PRE-PROCESSING CFD CASE: gen3/ind9
+EXECUTING BATCH OF SIMULATIONS
+## Sending ind0 to simulation...
+## Sending ind1 to simulation...
+## Sending ind2 to simulation...
+## Sending ind3 to simulation...
+## Sending ind4 to simulation...
+WAITING
+## Sending ind5 to simulation...
+## Sending ind6 to simulation...
+## Sending ind7 to simulation...
+## Sending ind8 to simulation...
+## Sending ind9 to simulation...
+WAITING
+BATCH OF SIMULATIONS COMPLETE
+POST-PROCESSING CFD CASE: gen3/ind0
+POST-PROCESSING CFD CASE: gen3/ind1
+POST-PROCESSING CFD CASE: gen3/ind2
+POST-PROCESSING CFD CASE: gen3/ind3
+POST-PROCESSING CFD CASE: gen3/ind4
+POST-PROCESSING CFD CASE: gen3/ind5
+POST-PROCESSING CFD CASE: gen3/ind6
+POST-PROCESSING CFD CASE: gen3/ind7
+POST-PROCESSING CFD CASE: gen3/ind8
+POST-PROCESSING CFD CASE: gen3/ind9
+GEN3 COMPLETE
+    4 |      40 |  1.126022334 |  1.104018398 |  6.26817E+01 |  0.513785334
+algorithm.n_gen:4 len(alg...data[var]):4
+Evaluating generation 4
+PRE-PROCESSING CFD CASE: gen4/ind0
+PRE-PROCESSING CFD CASE: gen4/ind1
+PRE-PROCESSING CFD CASE: gen4/ind2
+PRE-PROCESSING CFD CASE: gen4/ind3
+PRE-PROCESSING CFD CASE: gen4/ind4
+PRE-PROCESSING CFD CASE: gen4/ind5
+PRE-PROCESSING CFD CASE: gen4/ind6
+PRE-PROCESSING CFD CASE: gen4/ind7
+PRE-PROCESSING CFD CASE: gen4/ind8
+PRE-PROCESSING CFD CASE: gen4/ind9
+EXECUTING BATCH OF SIMULATIONS
+## Sending ind0 to simulation...
+## Sending ind1 to simulation...
+## Sending ind2 to simulation...
+## Sending ind3 to simulation...
+## Sending ind4 to simulation...
+WAITING
+## Sending ind5 to simulation...
+## Sending ind6 to simulation...
+## Sending ind7 to simulation...
+## Sending ind8 to simulation...
+## Sending ind9 to simulation...
+WAITING
+BATCH OF SIMULATIONS COMPLETE
+POST-PROCESSING CFD CASE: gen4/ind0
+POST-PROCESSING CFD CASE: gen4/ind1
+POST-PROCESSING CFD CASE: gen4/ind2
+POST-PROCESSING CFD CASE: gen4/ind3
+POST-PROCESSING CFD CASE: gen4/ind4
+POST-PROCESSING CFD CASE: gen4/ind5
+POST-PROCESSING CFD CASE: gen4/ind6
+POST-PROCESSING CFD CASE: gen4/ind7
+POST-PROCESSING CFD CASE: gen4/ind8
+POST-PROCESSING CFD CASE: gen4/ind9
+GEN4 COMPLETE
+    5 |      50 |  1.110712729 |  1.035962479 |  1.34294E+02 |  0.513785334
+algorithm.n_gen:5 len(alg...data[var]):5
+Evaluating generation 5
+PRE-PROCESSING CFD CASE: gen5/ind0
+PRE-PROCESSING CFD CASE: gen5/ind1
+PRE-PROCESSING CFD CASE: gen5/ind2
+PRE-PROCESSING CFD CASE: gen5/ind3
+PRE-PROCESSING CFD CASE: gen5/ind4
+PRE-PROCESSING CFD CASE: gen5/ind5
+PRE-PROCESSING CFD CASE: gen5/ind6
+PRE-PROCESSING CFD CASE: gen5/ind7
+PRE-PROCESSING CFD CASE: gen5/ind8
+PRE-PROCESSING CFD CASE: gen5/ind9
+EXECUTING BATCH OF SIMULATIONS
+## Sending ind0 to simulation...
+## Sending ind1 to simulation...
+## Sending ind2 to simulation...
+## Sending ind3 to simulation...
+## Sending ind4 to simulation...
+WAITING
+## Sending ind5 to simulation...
+## Sending ind6 to simulation...
+## Sending ind7 to simulation...
+## Sending ind8 to simulation...
+## Sending ind9 to simulation...
+WAITING
+BATCH OF SIMULATIONS COMPLETE
+POST-PROCESSING CFD CASE: gen5/ind0
+POST-PROCESSING CFD CASE: gen5/ind1
+POST-PROCESSING CFD CASE: gen5/ind2
+POST-PROCESSING CFD CASE: gen5/ind3
+POST-PROCESSING CFD CASE: gen5/ind4
+POST-PROCESSING CFD CASE: gen5/ind5
+POST-PROCESSING CFD CASE: gen5/ind6
+POST-PROCESSING CFD CASE: gen5/ind7
+POST-PROCESSING CFD CASE: gen5/ind8
+POST-PROCESSING CFD CASE: gen5/ind9
+GEN5 COMPLETE
+    6 |      60 |  1.089455261 |  1.014538431 |  3.32270E+02 |  0.513785334
+algorithm.n_gen:6 len(alg...data[var]):6
+Evaluating generation 6
+PRE-PROCESSING CFD CASE: gen6/ind0
+PRE-PROCESSING CFD CASE: gen6/ind1
+PRE-PROCESSING CFD CASE: gen6/ind2
+PRE-PROCESSING CFD CASE: gen6/ind3
+PRE-PROCESSING CFD CASE: gen6/ind4
+PRE-PROCESSING CFD CASE: gen6/ind5
+PRE-PROCESSING CFD CASE: gen6/ind6
+PRE-PROCESSING CFD CASE: gen6/ind7
+PRE-PROCESSING CFD CASE: gen6/ind8
+PRE-PROCESSING CFD CASE: gen6/ind9
+EXECUTING BATCH OF SIMULATIONS
+## Sending ind0 to simulation...
+## Sending ind1 to simulation...
+## Sending ind2 to simulation...
+## Sending ind3 to simulation...
+## Sending ind4 to simulation...
+WAITING
+## Sending ind5 to simulation...
+## Sending ind6 to simulation...
+## Sending ind7 to simulation...
+## Sending ind8 to simulation...
+## Sending ind9 to simulation...
+WAITING
+BATCH OF SIMULATIONS COMPLETE
+POST-PROCESSING CFD CASE: gen6/ind0
+POST-PROCESSING CFD CASE: gen6/ind1
+POST-PROCESSING CFD CASE: gen6/ind2
+POST-PROCESSING CFD CASE: gen6/ind3
+POST-PROCESSING CFD CASE: gen6/ind4
+POST-PROCESSING CFD CASE: gen6/ind5
+POST-PROCESSING CFD CASE: gen6/ind6
+POST-PROCESSING CFD CASE: gen6/ind7
+POST-PROCESSING CFD CASE: gen6/ind8
+POST-PROCESSING CFD CASE: gen6/ind9
+GEN6 COMPLETE
+    7 |      70 |  1.064283414 |  0.982968547 |  4.79816E+02 |  0.513785334
+algorithm.n_gen:7 len(alg...data[var]):7
+Evaluating generation 7
+PRE-PROCESSING CFD CASE: gen7/ind0
+PRE-PROCESSING CFD CASE: gen7/ind1
+PRE-PROCESSING CFD CASE: gen7/ind2
+PRE-PROCESSING CFD CASE: gen7/ind3
+PRE-PROCESSING CFD CASE: gen7/ind4
+PRE-PROCESSING CFD CASE: gen7/ind5
+PRE-PROCESSING CFD CASE: gen7/ind6
+PRE-PROCESSING CFD CASE: gen7/ind7
+PRE-PROCESSING CFD CASE: gen7/ind8
+PRE-PROCESSING CFD CASE: gen7/ind9
+EXECUTING BATCH OF SIMULATIONS
+## Sending ind0 to simulation...
+## Sending ind1 to simulation...
+## Sending ind2 to simulation...
+## Sending ind3 to simulation...
+## Sending ind4 to simulation...
+WAITING
+## Sending ind5 to simulation...
+## Sending ind6 to simulation...
+## Sending ind7 to simulation...
+## Sending ind8 to simulation...
+## Sending ind9 to simulation...
+WAITING
+BATCH OF SIMULATIONS COMPLETE
+POST-PROCESSING CFD CASE: gen7/ind0
+POST-PROCESSING CFD CASE: gen7/ind1
+POST-PROCESSING CFD CASE: gen7/ind2
+POST-PROCESSING CFD CASE: gen7/ind3
+POST-PROCESSING CFD CASE: gen7/ind4
+POST-PROCESSING CFD CASE: gen7/ind5
+POST-PROCESSING CFD CASE: gen7/ind6
+POST-PROCESSING CFD CASE: gen7/ind7
+POST-PROCESSING CFD CASE: gen7/ind8
+POST-PROCESSING CFD CASE: gen7/ind9
+GEN7 COMPLETE
+    8 |      80 |  1.054655479 |  0.935320768 |  3.35052E+02 |  0.513785334
+algorithm.n_gen:8 len(alg...data[var]):8
+Evaluating generation 8
+PRE-PROCESSING CFD CASE: gen8/ind0
+PRE-PROCESSING CFD CASE: gen8/ind1
+PRE-PROCESSING CFD CASE: gen8/ind2
+PRE-PROCESSING CFD CASE: gen8/ind3
+PRE-PROCESSING CFD CASE: gen8/ind4
+PRE-PROCESSING CFD CASE: gen8/ind5
+PRE-PROCESSING CFD CASE: gen8/ind6
+PRE-PROCESSING CFD CASE: gen8/ind7
+PRE-PROCESSING CFD CASE: gen8/ind8
+PRE-PROCESSING CFD CASE: gen8/ind9
+EXECUTING BATCH OF SIMULATIONS
+## Sending ind0 to simulation...
+## Sending ind1 to simulation...
+## Sending ind2 to simulation...
+## Sending ind3 to simulation...
+## Sending ind4 to simulation...
+WAITING
+## Sending ind5 to simulation...
+## Sending ind6 to simulation...
+## Sending ind7 to simulation...
+## Sending ind8 to simulation...
+## Sending ind9 to simulation...
+WAITING
+BATCH OF SIMULATIONS COMPLETE
+POST-PROCESSING CFD CASE: gen8/ind0
+POST-PROCESSING CFD CASE: gen8/ind1
+POST-PROCESSING CFD CASE: gen8/ind2
+POST-PROCESSING CFD CASE: gen8/ind3
+POST-PROCESSING CFD CASE: gen8/ind4
+POST-PROCESSING CFD CASE: gen8/ind5
+POST-PROCESSING CFD CASE: gen8/ind6
+POST-PROCESSING CFD CASE: gen8/ind7
+POST-PROCESSING CFD CASE: gen8/ind8
+POST-PROCESSING CFD CASE: gen8/ind9
+GEN8 COMPLETE
+    9 |      90 |  1.073533633 |  0.935320768 |  2.04136E+02 |  0.513785334
+algorithm.n_gen:9 len(alg...data[var]):9
+Evaluating generation 9
+PRE-PROCESSING CFD CASE: gen9/ind0
+PRE-PROCESSING CFD CASE: gen9/ind1
+PRE-PROCESSING CFD CASE: gen9/ind2
+PRE-PROCESSING CFD CASE: gen9/ind3
+PRE-PROCESSING CFD CASE: gen9/ind4
+PRE-PROCESSING CFD CASE: gen9/ind5
+PRE-PROCESSING CFD CASE: gen9/ind6
+PRE-PROCESSING CFD CASE: gen9/ind7
+PRE-PROCESSING CFD CASE: gen9/ind8
+PRE-PROCESSING CFD CASE: gen9/ind9
+EXECUTING BATCH OF SIMULATIONS
+## Sending ind0 to simulation...
+## Sending ind1 to simulation...
+## Sending ind2 to simulation...
+## Sending ind3 to simulation...
+## Sending ind4 to simulation...
+WAITING
+## Sending ind5 to simulation...
+## Sending ind6 to simulation...
+## Sending ind7 to simulation...
+## Sending ind8 to simulation...
+## Sending ind9 to simulation...
+WAITING
+BATCH OF SIMULATIONS COMPLETE
+POST-PROCESSING CFD CASE: gen9/ind0
+POST-PROCESSING CFD CASE: gen9/ind1
+POST-PROCESSING CFD CASE: gen9/ind2
+POST-PROCESSING CFD CASE: gen9/ind3
+POST-PROCESSING CFD CASE: gen9/ind4
+POST-PROCESSING CFD CASE: gen9/ind5
+POST-PROCESSING CFD CASE: gen9/ind6
+POST-PROCESSING CFD CASE: gen9/ind7
+POST-PROCESSING CFD CASE: gen9/ind8
+POST-PROCESSING CFD CASE: gen9/ind9
+GEN9 COMPLETE
+   10 |     100 |  1.065572513 |  0.935320768 |  1.98345E+02 |  0.513785334
+algorithm.n_gen:10 len(alg...data[var]):10
+Evaluating generation 10
+PRE-PROCESSING CFD CASE: gen10/ind0
+PRE-PROCESSING CFD CASE: gen10/ind1
+PRE-PROCESSING CFD CASE: gen10/ind2
+PRE-PROCESSING CFD CASE: gen10/ind3
+PRE-PROCESSING CFD CASE: gen10/ind4
+PRE-PROCESSING CFD CASE: gen10/ind5
+PRE-PROCESSING CFD CASE: gen10/ind6
+PRE-PROCESSING CFD CASE: gen10/ind7
+PRE-PROCESSING CFD CASE: gen10/ind8
+PRE-PROCESSING CFD CASE: gen10/ind9
+EXECUTING BATCH OF SIMULATIONS
+## Sending ind0 to simulation...
+## Sending ind1 to simulation...
+## Sending ind2 to simulation...
+## Sending ind3 to simulation...
+## Sending ind4 to simulation...
+WAITING
+## Sending ind5 to simulation...
+## Sending ind6 to simulation...
+## Sending ind7 to simulation...
+## Sending ind8 to simulation...
+## Sending ind9 to simulation...
+WAITING
+BATCH OF SIMULATIONS COMPLETE
+POST-PROCESSING CFD CASE: gen10/ind0
+POST-PROCESSING CFD CASE: gen10/ind1
+POST-PROCESSING CFD CASE: gen10/ind2
+POST-PROCESSING CFD CASE: gen10/ind3
+POST-PROCESSING CFD CASE: gen10/ind4
+POST-PROCESSING CFD CASE: gen10/ind5
+POST-PROCESSING CFD CASE: gen10/ind6
+POST-PROCESSING CFD CASE: gen10/ind7
+POST-PROCESSING CFD CASE: gen10/ind8
+POST-PROCESSING CFD CASE: gen10/ind9
+GEN10 COMPLETE
+   11 |     110 |  1.065507849 |  0.935320768 |  1.98446E+02 |  0.513785334
+algorithm.n_gen:11 len(alg...data[var]):11
+Evaluating generation 11
+PRE-PROCESSING CFD CASE: gen11/ind0
+PRE-PROCESSING CFD CASE: gen11/ind1
+PRE-PROCESSING CFD CASE: gen11/ind2
+PRE-PROCESSING CFD CASE: gen11/ind3
+PRE-PROCESSING CFD CASE: gen11/ind4
+PRE-PROCESSING CFD CASE: gen11/ind5
+PRE-PROCESSING CFD CASE: gen11/ind6
+PRE-PROCESSING CFD CASE: gen11/ind7
+PRE-PROCESSING CFD CASE: gen11/ind8
+PRE-PROCESSING CFD CASE: gen11/ind9
+EXECUTING BATCH OF SIMULATIONS
+## Sending ind0 to simulation...
+## Sending ind1 to simulation...
+## Sending ind2 to simulation...
+## Sending ind3 to simulation...
+## Sending ind4 to simulation...
+WAITING
+## Sending ind5 to simulation...
+## Sending ind6 to simulation...
+## Sending ind7 to simulation...
+## Sending ind8 to simulation...
+## Sending ind9 to simulation...
+WAITING
+BATCH OF SIMULATIONS COMPLETE
+POST-PROCESSING CFD CASE: gen11/ind0
+POST-PROCESSING CFD CASE: gen11/ind1
+POST-PROCESSING CFD CASE: gen11/ind2
+POST-PROCESSING CFD CASE: gen11/ind3
+POST-PROCESSING CFD CASE: gen11/ind4
+POST-PROCESSING CFD CASE: gen11/ind5
+POST-PROCESSING CFD CASE: gen11/ind6
+POST-PROCESSING CFD CASE: gen11/ind7
+POST-PROCESSING CFD CASE: gen11/ind8
+POST-PROCESSING CFD CASE: gen11/ind9
+GEN11 COMPLETE
+   12 |     120 |  1.074925875 |  0.935320768 |  1.16706E+02 |  0.513785334
+algorithm.n_gen:12 len(alg...data[var]):12
+Evaluating generation 12
+PRE-PROCESSING CFD CASE: gen12/ind0
+PRE-PROCESSING CFD CASE: gen12/ind1
+PRE-PROCESSING CFD CASE: gen12/ind2
+PRE-PROCESSING CFD CASE: gen12/ind3
+PRE-PROCESSING CFD CASE: gen12/ind4
+PRE-PROCESSING CFD CASE: gen12/ind5
+PRE-PROCESSING CFD CASE: gen12/ind6
+PRE-PROCESSING CFD CASE: gen12/ind7
+PRE-PROCESSING CFD CASE: gen12/ind8
+PRE-PROCESSING CFD CASE: gen12/ind9
+EXECUTING BATCH OF SIMULATIONS
+## Sending ind0 to simulation...
+## Sending ind1 to simulation...
+## Sending ind2 to simulation...
+## Sending ind3 to simulation...
+## Sending ind4 to simulation...
+WAITING
+## Sending ind5 to simulation...
+## Sending ind6 to simulation...
+## Sending ind7 to simulation...
+## Sending ind8 to simulation...HDF5-DIAG: Error detected in HDF5 (1.10.5) thread 0:
+  #000: H5Dio.c line 336 in H5Dwrite(): can't write data
+    major: Dataset
+    minor: Write failed
+  #001: H5Dio.c line 818 in H5D__write(): can't write data
+    major: Dataset
+    minor: Write failed
+  #002: H5Dcontig.c line 633 in H5D__contig_write(): contiguous write failed
+    major: Dataset
+    minor: Write failed
+  #003: H5Dselect.c line 314 in H5D__select_write(): write error
+    major: Dataspace
+    minor: Write failed
+  #004: H5Dselect.c line 225 in H5D__select_io(): write error
+    major: Dataspace
+    minor: Write failed
+  #005: H5Dcontig.c line 1255 in H5D__contig_writevv(): can't perform vectorized sieve buffer write
+    major: Dataset
+    minor: Can't operate on object
+  #006: H5VM.c line 1500 in H5VM_opvv(): can't perform operation
+    major: Internal error (too specific to document in detail)
+    minor: Can't operate on object
+  #007: H5Dcontig.c line 1003 in H5D__contig_writevv_sieve_cb(): block write failed
+    major: Dataset
+    minor: Write failed
+  #008: H5Fio.c line 165 in H5F_block_write(): write through page buffer failed
+    major: Low-level I/O
+HDF5-DIAG: Error detected in HDF5 (1.10.5) thread 0:
+  #000: H5D.c line 338 in H5Dclose(): can't decrement count on dataset ID
+    major: Dataset
+    minor: Unable to decrement reference count
+  #001: H5I.c line 1355 in H5I_dec_app_ref_always_close(): can't decrement ID ref count
+    major: Object atom
+    minor: Unable to decrement reference count
+  #002: H5I.c line 1300 in H5I_dec_app_ref(): can't decrement ID ref count
+    major: Object atom
+    minor: Unable to decrement reference count
+  #003: H5Dint.c line 1807 in H5D__close_cb(): can't close dataset
+    major: Dataset
+    minor: Can't close object
+  #004: H5Dint.c line 1848 in H5D_close(): unable to flush cached dataset info
+    major: Dataset
+    minor: Write failed
+  #005: H5Dint.c line 2965 in H5D__flush_real(): unable to flush raw data
+    major: Dataset
+    minor: Unable to flush data from cache
+  #006: H5Dcontig.c line 1301 in H5D__contig_flush(): unable to flush sieve buffer
+    major: Dataset
+    minor: Unable to flush data from cache
+  #007: H5Dint.c line 2930 in H5D__flush_sieve_buf(): block write failed
+    major: Low-level I/O
+    minor: Write failed
+  #008: H5Fio.c line 165 in H5F_block_write(): write through page buffer failed
+    major: Low-level I/O
+    minor: Write failed
+  #009: H5PB.c line 1028 in H5PB_write(): write through metadata accumulator failed
+    major: Page Buffering
+    minor: Write failed
+  #010: H5Faccum.c line 826 in H5F__accum_write(): file write failed
+    major: Low-level I/O
+    minor: Write failed
+  #011: H5FDint.c line 258 in H5FD_write(): driver write request failed
+    major: Virtual File Layer
+    minor: Write failed
+  #012: H5FDsec2.c line 829 in H5FD_sec2_write(): file write failed: time = Thu Jun 24 07:31:10 2021
+, filename = 'dump/2D_cyl.sol000305_1.sol.h5', file descriptor = 19, errno = 28, error message = 'No space left on device', buf = 0x92182e8, total write size = 65536, bytes this sub-write = 65536, bytes actually written = 18446744073709551615, offset = 0
+    major: Low-level I/O
+    minor: Write failed
+HDF5-DIAG: Error detected in HDF5 (1.10.5) thread 0:
+  #000: H5D.c line 338 in H5Dclose(): can't decrement count on dataset ID
+    major: Dataset
+    minor: Unable to decrement reference count
+  #001: H5I.c line 1355 in H5I_dec_app_ref_always_close(): can't decrement ID ref count
+    major: Object atom
+    minor: Unable to decrement reference count
+  #002: H5I.c line 1300 in H5I_dec_app_ref(): can't decrement ID ref count
+    major: Object atom
+    minor: Unable to decrement reference count
+  #003: H5Dint.c line 1807 in H5D__close_cb(): can't close dataset
+    major: Dataset
+    minor: Can't close object
+  #004: H5Dint.c line 1848 in H5D_close(): unable to flush cached dataset info
+    major: Dataset
+    minor: Write failed
+  #005: H5Dint.c line 2965 in H5D__flush_real(): unable to flush raw data
+    major: Dataset
+    minor: Unable to flush data from cache
+  #006: H5Dcontig.c line 1301 in H5D__contig_flush(): unable to flush sieve buffer
+    major: Dataset
+    minor: Unable to flush data from cache
+  #007: H5Dint.c line 2930 in H5D__flush_sieve_buf(): block write failed
+    major: Low-level I/O
+    minor: Write failed
+  #008: H5Fio.c line 165 in H5F_block_write(): write through page buffer failed
+    major: Low-level I/O
+    minor: Write failed
+  #009: H5PB.c line 1028 in H5PB_write(): write through metadata accumulator failed
+    major: Page Buffering
+    minor: Write failed
+  #010: H5Faccum.c line 826 in H5F__accum_write(): file write failed
+    major: Low-level I/O
+    minor: Write failed
+  #011: H5FDint.c line 258 in H5FD_write(): driver write request failed
+    major: Virtual File Layer
+    minor: Write failed
+  #012: H5FDsec2.c line 829 in H5FD_sec2_write(): file write failed: time = Thu Jun 24 07:31:10 2021
+, filename = 'dump/2D_cyl.sol000305_1.sol.h5', file descriptor = 19, errno = 28, error message = 'No space left on device', buf = 0x92182e8, total write size = 65536, bytes this sub-write = 65536, bytes actually written = 18446744073709551615, offset = 0
+    major: Low-level I/O
+    minor: Write faile    minor: Write failed
+  #009: H5PB.c line 1028 in H5PB_write(): write through metadata accumulator failed
+    major: Page Buffering
+    minor: Write failed
+  #010: H5Faccum.c line 826 in H5F__accum_write(): file write failed
+    major: Low-level I/O
+    minor: Write failed
+  #011: H5FDint.c line 258 in H5FD_write(): driver write request failed
+    major: Virtual File Layer
+    minor: Write failed
+  #012: H5FDsec2.c line 829 in H5FD_sec2_write(): file write failed: time = Thu Jun 24 07:31:10 2021
+, filename = 'dump/2D_cyl.sol000273_1.sol.h5', file descriptor = 16, errno = 28, error message = 'No space left on device', buf = 0x8ff65e0, total write size = 78752, bytes this sub-write = 78752, bytes actually written = 18446744073709551615, offset = 0
+    major: Low-level I/O
+    minor: Write failed
+HDF5-DIAG: Error detected in HDF5 (1.10.5) thread 0:
+  #000: H5Dio.c line 336 in H5Dwrite(): can't write data
+    major: Dataset
+    minor: Write failed
+  #001: H5Dio.c line 818 in H5D__write(): can't write data
+    major: Dataset
+    minor: Write failed
+  #002: H5Dcontig.c line 633 in H5D__contig_write(): contiguous write failed
+    major: Dataset
+    minor: Write failed
+  #003: H5Dselect.c line 314 in H5D__select_write(): write error
+    major: Dataspace
+    minor: Write failed
+  #004: H5Dselect.c line 225 in H5D__select_io(): write error
+    major: Dataspace
+    minor: Write failed
+  #005: H5Dcontig.c line 1255 in H5D__contig_writevv(): can't perform vectorized sieve buffer write
+    major: Dataset
+    minor: Can't operate on object
+  #006: H5VM.c line 1500 in H5VM_opvv(): can't perform operation
+    major: Internal error (too specific to document in detail)
+    minor: Can't operate on object
+  #007: H5Dcontig.c line 1003 in H5D__contig_writevv_sieve_cb(): block write failed
+    major: Dataset
+    minor: Write failed
+  #008: H5Fio.c line 165 in H5F_block_write(): write through page buffer failed
+    major: Low-level I/O
+    minor: Write failed
+  #009: H5PB.c line 1028 in H5PB_write(): write through metadata accumulator failed
+    major: Page Buffering
+    minor: Write failed
+  #010: H5Faccum.c line 826 in H5F__accum_write(): file write failed
+    major: Low-level I/O
+    minor: Write failed
+  #011: H5FDint.c line 258 in H5FD_write(): driver write request failed
+    major: Virtual File Layer
+    minor: Write failed
+  #012: H5FDsec2.c line 829 in H5FD_sec2_write(): file write failed: time = Thu Jun 24 07:31:10 2021
+, filename = 'dump/2D_cyl.sol000273_1.sol.h5', file descriptor = 16, errno = 28, error message = 'No space left on device', buf = 0x8ff65e0, total write size = 78752, bytes this sub-write = 78752, bytes actually written = 18446744073709551615, offset = 0
+    major: Low-level I/O
+    minor: Write failed
+d
+--------------------------------------------------------------------------
+MPI_ABORT was invoked on rank 0 in communicator MPI_COMM_WORLD
+with errorcode 1.
+
+NOTE: invoking MPI_ABORT causes Open MPI to kill all MPI processes.
+You may or may not see output from other processes, depending on
+exactly when Open MPI kills them.
+--------------------------------------------------------------------------
+HDF5-DIAG: Error detected in HDF5 (1.10.5) thread 0:
+  #000: H5D.c line 338 in H5Dclose(): can't decrement count on dataset ID
+    major: Dataset
+    minor: Unable to decrement reference count
+  #001: H5I.c line 1355 in H5I_dec_app_ref_always_close(): can't decrement ID ref count
+    major: Object atom
+    minor: Unable to decrement reference count
+  #002: H5I.c line 1300 in H5I_dec_app_ref(): can't decrement ID ref count
+    major: Object atom
+    minor: Unable to decrement reference count
+  #003: H5Dint.c line 1807 in H5D__close_cb(): can't close dataset
+    major: Dataset
+    minor: Can't close object
+  #004: H5Dint.c line 1848 in H5D_close(): unable to flush cached dataset info
+    major: Dataset
+    minor: Write failed
+  #005: H5Dint.c line 2965 in H5D__flush_real(): unable to flush raw data
+    major: Dataset
+    minor: Unable to flush data from cache
+  #006: H5Dcontig.c line 1301 in H5D__contig_flush(): unable to flush sieve buffer
+    major: Dataset
+    minor: Unable to flush data from cache
+  #007: H5Dint.c line 2930 in H5D__flush_sieve_buf(): block write failed
+    major: Low-level I/O
+    minor: Write failed
+  #008: H5Fio.c line 165 in H5F_block_write(): write through page buffer failed
+    major: Low-level I/O
+    minor: Write failed
+  #009: H5PB.c line 1028 in H5PB_write(): write through metadata accumulator failed
+    major: Page Buffering
+    minor: Write failed
+  #010: H5Faccum.c line 826 in H5F__accum_write(): file write failed
+    major: Low-level I/O
+    minor: Write failed
+  #011: H5FDint.c line 258 in H5FD_write(): driver write request failed
+    major: Virtual File Layer
+    minor: Write failed
+  #012: H5FDsec2.c line 829 in H5FD_sec2_write(): file write failed: time = Thu Jun 24 07:31:10 2021
+, filename = 'dump/2D_cyl.sol000273_1.sol.h5', file descriptor = 16, errno = 28, error message = 'No space left on device', buf = 0x9104ce8, total write size = 25952, bytes this sub-write = 25952, bytes actually written = 18446744073709551615, offset = 0
+    major: Low-level I/O
+    minor: Write failed
+HDF5-DIAG: Error detected in HDF5 (1.10.5) thread 0:
+  #000: H5D.c line 338 in H5Dclose(): can't decrement count on dataset ID
+    major: Dataset
+    minor: Unable to decrement reference count
+  #001: H5I.c line 1355 in H5I_dec_app_ref_always_close(): can't decrement ID ref count
+    major: Object atom
+    minor: Unable to decrement reference count
+  #002: H5I.c line 1300 in H5I_dec_app_ref(): can't decrement ID ref count
+    major: Object atom
+    minor: Unable to decrement reference count
+  #003: H5Dint.c line 1807 in H5D__close_cb(): can't close dataset
+    major: Dataset
+    minor: Can't close object
+  #004: H5Dint.c line 1848 in H5D_close(): unable to flush cached dataset info
+    major: Dataset
+    minor: Write failed
+  #005: H5Dint.c line 2965 in H5D__flush_real(): unable to flush raw data
+    major: Dataset
+    minor: Unable to flush data from cache
+  #006: H5Dcontig.c line 1301 in H5D__contig_flush(): unable to flush sieve buffer
+    major: Dataset
+    minor: Unable to flush data from cache
+  #007: H5Dint.c line 2930 in H5D__flush_sieve_buf(): block write failed
+    major: Low-level I/O
+    minor: Write failed
+  #008: H5Fio.c line 165 in H5F_block_write(): write through page buffer failed
+    major: Low-level I/O
+    minor: Write failed
+  #009: H5PB.c line 1028 in H5PB_write(): write through metadata accumulator failed
+    major: Page Buffering
+    minor: Write failed
+  #010: H5Faccum.c line 826 in H5F__accum_write(): file write failed
+    major: Low-level I/O
+    minor: Write failed
+  #011: H5FDint.c line 258 in H5FD_write(): driver write request failed
+HDF5-DIAG: Error detected in HDF5 (1.10.5) thread 0:
+  #000: H5D.c line 338 in H5Dclose(): can't decrement count on dataset ID
+    major: Dataset
+    minor: Unable to decrement reference count
+  #001: H5I.c line 1355 in H5I_dec_app_ref_always_close(): can't decrement ID ref count
+    major: Object atom
+    minor: Unable to decrement reference count
+  #002: H5I.c line 1300 in H5I_dec_app_ref(): can't decrement ID ref count
+    major: Object atom
+    minor: Unable to decrement reference count
+  #003: H5Dint.c line 1807 in H5D__close_cb(): can't close dataset
+    major: Dataset
+    minor: Can't close object
+  #004: H5Dint.c line 1848 in H5D_close(): unable to flush cached dataset info
+    major: Dataset
+    minor: Write failed
+  #005: H5Dint.c line 2965 in H5D__flush_real(): unable to flush raw data
+    major: Dataset
+    minor: Unable to flush data from cache
+  #006: H5Dcontig.c line 1301 in H5D__contig_flush(): unable to flush sieve buffer
+    major: Dataset
+    minor: Unable to flush data from cache
+  #007: H5Dint.c line 2930 in H5D__flush_sieve_buf(): block write failed
+    major: Low-level I/O
+    minor: Write failed
+  #008: H5Fio.c line 165 in H5F_block_write(): write through page buffer failed
+    major: Low-level I/O
+    minor: Write failed
+  #009: H5PB.c line 1028 in H5PB_write(): write through metadata accumulator failed
+    major: Page Buffering
+    minor: Write failed
+  #010: H5Faccum.c line 826 in H5F__accum_write(): file write failed
+    major: Low-level I/O
+    minor: Write failed
+  #011: H5FDint.c line 258 in H5FD_write(): driver write request failed
+    major: Virtual File Layer
+    minor: Write failed
+  #012: H5FDsec2.c line 829 in H5FD_sec2_write(): file write failed: time = Thu Jun 24 07:31:10 2021
+, filename = 'dump/2D_cyl.sol000366_1.sol.h5', file descriptor = 19, errno = 28, error message = 'No space left on device', buf = 0xa21a618, total write size = 65536, bytes this sub-write = 65536, bytes actually written = 18446744073709551615, offset = 0
+    major: Low-level I/O
+    minor: Write failed
+HDF5-DIAG: Error detected in HDF5 (1.10.5) thread 0:
+  #000: H5D.c line 338 in H5Dclose(): can't decrement count on dataset ID
+    major: Dataset
+    major: Virtual File Layer
+    minor: Write failed
+  #012: H5FDsec2.c line 829 in H5FD_sec2_write(): file write failed: time = Thu Jun 24 07:31:10 2021
+, filename = 'dump/2D_cyl.sol000273_1.sol.h5', file descriptor = 16, errno = 28, error message = 'No space left on device', buf = 0x9104ce8, total write size = 25952, bytes this sub-write = 25952, bytes actually written = 18446744073709551615, offset = 0
+    major: Low-level I/O
+    minor: Write failed
+    minor: Unable to decrement reference count
+  #001: H5I.c line 1355 in H5I_dec_app_ref_always_close(): can't decrement ID ref count
+    major: Object atom
+    minor: Unable to decrement reference count
+  #002: H5I.c line 1300 in H5I_dec_app_ref(): can't decrement ID ref count
+    major: Object atom
+    minor: Unable to decrement reference count
+  #003: H5Dint.c line 1807 in H5D__close_cb(): can't close dataset
+    major: Dataset
+    minor: Can't close object
+  #004: H5Dint.c line 1848 in H5D_close(): unable to flush cached dataset info
+    major: Dataset
+    minor: Write failed
+  #005: H5Dint.c line 2965 in H5D__flush_real(): unable to flush raw data
+    major: Dataset
+    minor: Unable to flush data from cache
+  #006: H5Dcontig.c line 1301 in H5D__contig_flush(): unable to flush sieve buffer
+    major: Dataset
+    minor: Unable to flush data from cache
+  #007: H5Dint.c line 2930 in H5D__flush_sieve_buf(): block write failed
+    major: Low-level I/O
+    minor: Write failed
+  #008: H5Fio.c line 165 in H5F_block_write(): write through page buffer failed
+    major: Low-level I/O
+    minor: Write failed
+  #009: H5PB.c line 1028 in H5PB_write(): write through metadata accumulator failed
+    major: Page Buffering
+    minor: Write failed
+  #010: H5Faccum.c line 826 in H5F__accum_write(): file write failed
+    major: Low-level I/O
+    minor: Write failed
+  #011: H5FDint.c line 258 in H5FD_write(): driver write request failed
+    major: Virtual File Layer
+    minor: Write failed
+  #012: H5FDsec2.c line 829 in H5FD_sec2_write(): file write failed: time = Thu Jun 24 07:31:10 2021
+, filename = 'dump/2D_cyl.sol000366_1.sol.h5', file descriptor = 19, errno = 28, error message = 'No space left on device', buf = 0xa21a618, total write size = 65536, bytes this sub-write = 65536, bytes actually written = 18446744073709551615, offset = 0
+    major: Low-level I/O
+    minor: Write failed
+--------------------------------------------------------------------------
+MPI_ABORT was invoked on rank 0 in communicator MPI_COMM_WORLD
+with errorcode 1.
+
+NOTE: invoking MPI_ABORT causes Open MPI to kill all MPI processes.
+You may or may not see output from other processes, depending on
+exactly when Open MPI kills them.
+--------------------------------------------------------------------------
+HDF5-DIAG: Error detected in HDF5 (1.10.5) thread 0:
+  #000: H5D.c line 338 in H5Dclose(): can't decrement count on dataset ID
+    major: Dataset
+    minor: Unable to decrement reference count
+  #001: H5I.c line 1355 in H5I_dec_app_ref_always_close(): can't decrement ID ref count
+    major: Object atom
+    minor: Unable to decrement reference count
+  #002: H5I.c line 1300 in H5I_dec_app_ref(): can't decrement ID ref count
+    major: Object atom
+    minor: Unable to decrement reference count
+  #003: H5Dint.c line 1807 in H5D__close_cb(): can't close dataset
+    major: Dataset
+    minor: Can't close object
+  #004: H5Dint.c line 1848 in H5D_close(): unable to flush cached dataset info
+    major: Dataset
+    minor: Write failed
+  #005: H5Dint.c line 2965 in H5D__flush_real(): unable to flush raw data
+    major: Dataset
+    minor: Unable to flush data from cache
+  #006: H5Dcontig.c line 1301 in H5D__contig_flush(): unable to flush sieve buffer
+    major: Dataset
+    minor: Unable to flush data from cache
+  #007: H5Dint.c line 2930 in H5D__flush_sieve_buf(): block write failed
+    major: Low-level I/O
+    minor: Write failed
+  #008: H5Fio.c line 165 in H5F_block_write(): write through page buffer failed
+    major: Low-level I/O
+    minor: Write failed
+  #009: H5PB.c line 1028 in H5PB_write(): write through metadata accumulator failed
+HDF5-DIAG: Error detected in HDF5 (1.10.5)     major: Page Buffering
+    minor: Write failed
+  #010: H5Faccum.c line 826 in H5F__accum_write(): file write failed
+    major: Low-level I/O
+    minor: Write failed
+  #011: H5FDint.c line 258 in H5FD_write(): driver write request failed
+    major: Virtual File Layer
+    minor: Write failed
+  #012: H5FDsec2.c line 829 in H5FD_sec2_write(): file write failed: time = Thu Jun 24 07:31:10 2021
+, filename = 'dump/2D_cyl.sol000287_1.sol.h5', file descriptor = 16, errno = 28, error message = 'No space left on device', buf = 0x8796c88, total write size = 24912, bytes this sub-write = 24912, bytes actually written = 18446744073709551615, offset = 0
+    major: Low-level I/O
+    minor: Write failed
+HDF5-DIAG: Error detected in HDF5 (1.10.5) thread 0:
+  #000: H5D.c line 338 in H5Dclose(): can't decrement count on dataset ID
+    major: Dataset
+    minor: Unable to decrement reference count
+  #001: H5I.c line 1355 in H5I_dec_app_ref_always_close(): can't decrement ID ref count
+    major: Object atom
+    minor: Unable to decrement reference count
+  #002: H5I.c line 1300 in H5I_dec_app_ref(): can't decrement ID ref count
+    major: Object atom
+    minor: Unable to decrement reference count
+  #003: H5Dint.c line 1807 in H5D__close_cb(): can't close dataset
+    major: Dataset
+    minor: Can't close object
+  #004: H5Dint.c line 1848 in H5D_close(): unable to flush cached dataset info
+thread 0:
+  #000: H5D.c line 338 in H5Dclose(): can't decrement count on dataset ID
+    major: Dataset
+    major: Dataset
+    minor: Write failed
+  #005: H5Dint.c line 2965 in H5D__flush_real(): unable to flush raw data
+    major: Dataset
+    minor: Unable to flush data from cache
+  #006: H5Dcontig.c line 1301 in H5D__contig_flush(): unable to flush sieve buffer
+    major: Dataset
+    minor: Unable to flush data from cache
+  #007: H5Dint.c line 2930 in H5D__flush_sieve_buf(): block write failed
+    minor: Unable to decrement reference count
+  #001: H5I.c line 1355 in H5I_dec_app_ref_always_close(): can't decrement ID ref count
+    major: Object atom
+    minor: Unable to decrement reference count
+    major: Low-level I/O
+    minor: Write failed
+  #008: H5Fio.c line 165 in H5F_block_write(): write through page buffer failed
+    major: Low-level I/O
+    minor: Write failed
+  #009: H5PB.c line 1028 in H5PB_write(): write through metadata accumulator failed
+    major: Page Buffering
+    minor: Write failed
+  #010: H5Faccum.c line 826 in H5F__accum_write(): file write failed
+    major: Low-level I/O
+    minor: Write failed
+  #011: H5FDint.c line 258 in H5FD_write(): driver write request failed
+    major: Virtual File Layer
+    minor: Write failed
+  #012: H5FDsec2.c line 829 in H5FD_sec2_write(): file write failed: time = Thu Jun 24 07:31:10 2021
+, filename = 'dump/2D_cyl.sol000287_1.sol.h5', file descriptor = 16, errno = 28, error message = 'No space left on device', buf = 0x8796c88, total write size = 24912, bytes this sub-write = 24912, bytes actually written = 18446744073709551615, offset = 0
+    major: Low-level I/O
+    minor: Write failed
+  #002: H5I.c line 1300 in H5I_dec_app_ref(): can't decrement ID ref count
+    major: Object atom
+    minor: Unable to decrement reference count
+  #003: H5Dint.c line 1807 in H5D__close_cb(): can't close dataset
+    major: Dataset
+    minor: Can't close object
+  #004: H5Dint.c line 1848 in H5D_close(): unable to flush cached dataset info
+    major: Dataset
+    minor: Write failed
+  #005: H5Dint.c line 2965 in H5D__flush_real(): unable to flush raw data
+    major: Dataset
+    minor: Unable to flush data from cache
+  #006: H5Dcontig.c line 1301 in H5D__contig_flush(): unable to flush sieve buffer
+    major: Dataset
+    minor: Unable to flush data from cache
+  #007: H5Dint.c line 2930 in H5D__flush_sieve_buf(): block write failed
+    major: Low-level I/O
+    minor: Write failed
+  #008: H5Fio.c line 165 in H5F_block_write(): write through page buffer failed
+    major: Low-level I/O
+    minor: Write failed
+  #009: H5PB.c line 1028 in H5PB_write(): write through metadata accumulator failed
+    major: Page Buffering
+    minor: Write failed
+  #010: H5Faccum.c line 826 in H5F__accum_write(): file write failed
+    major: Low-level I/O
+    minor: Write failed
+  #011: H5FDint.c line 258 in H5FD_write(): driver write request failed
+    major: Virtual File Layer
+    minor: Write failed
+  #012: H5FDsec2.c line 829 in H5FD_sec2_write(): file write failed: time = Thu Jun 24 07:31:10 2021
+, filename = 'dump/2D_cyl.sol000359_1.sol.h5', file descriptor = 16, errno = 28, error message = 'No space left on device', buf = 0x9cd0a10, total write size = 6584, bytes this sub-write = 6584, bytes actually written = 18446744073709551615, offset = 0
+    major: Low-level I/O
+    minor: Write failed
+HDF5-DIAG: Error detected in HDF5 (1.10.5) thread 0:
+  #000: H5D.c line 338 in H5Dclose(): can't decrement count on dataset ID
+    major: Dataset
+    minor: Unable to decrement reference count
+  #001: H5I.c line 1355 in H5I_dec_app_ref_always_close(): can't decrement ID ref count
+    major: Object atom
+    minor: Unable to decrement reference count
+  #002: H5I.c line 1300 in H5I_dec_app_ref(): can't decrement ID ref count
+    major: Object atom
+    minor: Unable to decrement reference count
+  #003: H5Dint.c line 1807 in H5D__close_cb(): can't close dataset
+    major: Dataset
+    minor: Can't close object
+  #004: H5Dint.c line 1848 in H5D_close(): unable to flush cached dataset info
+    major: Dataset
+    minor: Write failed
+  #005: H5Dint.c line 2965 in H5D__flush_real(): unable to flush raw data
+    major: Dataset
+    minor: Unable to flush data from cache
+  #006: H5Dcontig.c line 1301 in H5D__contig_flush(): unable to flush sieve buffer
+    major: Dataset
+    minor: Unable to flush data from cache
+  #007: H5Dint.c line 2930 in H5D__flush_sieve_buf(): block write failed
+    major: Low-level I/O
+    minor: Write failed
+  #008: H5Fio.c line 165 in H5F_block_write(): write through page buffer failed
+    major: Low-level I/O
+    minor: Write failed
+  #009: H5PB.c line 1028 in H5PB_write(): write through metadata accumulator failed
+    major: Page Buffering
+    minor: Write failed
+  #010: H5Faccum.c line 826 in H5F__accum_write(): file write failed
+    major: Low-level I/O
+    minor: Write failed
+  #011: H5FDint.c line 258 in H5FD_write(): driver write request failed
+    major: Virtual File Layer
+    minor: Write failed
+  #012: H5FDsec2.c line 829 in H5FD_sec2_write(): file write failed: time = Thu Jun 24 07:31:10 2021
+, filename = 'dump/2D_cyl.sol000359_1.sol.h5', file descriptor = 16, errno = 28, error message = 'No space left on device', buf = 0x9cd0a10, total write size = 6584, bytes this sub-write = 6584, bytes actually written = 18446744073709551615, offset = 0
+    major: Low-level I/O
+    minor: Write failed
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun noticed that process rank 1 with PID 0 on node arrowhead exited on signal 11 (Segmentation fault).
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun noticed that process rank 6 with PID 0 on node arrowhead exited on signal 11 (Segmentation fault).
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun noticed that process rank 5 with PID 0 on node arrowhead exited on signal 11 (Segmentation fault).
+--------------------------------------------------------------------------
+/bin/sh: output.dat: No space left on device
+/bin/sh: output.dat: No space left on device
+/bin/sh: output.dat: No space left on device
+/bin/sh: output.dat: No space left on device
+/bin/sh: output.dat: No space left on device
+
+## Sending ind9 to simulation...
+WAITING
+BATCH OF SIMULATIONS COMPLETE
+POST-PROCESSING CFD CASE: gen12/ind0
+POST-PROCESSING CFD CASE: gen12/ind1
+POST-PROCESSING CFD CASE: gen12/ind2
+POST-PROCESSING CFD CASE: gen12/ind3
+POST-PROCESSING CFD CASE: gen12/ind4
+POST-PROCESSING CFD CASE: gen12/ind5
+POST-PROCESSING CFD CASE: gen12/ind6
+POST-PROCESSING CFD CASE: gen12/ind7
+POST-PROCESSING CFD CASE: gen12/ind8
+POST-PROCESSING CFD CASE: gen12/ind9
+GEN12 COMPLETE
+   13 |     130 |  1.087581970 |  0.935320768 |  1.32529E+02 |  0.513785334
+algorithm.n_gen:13 len(alg...data[var]):13
+Evaluating generation 13
+PRE-PROCESSING CFD CASE: gen13/ind0
+PRE-PROCESSING CFD CASE: gen13/ind1
+PRE-PROCESSING CFD CASE: gen13/ind2
+PRE-PROCESSING CFD CASE: gen13/ind3
+PRE-PROCESSING CFD CASE: gen13/ind4
+PRE-PROCESSING CFD CASE: gen13/ind5
+PRE-PROCESSING CFD CASE: gen13/ind6
+PRE-PROCESSING CFD CASE: gen13/ind7
+PRE-PROCESSING CFD CASE: gen13/ind8
+PRE-PROCESSING CFD CASE: gen13/ind9
+EXECUTING BATCH OF SIMULATIONS
+## Sending ind0 to simulation...
+## Sending ind1 to simulation...
+## Sending ind2 to simulation...
+## Sending ind3 to simulation...
+## Sending ind4 to simulation...
+WAITING
+## Sending ind5 to simulation...
+## Sending ind6 to simulation...
+## Sending ind7 to simulation...
+## Sending ind8 to simulation...
+## Sending ind9 to simulation...
+WAITING
+BATCH OF SIMULATIONS COMPLETE
+POST-PROCESSING CFD CASE: gen13/ind0
+Traceback (most recent call last):
+  File "pymooExec.py", line 8, in <module>
+    runOpt(restart=False)
+  File "/home/dubief/Documents/george-temp/cylinder-opt/pymooCFD/runOpt.py", line 55, in runOpt
+    verbose=True
+  File "/home/dubief/anaconda3/envs/pymoo-CFD/lib/python3.7/site-packages/pymoo/optimize.py", line 85, in minimize
+    res = algorithm.solve()
+  File "/home/dubief/anaconda3/envs/pymoo-CFD/lib/python3.7/site-packages/pymoo/model/algorithm.py", line 226, in solve
+    self._solve(self.problem)
+  File "/home/dubief/anaconda3/envs/pymoo-CFD/lib/python3.7/site-packages/pymoo/model/algorithm.py", line 321, in _solve
+    self.next()
+  File "/home/dubief/anaconda3/envs/pymoo-CFD/lib/python3.7/site-packages/pymoo/model/algorithm.py", line 246, in next
+    self._next()
+  File "/home/dubief/anaconda3/envs/pymoo-CFD/lib/python3.7/site-packages/pymoo/algorithms/genetic_algorithm.py", line 107, in _next
+    self.evaluator.eval(self.problem, self.off, algorithm=self)
+  File "/home/dubief/anaconda3/envs/pymoo-CFD/lib/python3.7/site-packages/pymoo/model/evaluator.py", line 78, in eval
+    self._eval(problem, pop[I], **kwargs)
+  File "/home/dubief/anaconda3/envs/pymoo-CFD/lib/python3.7/site-packages/pymoo/model/evaluator.py", line 97, in _eval
+    **kwargs)
+  File "/home/dubief/anaconda3/envs/pymoo-CFD/lib/python3.7/site-packages/pymoo/model/problem.py", line 286, in evaluate
+    out = self._evaluate_batch(X, calc_gradient, out, *args, **kwargs)
+  File "/home/dubief/anaconda3/envs/pymoo-CFD/lib/python3.7/site-packages/pymoo/model/problem.py", line 385, in _evaluate_batch
+    self._evaluate(X, out, *args, **kwargs)
+  File "/home/dubief/Documents/george-temp/cylinder-opt/pymooCFD/setupOpt.py", line 222, in _evaluate
+    obj[ind] = postProc(indDir, x[ind, :])
+  File "/home/dubief/Documents/george-temp/cylinder-opt/pymooCFD/setupCFD.py", line 129, in postProc
+    np.savetxt(f'{caseDir}/obj.txt', obj)
+  File "<__array_function__ internals>", line 6, in savetxt
+  File "/home/dubief/anaconda3/envs/pymoo-CFD/lib/python3.7/site-packages/numpy/lib/npyio.py", line 1366, in savetxt
+    open(fname, 'wt').close()
+OSError: [Errno 28] No space left on device: 'gen13/ind0/obj.txt'

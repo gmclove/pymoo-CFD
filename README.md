@@ -1,16 +1,29 @@
 # pymoo-CFD
 
 ## Build Anaconda Environment
+https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf
+
 Create a new conda environment with Python 3.7 installed and numPy.
 Next activate the environment, so we can continue the build.  
 ```bash
-conda create -n pymoo-CFD python==3.7 numpy
+conda create -n pymoo-CFD  # python==3.7 numpy
+```
+```bash
 conda activate pymoo-CFD
+```
+If you already have anaconda installed make sure to update it before continuing.
+```bash
+conda update conda
+```
+
+#### PIP Installation
+```bash
+conda install pip
 ```
 
 #### pyMOO Installation
 Next install pymoo using pip.
-Please see pymoo.org for future installation instructions if modules do not compile and latest updates.
+Please see pymoo.org for future installation instructions if modules do not compile and for the latest updates.
 Pymoo will run without modules compiled just slower.
 
 ```bash
@@ -51,6 +64,26 @@ Finally, after making sure you are in the desired directory type the following c
 ```bash
 jupyter notebook
 ```
+* IMPORTANT NOTE: When launching jupyter notebook make sure you are not in a directory
+below the anaconda3 directory where your conda virtual environment is stored.
+This will mean the notebook can not access the virtual environment and will throw an error when importing pymoo package.
+Best practice is typically be to launch notebook in the home/user main directory which is where the anaconda3 directory is usually located.
+
+#### Paraview Installation
+Paraview is a great tool for CFD post-processing. Paraview also allows for easy automation of post-processing through a python script. It is equipped  with a Python API and a tracing tool that writes a python script for you as you post-processes in the graphic user interface.
+```bash
+conda install --channel conda-forge paraview
+```
+To launch paraview simply use the command:
+```bash
+paraview
+```
+To start tracing you actions go to Tools > Start Trace. For 'Properties To Trace On Create' selecting 'any *modified* properties' and checking the box next to 'Skip Rendering Components' should give you the script you need to automate your post-processing through python.
+
+In order to transfer data from paraview to your python script use the File > Save Data... feature in paraview to write a data file. A simple modification to the file path in your paraview python script will allow you to save paraview data to a desired location and then load it back into python with a command such as np.loadtxt().
+
+https://www.paraview.org/
+https://anaconda.org/conda-forge/paraview
 
 <!--
 #### Option 2:
@@ -70,9 +103,17 @@ jupyter notebook
 ``` -->
 
 ### Dask installation
-
+On high performance computing clusters with a job scheduler already in use such as SLURM or PBS use the following installation for dask-jobqueue and it's dependents.
 ```bash
 conda install dask-jobqueue -c conda-forge
+```
+For use on a single machine Dask.Distributed can be used instead.
+```bash
+conda install dask distributed -c conda-forge
+```
+For interactive monitoring of your Dask jobs install the Jupyter Qt Console.
+```bash
+conda install qtconsole
 ```
 
 ### Diagrams installation
@@ -80,7 +121,6 @@ conda install dask-jobqueue -c conda-forge
 sudo apt-get install graphviz
 pip install diagrams
 ```
-
 
 
 #### Other Packages
@@ -97,14 +137,23 @@ conda install h5py
 Remember that the pymoo-CFD environment should be active during this build.
 
 ## Workflow
-### Create New Case
+### Setup Optimization Study
 - Copy template case
 
 - Replace contents of base_case folder with all necessary execution files for base simulation.
-  These files will be what pyMOO munipulates to conduct optimization study.
-  It is important for later to know where the parameter values you wish to optimize are located in these files.
+  - It is important to know where the parameter values you wish to optimize are located in these files. Ideally the CFD solver uses an input file where all the parameters are located.
 
-- Open pymooIN.py and edit the variables at the top of the file.
+- Open setupCFD.py and setup pre/post-processing that will be performed every time an individual simulation is run.
+  - Pre-processing involves taking in variables pass from setupOpt.py's _evaluate() method in the custom GA_CFD() class.
+
+```python3
+def preProc(caseDir, var, jobName=jobName, jobFile=jobFile):
+  # OPEN INPUT FILE, EDIT PARAMETERS USING var
+  # OPTIONAL jobName AND jobFile INPUTS FOR SLURM EXECUTION SYSTEM
+    # USE OF SLURM SYSTEM REQUIRES EDITING DIRECTORY IN FILE THAT LAUNCHES SLURM JOB
+```
+
+- Open setupOpt.py and edit the variables at the top of the file.
   - n_gen: number of generations before termination
   - n_var: number of variables   
   - xu: upper limits of variables   

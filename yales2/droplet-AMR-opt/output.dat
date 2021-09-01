@@ -1,0 +1,34 @@
+==> Error: Spec 'cmake@3.9.6' matches no installed packages.
+	 loading CWIPI version 0.10.3 forgcc-7.3.0 
+	 loading HDF5 version 1.10.5 forgcc-7.3.0 
+	 loading HYPRE version 2.17.0 forgcc-7.3.0 
+	 loading METIS version 5.1.0 forgcc-7.3.0 
+	 loading MKL version 2020.2.254 forgcc-7.3.0 
+	 loading MMG version develop forgcc-7.3.0 
+	 loading MMG version master forgcc-7.3.0 
+	 loading OPENPALM version 4.3.0 forgcc-7.3.0 
+	 loading PAPI version 5.7.0 forgcc-7.3.0 
+	 loading PETSC version 3.11.3 forgcc-7.3.0 
+	 loading SCOTCH version 6.0.7 forgcc-7.3.0 
+	 loading SLEPC version 3.11.1 forgcc-7.3.0 
+./droplet_convection: error while loading shared libraries: libgfortran.so.5: cannot open shared object file: No such file or directory
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+./droplet_convection: error while loading shared libraries: libgfortran.so.5: cannot open shared object file: No such file or directory
+./droplet_convection: error while loading shared libraries: libgfortran.so.5: cannot open shared object file: No such file or directory
+./droplet_convection: error while loading shared libraries: libgfortran.so.5: cannot open shared object file: No such file or directory
+./droplet_convection: error while loading shared libraries: libgfortran.so.5: cannot open shared object file: No such file or directory
+./droplet_convection: error while loading shared libraries: libgfortran.so.5: cannot open shared object file: No such file or directory
+./droplet_convection: error while loading shared libraries: libgfortran.so.5: cannot open shared object file: No such file or directory
+./droplet_convection: error while loading shared libraries: libgfortran.so.5: cannot open shared object file: No such file or directory
+./droplet_convection: error while loading shared libraries: libgfortran.so.5: cannot open shared object file: No such file or directory
+./droplet_convection: error while loading shared libraries: libgfortran.so.5: cannot open shared object file: No such file or directory
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[18410,1],0]
+  Exit code:    127
+--------------------------------------------------------------------------
